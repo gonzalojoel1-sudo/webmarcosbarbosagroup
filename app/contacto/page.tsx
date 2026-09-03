@@ -174,23 +174,35 @@ export default function ContactoPage() {
                   <h3 className="text-sm font-semibold text-fg leading-none">
                     Elegí tu horario en la agenda de Marcos
                   </h3>
-                  <p className="text-xs text-fg-muted mt-0.5">45 min · Meet/Presencial</p>
+                  <p className="text-xs text-fg-muted mt-0.5">45 min · Meet/Zoom</p>
                 </div>
               </div>
               <p className="mt-4 inline-flex items-center gap-1.5 text-sm text-fg-muted">
                 <Clock size={14} aria-hidden /> {theme.calendar.hours}
               </p>
-              <a
-                href={bookingUrl ?? "/contacto"}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mt-5 w-full inline-flex items-center justify-center gap-2 btn-primary px-5 py-3 text-sm font-medium"
-              >
-                <CalendarDays size={18} aria-hidden /> Agendar en Google Calendar
-              </a>
-              <p className="mt-3 text-xs text-fg-muted leading-relaxed">
-                Si el calendario no carga, escribinos por WhatsApp y coordinamos manual.
-              </p>
+              {/* Embed inline de la agenda (sin salir de la página) */}
+              <div className="mt-4 rounded-xl border border-hairline bg-surface-2 overflow-hidden">
+                <iframe
+                  title="Agenda de Marcos Barbosa — Google Calendar"
+                  src={theme.calendar.embedUrl}
+                  className="w-full h-[560px] sm:h-[640px] border-0"
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                />
+              </div>
+              <div className="mt-3 flex items-center justify-between gap-4">
+                <p className="text-xs text-fg-muted leading-relaxed">
+                  Si no cargó, abrilo en pestaña nueva o coordinamos por WhatsApp.
+                </p>
+                <a
+                  href={bookingUrl ?? "#"}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="shrink-0 text-xs font-medium text-primary hover:text-primary-hover inline-flex items-center gap-1"
+                >
+                  Abrir agenda <ArrowRight size={12} aria-hidden />
+                </a>
+              </div>
             </div>
 
             {/* Mapa Córdoba */}
