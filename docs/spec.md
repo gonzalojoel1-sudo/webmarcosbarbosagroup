@@ -139,3 +139,9 @@ Fase 5 — Polish motion + SEO (1h)
 
 ---
 Aprobado: Enfoque A + #fe4100 + foto principal hero.
+
+## 16. Agenda Google Calendar
+- Email: Agenda.personal.mb@gmail.com
+- Horario disponible: 8-12 y 14-19 (configurado en Google Calendar "Programación de citas")
+- Wire: `NEXT_PUBLIC_CALENDAR_URL` env en Dokploy → todos los CTAs "Agendar" abren el booking page en _blank
+- Fallback si env vacío: /contacto (form actual)

@@ -1,7 +1,9 @@
 import type { Metadata } from "next"
 import Link from "next/link"
 import { LeadForm } from "@/components/lead-form"
-import { MessageCircle, Mail, MapPin, Clock, ShieldCheck, ArrowRight, Check } from "lucide-react"
+import { theme } from "@/config/theme"
+import { bookingUrl } from "@/lib/calendar"
+import { MessageCircle, Mail, MapPin, Clock, ShieldCheck, ArrowRight, Check, CalendarDays } from "lucide-react"
 
 export const metadata: Metadata = {
   title: "Contacto — Agendar Primera Reunión Estratégica | Marcos Barbosa Group",
@@ -132,6 +134,28 @@ export default function ContactoPage() {
 
           {/* Sidebar */}
           <aside className="lg:col-span-5 space-y-5">
+            {/* Google Calendar booking */}
+            {bookingUrl && (
+              <div className="card-luxury rounded-2xl p-6 border-primary/40">
+                <p className="text-[11px] uppercase tracking-[0.18em] text-fg-muted">
+                  Agenda directa
+                </p>
+                <h3 className="text-xl font-bold tracking-tight mt-2 text-fg">
+                  Elegí tu horario en la agenda de Marcos
+                </h3>
+                <p className="text-sm text-fg-muted leading-relaxed mt-2 inline-flex items-center gap-1.5">
+                  <Clock size={14} aria-hidden /> {theme.calendar.hours}
+                </p>
+                <a
+                  href={bookingUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-5 w-full inline-flex items-center justify-center gap-2 btn-primary px-5 py-3 text-sm font-medium"
+                >
+                  <CalendarDays size={18} aria-hidden /> Agendar en Google Calendar
+                </a>
+              </div>
+            )}
             {/* WhatsApp direct */}
             <div className="card-luxury rounded-2xl p-6">
               <p className="text-[11px] uppercase tracking-[0.18em] text-fg-muted">

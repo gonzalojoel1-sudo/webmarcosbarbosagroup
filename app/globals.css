@@ -155,14 +155,14 @@ textarea:focus-visible,
   }
 }
 
-/* ─── Foto B&N editorial (siempre grayscale, hover devuelve 15% de vida) ── */
+/* ─── Foto a color editorial (frame hairline, hover contraste sutil) ────── */
 .photo-bw {
-  filter: grayscale(1) contrast(1.05);
+  filter: contrast(1.02) saturate(1.02);
   transition: filter 400ms var(--ease-out);
 }
 @media (hover: hover) and (pointer: fine) {
   .photo-bw:hover {
-    filter: grayscale(0.85) contrast(1.05);
+    filter: contrast(1.05) saturate(1.05);
   }
 }
 

@@ -12,6 +12,13 @@ export const theme = {
   },
   logo: "/images/logo.svg",
   radius: "16px",
+  calendar: {
+    email: "Agenda.personal.mb@gmail.com",
+    // Link de "Programación de citas" de Google Calendar (ver README en docs).
+    // Vacío => los CTAs de agenda caen a /contacto.
+    url: process.env.NEXT_PUBLIC_CALENDAR_URL ?? "",
+    hours: "Lun a Vie · 8 a 12 y 14 a 19",
+  },
 } as const
 
 export type Theme = typeof theme
