@@ -65,7 +65,7 @@ export default function SobreMarcosPage() {
       <section className="pt-28 pb-12 border-b border-line bg-paper-2">
         <div className="max-w-7xl mx-auto px-6 grid lg:grid-cols-12 gap-10 items-start">
           <div className="lg:col-span-5">
-            <div className="relative aspect-[4/5] overflow-hidden rounded-2xl border border-line bg-white">
+            <div className="relative aspect-[4/5] overflow-hidden rounded-2xl border border-line bg-surface shadow-xl shadow-black/10">
               <Image
                 src="/images/marcos-hero.jpg"
                 alt="Marcos Barbosa — Fundador, Marcos Barbosa Group"
@@ -75,28 +75,28 @@ export default function SobreMarcosPage() {
                 priority
               />
               <div className="absolute inset-0 ring-2 ring-primary/15 rounded-2xl pointer-events-none" aria-hidden />
-              <div className="absolute bottom-4 left-4 right-4 bg-white/95 backdrop-blur border border-line rounded-xl px-4 py-3 flex items-center gap-3">
-                <div className="w-9 h-9 rounded-full bg-primary text-white flex items-center justify-center font-display text-sm shrink-0">
+              <div className="absolute bottom-4 left-4 right-4 bg-surface/75 backdrop-blur-md border border-line rounded-xl px-4 py-3 flex items-center gap-3 shadow-lg shadow-black/10">
+                <div className="w-9 h-9 rounded-full bg-primary text-primary-fg flex items-center justify-center font-display text-sm shrink-0">
                   MB
                 </div>
                 <div className="min-w-0">
-                  <p className="text-sm font-semibold leading-none text-ink">Marcos Barbosa</p>
+                  <p className="text-sm font-semibold leading-none text-foreground">Marcos Barbosa</p>
                   <p className="text-xs text-muted leading-none mt-1">Fuerzas Especiales → Consultor de Líderes</p>
                 </div>
                 <span className="ml-auto h-2 w-2 rounded-full bg-success shrink-0 animate-pulse" aria-hidden />
               </div>
             </div>
             <div className="mt-4 grid grid-cols-3 gap-3">
-              <div className="bg-ink text-white rounded-xl p-3 text-center border border-white/10">
+              <div className="bg-ink-soft text-white rounded-xl p-3 text-center border border-white/10">
                 <p className="font-display text-lg leading-none">15+</p>
                 <p className="text-[11px] tracking-widest text-white/60 mt-1">AÑOS</p>
               </div>
-              <div className="bg-white border border-line rounded-xl p-3 text-center">
+              <div className="bg-surface border border-line rounded-xl p-3 text-center">
                 <p className="font-display text-lg leading-none text-primary">01—06</p>
                 <p className="text-[11px] tracking-widest text-muted mt-1">MÉTODO</p>
               </div>
-              <div className="bg-white border border-line rounded-xl p-3 text-center">
-                <p className="font-display text-lg leading-none text-ink">4</p>
+              <div className="bg-surface border border-line rounded-xl p-3 text-center">
+                <p className="font-display text-lg leading-none text-foreground">4</p>
                 <p className="text-[11px] tracking-widest text-muted mt-1">PLANES</p>
               </div>
             </div>
@@ -104,7 +104,7 @@ export default function SobreMarcosPage() {
 
           <div className="lg:col-span-7">
             <p className="text-xs tracking-[0.2em] text-muted">SOBRE MARCOS</p>
-            <h1 className="font-display text-4xl md:text-5xl leading-[0.9] mt-3 text-ink">
+            <h1 className="font-display text-4xl md:text-5xl lg:text-6xl tracking-tight leading-[0.95] mt-3 text-foreground">
               De fuerzas especiales
               <br />
               <span className="text-primary">a formar líderes.</span>
@@ -117,22 +117,22 @@ export default function SobreMarcosPage() {
 
             <div className="mt-8 grid sm:grid-cols-2 gap-4">
               {bullets.map((b) => (
-                <div key={b.title} className="bg-white border border-line rounded-xl p-4 flex gap-3">
+                <div key={b.title} className="bg-surface border border-line rounded-xl p-4 flex gap-3">
                   <span className="shrink-0 w-8 h-8 rounded-lg bg-primary-soft border border-primary/15 flex items-center justify-center text-primary mt-0.5">
                     <b.Icon size={16} strokeWidth={1.75} />
                   </span>
                   <div>
-                    <p className="text-sm font-semibold text-ink leading-none">{b.title}</p>
+                    <p className="text-sm font-semibold text-foreground leading-none">{b.title}</p>
                     <p className="text-xs leading-relaxed text-muted mt-1.5">{b.desc}</p>
                   </div>
                 </div>
               ))}
             </div>
 
-            <blockquote className="mt-8 bg-ink text-white rounded-xl p-6 relative overflow-hidden border border-white/10">
+            <blockquote className="mt-10 bg-ink-soft text-white rounded-xl p-7 md:p-9 relative overflow-hidden border border-white/10">
               <div className="absolute top-0 left-0 w-full h-1 bg-primary" aria-hidden />
               <Quote size={20} className="text-primary mb-3" />
-              <p className="font-display text-lg leading-snug text-balance">
+              <p className="font-display text-2xl md:text-3xl leading-[1.15] tracking-tight text-balance">
                 &ldquo;La estrategia sin ejecución es solo una ilusión. Mi trabajo es que tu empresa ejecute,
                 mida y escale — incluso cuando vos no estés.&rdquo;
               </p>
@@ -142,13 +142,13 @@ export default function SobreMarcosPage() {
             <div className="mt-8 flex flex-wrap gap-3">
               <Link
                 href="/contacto"
-                className="inline-flex items-center justify-center bg-primary text-white px-6 py-3 rounded-full text-sm font-medium hover:bg-primary-hover transition-colors gap-2"
+                className="inline-flex items-center justify-center bg-primary text-primary-fg px-6 py-3 rounded-full text-sm font-semibold hover:bg-primary-hover transition-colors gap-2"
               >
                 Agendar Reunión Estratégica <ArrowRight size={16} />
               </Link>
               <Link
                 href="/metodologia"
-                className="inline-flex items-center justify-center border border-line bg-white px-6 py-3 rounded-full text-sm font-medium text-ink hover:border-ink/20 transition-colors"
+                className="inline-flex items-center justify-center border border-line bg-surface px-6 py-3 rounded-full text-sm font-semibold text-foreground hover:border-foreground/25 transition-colors"
               >
                 Ver metodología
               </Link>
@@ -162,7 +162,7 @@ export default function SobreMarcosPage() {
         <div className="max-w-7xl mx-auto px-6">
           <div className="max-w-2xl">
             <p className="text-xs tracking-[0.2em] text-muted">TRAYECTORIA</p>
-            <h2 className="font-display text-3xl leading-none mt-2 text-ink">
+            <h2 className="font-display text-3xl tracking-tight leading-none mt-2 text-foreground">
               Táctica.
               <br />
               <span className="text-primary">Experiencia. Método.</span>
@@ -174,9 +174,9 @@ export default function SobreMarcosPage() {
 
           <div className="mt-10 grid md:grid-cols-3 gap-5">
             {timeline.map((t) => (
-              <div key={t.year} className="bg-white border border-line rounded-2xl p-6 flex flex-col">
+              <div key={t.year} className="bg-surface border border-line rounded-2xl p-6 flex flex-col hover:border-primary/30 transition-colors duration-200">
                 <p className="text-xs tracking-[0.16em] font-medium text-primary">{t.year}</p>
-                <h3 className="font-display text-lg leading-tight mt-2 text-ink">{t.title}</h3>
+                <h3 className="font-display text-lg tracking-tight leading-tight mt-2 text-foreground">{t.title}</h3>
                 <p className="text-sm text-muted leading-relaxed mt-2 flex-1">{t.desc}</p>
                 <div className="mt-4 h-px w-full bg-primary/15" aria-hidden />
                 <span className="mt-3 inline-flex items-center gap-1.5 text-xs font-medium text-muted">
@@ -192,8 +192,7 @@ export default function SobreMarcosPage() {
       <section className="bg-paper-2 border-y border-line py-12 md:py-16">
         <div className="max-w-7xl mx-auto px-6 grid lg:grid-cols-12 gap-10">
           <div className="lg:col-span-7">
-            <p className="text-xs tracking-[0.2em] text-muted">4 PILARES · 6 ÁREAS</p>
-            <h2 className="font-display text-3xl leading-none mt-2 text-ink">
+            <h2 className="font-display text-3xl tracking-tight leading-none mt-2 text-foreground">
               Interviene donde
               <br />
               <span className="text-primary">más tracciona.</span>
@@ -205,10 +204,10 @@ export default function SobreMarcosPage() {
                 { k: "Automatización", d: "Procesos que corren solos." },
                 { k: "Software y Web", d: "Webs, CRMs y tableros que miden." },
               ].map((p) => (
-                <div key={p.k} className="bg-white border border-line rounded-xl p-4 flex items-center gap-3">
+                <div key={p.k} className="bg-surface border border-line rounded-xl p-4 flex items-center gap-3">
                   <span className="w-2 h-2 rounded-full bg-primary shrink-0" aria-hidden />
                   <div>
-                    <p className="text-sm font-semibold text-ink leading-none">{p.k}</p>
+                    <p className="text-sm font-semibold text-foreground leading-none">{p.k}</p>
                     <p className="text-xs text-muted mt-1">{p.d}</p>
                   </div>
                 </div>
@@ -221,7 +220,7 @@ export default function SobreMarcosPage() {
           </div>
 
           <div className="lg:col-span-5">
-            <div className="bg-ink text-white rounded-2xl p-6 border border-white/10 relative overflow-hidden">
+            <div className="bg-ink-soft text-white rounded-2xl p-6 border border-white/10 relative overflow-hidden">
               <div className="absolute top-0 left-0 w-full h-1 bg-primary" aria-hidden />
               <p className="text-xs tracking-[0.16em] text-white/60">CONFERENCIAS</p>
               <h3 className="font-display text-xl leading-none mt-2">Inspiración que mueve.</h3>
@@ -255,18 +254,18 @@ export default function SobreMarcosPage() {
       {/* CTA final */}
       <section className="py-12 md:py-16 bg-paper">
         <div className="max-w-7xl mx-auto px-6">
-          <div className="bg-primary rounded-2xl p-8 md:p-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 text-white relative overflow-hidden">
+          <div className="bg-primary rounded-2xl p-8 md:p-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 text-primary-fg relative overflow-hidden">
             <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent pointer-events-none" aria-hidden />
             <div className="relative">
-              <p className="text-xs tracking-[0.16em] text-white/80">PRIMERA REUNIÓN ESTRATÉGICA</p>
+              <p className="text-xs tracking-[0.16em] text-primary-fg/75">PRIMERA REUNIÓN ESTRATÉGICA</p>
               <h2 className="font-display text-2xl md:text-3xl leading-none mt-2">Hablemos de tu empresa.</h2>
-              <p className="text-sm text-white/80 mt-2 max-w-xl leading-relaxed">
+              <p className="text-sm text-primary-fg/75 mt-2 max-w-xl leading-relaxed">
                 45 min de diagnóstico. Salís con claridad y propuesta a medida. Cupos limitados por mes.
               </p>
             </div>
             <Link
               href="/contacto"
-              className="relative shrink-0 bg-white text-primary px-7 py-3 rounded-full text-sm font-semibold hover:bg-paper transition-colors inline-flex items-center gap-2"
+              className="relative shrink-0 bg-ink-soft text-white px-7 py-3 rounded-full text-sm font-semibold hover:bg-ink transition-colors inline-flex items-center gap-2"
             >
               Agendar Reunión <ArrowRight size={16} />
             </Link>

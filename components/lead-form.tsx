@@ -112,7 +112,7 @@ export function LeadForm() {
     <form onSubmit={onSubmit} noValidate className="space-y-4">
       {/* Name */}
       <div>
-        <label htmlFor="lead-name" className="block text-sm font-medium text-ink mb-1.5">
+        <label htmlFor="lead-name" className="block text-sm font-medium text-foreground mb-1.5">
           Nombre <span className="text-primary">*</span>
         </label>
         <input
@@ -124,10 +124,10 @@ export function LeadForm() {
           disabled={isLoading || isOk}
           aria-invalid={!!fieldErrors.name}
           aria-describedby={fieldErrors.name ? "err-name" : undefined}
-          className="w-full border border-line rounded-lg px-4 py-3 bg-white text-ink placeholder:text-muted/60 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
+          className="w-full border border-line rounded-lg px-4 py-3 bg-surface text-foreground placeholder:text-muted/60 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
         />
         {fieldErrors.name && (
-          <p id="err-name" className="mt-1.5 text-sm text-red-600 flex items-center gap-1">
+          <p id="err-name" className="mt-1.5 text-sm text-red-600 dark:text-red-400 flex items-center gap-1">
             <AlertCircle size={14} /> {fieldErrors.name}
           </p>
         )}
@@ -135,7 +135,7 @@ export function LeadForm() {
 
       {/* Email */}
       <div>
-        <label htmlFor="lead-email" className="block text-sm font-medium text-ink mb-1.5">
+        <label htmlFor="lead-email" className="block text-sm font-medium text-foreground mb-1.5">
           Email <span className="text-primary">*</span>
         </label>
         <input
@@ -148,10 +148,10 @@ export function LeadForm() {
           disabled={isLoading || isOk}
           aria-invalid={!!fieldErrors.email}
           aria-describedby={fieldErrors.email ? "err-email" : undefined}
-          className="w-full border border-line rounded-lg px-4 py-3 bg-white text-ink placeholder:text-muted/60 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-colors disabled:opacity-60"
+          className="w-full border border-line rounded-lg px-4 py-3 bg-surface text-foreground placeholder:text-muted/60 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-colors disabled:opacity-60"
         />
         {fieldErrors.email && (
-          <p id="err-email" className="mt-1.5 text-sm text-red-600 flex items-center gap-1">
+          <p id="err-email" className="mt-1.5 text-sm text-red-600 dark:text-red-400 flex items-center gap-1">
             <AlertCircle size={14} /> {fieldErrors.email}
           </p>
         )}
@@ -159,7 +159,7 @@ export function LeadForm() {
 
       {/* Phone */}
       <div>
-        <label htmlFor="lead-phone" className="block text-sm font-medium text-ink mb-1.5">
+        <label htmlFor="lead-phone" className="block text-sm font-medium text-foreground mb-1.5">
           WhatsApp
         </label>
         <input
@@ -170,10 +170,10 @@ export function LeadForm() {
           disabled={isLoading || isOk}
           aria-invalid={!!fieldErrors.phone}
           aria-describedby={fieldErrors.phone ? "err-phone" : undefined}
-          className="w-full border border-line rounded-lg px-4 py-3 bg-white text-ink placeholder:text-muted/60 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-colors disabled:opacity-60"
+          className="w-full border border-line rounded-lg px-4 py-3 bg-surface text-foreground placeholder:text-muted/60 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-colors disabled:opacity-60"
         />
         {fieldErrors.phone && (
-          <p id="err-phone" className="mt-1.5 text-sm text-red-600 flex items-center gap-1">
+          <p id="err-phone" className="mt-1.5 text-sm text-red-600 dark:text-red-400 flex items-center gap-1">
             <AlertCircle size={14} /> {fieldErrors.phone}
           </p>
         )}
@@ -181,7 +181,7 @@ export function LeadForm() {
 
       {/* Plan */}
       <div>
-        <label htmlFor="lead-plan" className="block text-sm font-medium text-ink mb-1.5">
+        <label htmlFor="lead-plan" className="block text-sm font-medium text-foreground mb-1.5">
           Plan de interés
         </label>
         <select
@@ -191,7 +191,7 @@ export function LeadForm() {
           disabled={isLoading || isOk}
           aria-invalid={!!fieldErrors.plan}
           aria-describedby={fieldErrors.plan ? "err-plan" : undefined}
-          className="w-full border border-line rounded-lg px-4 py-3 bg-white text-ink focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-colors disabled:opacity-60"
+          className="w-full border border-line rounded-lg px-4 py-3 bg-surface text-foreground focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-colors disabled:opacity-60"
         >
           {PLAN_OPTIONS.map((p) => (
             <option key={p} value={p}>
@@ -200,7 +200,7 @@ export function LeadForm() {
           ))}
         </select>
         {fieldErrors.plan && (
-          <p id="err-plan" className="mt-1.5 text-sm text-red-600 flex items-center gap-1">
+          <p id="err-plan" className="mt-1.5 text-sm text-red-600 dark:text-red-400 flex items-center gap-1">
             <AlertCircle size={14} /> {fieldErrors.plan}
           </p>
         )}
@@ -208,7 +208,7 @@ export function LeadForm() {
 
       {/* Mensaje */}
       <div>
-        <label htmlFor="lead-mensaje" className="block text-sm font-medium text-ink mb-1.5">
+        <label htmlFor="lead-mensaje" className="block text-sm font-medium text-foreground mb-1.5">
           Desafío actual
         </label>
         <textarea
@@ -219,10 +219,10 @@ export function LeadForm() {
           disabled={isLoading || isOk}
           aria-invalid={!!fieldErrors.mensaje}
           aria-describedby={fieldErrors.mensaje ? "err-mensaje" : undefined}
-          className="w-full border border-line rounded-lg px-4 py-3 bg-white text-ink placeholder:text-muted/60 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-colors resize-y min-h-[96px] disabled:opacity-60"
+          className="w-full border border-line rounded-lg px-4 py-3 bg-surface text-foreground placeholder:text-muted/60 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-colors resize-y min-h-[96px] disabled:opacity-60"
         />
         {fieldErrors.mensaje && (
-          <p id="err-mensaje" className="mt-1.5 text-sm text-red-600 flex items-center gap-1">
+          <p id="err-mensaje" className="mt-1.5 text-sm text-red-600 dark:text-red-400 flex items-center gap-1">
             <AlertCircle size={14} /> {fieldErrors.mensaje}
           </p>
         )}
@@ -231,7 +231,7 @@ export function LeadForm() {
       <button
         type="submit"
         disabled={isLoading || isOk}
-        className="w-full bg-primary text-white py-3.5 rounded-full font-medium hover:bg-primary-hover transition-colors inline-flex items-center justify-center gap-2 disabled:opacity-60 disabled:cursor-not-allowed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
+        className="w-full bg-primary text-primary-fg py-3.5 rounded-full font-semibold hover:bg-primary-hover transition-colors inline-flex items-center justify-center gap-2 disabled:opacity-60 disabled:cursor-not-allowed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
       >
         {isLoading ? (
           <>
@@ -263,7 +263,7 @@ export function LeadForm() {
       {status === "error" && serverError && (
         <p
           role="alert"
-          className="text-sm text-red-700 bg-red-50 border border-red-200 rounded-lg px-4 py-3 flex items-start gap-2"
+          className="text-sm text-red-700 dark:text-red-300 bg-red-50 dark:bg-red-950/40 border border-red-200 dark:border-red-900/60 rounded-lg px-4 py-3 flex items-start gap-2"
         >
           <AlertCircle size={18} className="shrink-0 mt-0.5" />
           <span>{serverError}</span>

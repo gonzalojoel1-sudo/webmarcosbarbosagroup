@@ -1,17 +1,18 @@
 import type { Metadata } from "next"
-import { Instrument_Serif, Inter } from "next/font/google"
+import { Fraunces, Outfit } from "next/font/google"
 import "./globals.css"
 import { Header } from "@/components/layout/header"
 import { Footer } from "@/components/layout/footer"
+import { Providers } from "@/components/providers"
 
-const display = Instrument_Serif({
+const display = Fraunces({
   subsets: ["latin"],
-  weight: "400",
   variable: "--font-display",
   display: "swap",
+  axes: ["opsz"],
 })
 
-const body = Inter({
+const body = Outfit({
   subsets: ["latin"],
   variable: "--font-body",
   display: "swap",
@@ -30,11 +31,17 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="es" className={`${display.variable} ${body.variable}`}>
-      <body className="bg-paper text-ink antialiased font-body">
-        <Header />
-        {children}
-        <Footer />
+    <html
+      lang="es"
+      suppressHydrationWarning
+      className={`${display.variable} ${body.variable}`}
+    >
+      <body className="bg-paper text-foreground antialiased font-body">
+        <Providers>
+          <Header />
+          {children}
+          <Footer />
+        </Providers>
       </body>
     </html>
   )

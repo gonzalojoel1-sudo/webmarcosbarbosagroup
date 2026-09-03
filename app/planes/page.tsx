@@ -89,7 +89,7 @@ export default function PlanesPage() {
       <section className="pt-28 pb-10 border-b border-line bg-paper-2">
         <div className="max-w-7xl mx-auto px-6">
           <p className="text-xs tracking-[0.2em] text-muted">PLANES 1 — 4</p>
-          <h1 className="font-display text-4xl md:text-5xl leading-[0.9] mt-3 text-ink max-w-3xl">
+          <h1 className="font-display text-4xl md:text-5xl lg:text-6xl tracking-tight leading-[0.95] mt-3 text-foreground max-w-3xl">
             Elegí la intensidad.
             <br />
             <span className="text-primary">Nosotros ponemos el sistema.</span>
@@ -100,26 +100,26 @@ export default function PlanesPage() {
             Reunión Estratégica.
           </p>
           <div className="mt-6 flex flex-wrap gap-2 text-xs">
-            <span className="inline-flex items-center gap-1.5 bg-white border border-line rounded-full px-3 py-1.5 text-ink">
+            <span className="inline-flex items-center gap-1.5 bg-surface border border-line rounded-full px-3 py-1.5 text-foreground">
               <ShieldCheck size={14} className="text-success" /> Garantía de seguimiento
             </span>
-            <span className="inline-flex items-center gap-1.5 bg-white border border-line rounded-full px-3 py-1.5 text-ink">
+            <span className="inline-flex items-center gap-1.5 bg-surface border border-line rounded-full px-3 py-1.5 text-foreground">
               <Clock size={14} className="text-primary" /> Acompañamiento en territorio
             </span>
-            <span className="inline-flex items-center gap-1.5 bg-primary text-white rounded-full px-3 py-1.5 font-medium">
+            <span className="inline-flex items-center gap-1.5 bg-primary text-primary-fg rounded-full px-3 py-1.5 font-semibold">
               <Crown size={14} /> Plan 3 · Más elegido
             </span>
           </div>
           <div className="mt-8 flex flex-wrap gap-3">
             <Link
               href="/contacto"
-              className="bg-primary text-white px-6 py-3 rounded-full text-sm font-medium hover:bg-primary-hover transition-colors inline-flex items-center gap-2"
+              className="bg-primary text-primary-fg px-6 py-3 rounded-full text-sm font-semibold hover:bg-primary-hover transition-colors inline-flex items-center gap-2"
             >
               Agendar Reunión Estratégica <ArrowRight size={16} />
             </Link>
             <Link
               href="/metodologia"
-              className="border border-line bg-white px-6 py-3 rounded-full text-sm font-medium text-ink hover:border-ink/20 transition-colors inline-flex items-center gap-2"
+              className="border border-line bg-surface px-6 py-3 rounded-full text-sm font-semibold text-foreground hover:border-foreground/25 transition-colors inline-flex items-center gap-2"
             >
               Ver metodología 01—06
             </Link>
@@ -134,8 +134,7 @@ export default function PlanesPage() {
       <section className="bg-paper py-12 md:py-16 border-t border-line">
         <div className="max-w-7xl mx-auto px-6">
           <div className="max-w-2xl">
-            <p className="text-xs tracking-[0.2em] text-muted">DETALLE POR PLAN</p>
-            <h2 className="font-display text-3xl leading-none mt-2 text-ink">¿Qué trae cada plan?</h2>
+            <h2 className="font-display text-3xl tracking-tight leading-none mt-2 text-foreground">¿Qué trae cada plan?</h2>
             <p className="text-sm text-muted leading-relaxed mt-3">
               Resumen editorial. El alcance fino se define en la propuesta tras diagnóstico. Acá ves la
               esencia y para quién es cada nivel.
@@ -145,19 +144,19 @@ export default function PlanesPage() {
             {planDetails.map((p) => (
               <div
                 key={p.id}
-                className={`rounded-2xl border bg-white overflow-hidden flex flex-col ${p.highlight ? "border-primary ring-1 ring-primary shadow-lg shadow-primary/10" : "border-line"}`}
+                className={`rounded-2xl border bg-surface overflow-hidden flex flex-col ${p.highlight ? "border-primary ring-1 ring-primary shadow-lg shadow-primary/10" : "border-line"}`}
               >
-                <div className={`p-6 ${p.highlight ? "bg-primary text-white" : "bg-paper/40 border-b border-line"}`}>
+                <div className={`p-6 ${p.highlight ? "bg-primary text-primary-fg" : "bg-paper/40 border-b border-line"}`}>
                   <div className="flex items-start justify-between gap-4">
                     <div>
-                      <p className={`text-[11px] tracking-[0.16em] font-medium ${p.highlight ? "text-white/80" : "text-muted"}`}>
+                      <p className={`text-[11px] tracking-[0.16em] font-medium ${p.highlight ? "text-primary-fg/80" : "text-muted"}`}>
                         {p.id.toUpperCase()}
                       </p>
-                      <h3 className={`font-display text-xl leading-none mt-1 ${p.highlight ? "text-white" : "text-ink"}`}>{p.name}</h3>
-                      <p className={`text-xs mt-1.5 ${p.highlight ? "text-white/70" : "text-muted"}`}>{p.subtitle}</p>
+                      <h3 className={`font-display text-xl tracking-tight leading-none mt-1 ${p.highlight ? "text-primary-fg" : "text-foreground"}`}>{p.name}</h3>
+                      <p className={`text-xs mt-1.5 ${p.highlight ? "text-primary-fg/70" : "text-muted"}`}>{p.subtitle}</p>
                     </div>
                     {p.highlight && (
-                      <span className="shrink-0 inline-flex bg-white text-primary text-[11px] font-bold tracking-widest px-2.5 py-1 rounded-full">
+                      <span className="shrink-0 inline-flex bg-paper-2 text-primary text-[11px] font-bold tracking-widest px-2.5 py-1 rounded-full">
                         MÁS ELEGIDO
                       </span>
                     )}
@@ -165,7 +164,7 @@ export default function PlanesPage() {
                 </div>
                 <ul className="p-6 space-y-3 flex-1">
                   {p.bullets.map((b) => (
-                    <li key={b} className="flex items-start gap-2.5 text-sm leading-relaxed text-ink">
+                    <li key={b} className="flex items-start gap-2.5 text-sm leading-relaxed text-foreground">
                       <span className="shrink-0 mt-0.5 w-6 h-6 rounded-full bg-success/10 border border-success/20 flex items-center justify-center text-success">
                         <Check size={12} strokeWidth={2.5} />
                       </span>
@@ -176,7 +175,7 @@ export default function PlanesPage() {
                 <div className="p-6 pt-0">
                   <Link
                     href="/contacto"
-                    className={`w-full inline-flex items-center justify-center gap-2 rounded-full px-5 py-3 text-sm font-medium transition-colors ${p.highlight ? "bg-primary text-white hover:bg-primary-hover" : "bg-ink text-white hover:bg-ink-soft"}`}
+                    className={`w-full inline-flex items-center justify-center gap-2 rounded-full px-5 py-3 text-sm font-semibold transition-colors ${p.highlight ? "bg-primary text-primary-fg hover:bg-primary-hover" : "bg-ink text-white hover:bg-ink-soft"}`}
                   >
                     {p.highlight ? "Elegir Plan 3" : "Hablar de este plan"} <ArrowRight size={16} />
                   </Link>
@@ -192,8 +191,7 @@ export default function PlanesPage() {
       <section className="bg-paper-2 border-y border-line py-12 md:py-16">
         <div className="max-w-7xl mx-auto px-6 grid lg:grid-cols-12 gap-10">
           <div className="lg:col-span-5">
-            <p className="text-xs tracking-[0.2em] text-muted">CÓMO ELEGIR</p>
-            <h2 className="font-display text-3xl leading-none mt-2 text-ink">
+            <h2 className="font-display text-3xl tracking-tight leading-none mt-2 text-foreground">
               3 pasos.
               <br />
               <span className="text-primary">Sin vueltas.</span>
@@ -204,12 +202,12 @@ export default function PlanesPage() {
                 { n: "02", t: "Diagnóstico 360°", d: "Radiografía y ranking de palancas. Ves claro qué priorizar." },
                 { n: "03", t: "Propuesta a medida", d: "Plan, alcance y roadmap 90 días. Decidís con datos." },
               ].map((s) => (
-                <div key={s.n} className="flex gap-4 bg-white border border-line rounded-xl p-4">
-                  <span className="shrink-0 w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center text-xs font-bold">
+                <div key={s.n} className="flex gap-4 bg-surface border border-line rounded-xl p-4">
+                  <span className="shrink-0 w-10 h-10 rounded-full bg-primary text-primary-fg flex items-center justify-center text-xs font-bold">
                     {s.n}
                   </span>
                   <div>
-                    <p className="text-sm font-semibold text-ink leading-none">{s.t}</p>
+                    <p className="text-sm font-semibold text-foreground leading-none">{s.t}</p>
                     <p className="text-xs text-muted leading-relaxed mt-1.5">{s.d}</p>
                   </div>
                 </div>
@@ -217,24 +215,24 @@ export default function PlanesPage() {
             </div>
             <Link
               href="/contacto"
-              className="mt-6 inline-flex items-center gap-2 bg-primary text-white px-6 py-3 rounded-full text-sm font-medium hover:bg-primary-hover transition-colors"
+              className="mt-6 inline-flex items-center gap-2 bg-primary text-primary-fg px-6 py-3 rounded-full text-sm font-semibold hover:bg-primary-hover transition-colors"
             >
               Empezar ahora <ArrowRight size={16} />
             </Link>
           </div>
 
           <div className="lg:col-span-7">
-            <h3 className="font-display text-2xl leading-none text-ink">Preguntas frecuentes</h3>
+            <h3 className="font-display text-2xl tracking-tight leading-none text-foreground">Preguntas frecuentes</h3>
             <p className="text-sm text-muted mt-2">Respuestas cortas. Si queda duda, la resolvemos en la reunión.</p>
             <div className="mt-6 space-y-3">
               {faqs.map((f) => (
-                <div key={f.q} className="bg-white border border-line rounded-xl p-5">
-                  <p className="text-sm font-semibold text-ink">{f.q}</p>
+                <div key={f.q} className="bg-surface border border-line rounded-xl p-5">
+                  <p className="text-sm font-semibold text-foreground">{f.q}</p>
                   <p className="text-sm text-muted leading-relaxed mt-2">{f.a}</p>
                 </div>
               ))}
             </div>
-            <div className="mt-6 bg-ink text-white rounded-xl p-6 relative overflow-hidden border border-white/10">
+            <div className="mt-6 bg-ink-soft text-white rounded-xl p-6 relative overflow-hidden border border-white/10">
               <div className="absolute top-0 left-0 w-full h-1 bg-primary" aria-hidden />
               <p className="text-sm leading-relaxed text-white/80">
                 * Todos los valores y alcances se definen tras la Primera Reunión Estratégica. La comparativa

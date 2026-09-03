@@ -2,29 +2,48 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ─── Tokens ───────────────────────────────────────────────
+   Adaptativos: se intercambian bajo .dark (next-themes, class strategy)
+   Fijos: primary / primary-fg / ink / ink-soft (superficies oscuras en ambos modos) */
 :root {
-  --primary: #fe4100;
+  --primary-rgb: 254 65 0;
   --primary-hover: #e03a00;
-  --primary-soft: #fff1eb;
-  --ink: #0F1115;
-  --ink-soft: #1A1E26;
-  --paper: #F5F3EF;
-  --paper-2: #FFFBF5;
-  --line: #E7E5E4;
-  --muted: #6B7280;
-  --navy: #111827;
-  --radius: 14px;
-  --background: #F5F3EF;
-  --foreground: #0F1115;
+  --primary-fg-rgb: 15 17 21;
+  --primary-soft-rgb: 255 241 235;
+  --ink-rgb: 15 17 21;
+  --ink-soft-rgb: 26 30 38;
+  --foreground-rgb: 15 17 21;
+  --paper-rgb: 245 243 239;
+  --paper-2-rgb: 255 251 245;
+  --surface-rgb: 255 255 255;
+  --line-rgb: 231 229 228;
+  --muted-rgb: 107 114 128;
+  --success-rgb: 13 124 102;
+  --background: #f5f3ef;
+  --foreground: #0f1115;
+}
+
+.dark {
+  --primary-soft-rgb: 42 21 12;
+  --foreground-rgb: 242 241 237;
+  --paper-rgb: 12 13 16;
+  --paper-2-rgb: 18 20 25;
+  --surface-rgb: 20 22 27;
+  --line-rgb: 40 42 49;
+  --muted-rgb: 163 169 180;
+  --success-rgb: 62 207 165;
+  --background: #0c0d10;
+  --foreground: #f2f1ed;
+  color-scheme: dark;
 }
 
 * {
-  border-color: var(--line);
+  border-color: rgb(var(--line-rgb));
 }
 
 ::selection {
   background: #fe4100;
-  color: white;
+  color: #fff;
 }
 
 html {
@@ -32,17 +51,97 @@ html {
 }
 
 body {
-  background: var(--paper);
-  color: var(--ink);
-  font-family: var(--font-body, Inter, sans-serif);
+  background: rgb(var(--paper-rgb));
+  color: rgb(var(--foreground-rgb));
+  font-family: var(--font-body, Outfit, sans-serif);
+  font-feature-settings: "ss01" on;
 }
 
-h1, h2, h3, .font-display {
-  font-family: var(--font-display, "Instrument Serif", serif);
+h1,
+h2,
+h3,
+.font-display {
+  font-family: var(--font-display, Fraunces, serif);
+  font-optical-sizing: auto;
+}
+
+/* ─── Focus visible ──────────────────────────────────────── */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+[tabindex]:focus-visible {
+  outline: 2px solid rgb(var(--primary-rgb));
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* ─── Botones: presión táctil + transición (spring-like ease-out) ── */
+a.bg-primary,
+button.bg-primary,
+a.bg-ink,
+button.bg-ink,
+a.bg-ink-soft,
+button.bg-ink-soft {
+  transition-property: transform, background-color, border-color, color, box-shadow;
+  transition-duration: 200ms;
+  transition-timing-function: cubic-bezier(0.23, 1, 0.32, 1);
+}
+a.bg-primary:active,
+button.bg-primary:active,
+a.bg-ink:active,
+button.bg-ink:active,
+a.bg-ink-soft:active,
+button.bg-ink-soft:active {
+  transform: scale(0.98);
+  transition-duration: 120ms;
+}
+
+/* ─── Grain overlay ──────────────────────────────────────── */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  pointer-events: none;
+  opacity: 0.03;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 256px 256px;
+}
+
+/* ─── Scrollbar fina para carruseles ─────────────────────── */
+.scroll-snap-x {
+  scrollbar-width: thin;
+  scrollbar-color: rgb(var(--line-rgb) 1) transparent;
+}
+.scroll-snap-x::-webkit-scrollbar {
+  height: 6px;
+}
+.scroll-snap-x::-webkit-scrollbar-track {
+  background: transparent;
+}
+.scroll-snap-x::-webkit-scrollbar-thumb {
+  background: rgb(var(--line-rgb));
+  border-radius: 999px;
 }
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
+  }
+}
+
+/* ─── Reduced motion ─────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
 }

@@ -74,7 +74,7 @@ export default function MetodologiaPage() {
       <section className="pt-28 pb-12 border-b border-line bg-paper-2">
         <div className="max-w-7xl mx-auto px-6">
           <p className="text-xs tracking-[0.2em] text-muted">METODOLOGÍA 01 — 06</p>
-          <h1 className="font-display text-4xl md:text-5xl leading-[0.9] mt-3 text-ink max-w-3xl">
+          <h1 className="font-display text-4xl md:text-5xl lg:text-6xl tracking-tight leading-[0.95] mt-3 text-foreground max-w-3xl">
             Un camino probado.
             <br />
             <span className="underline decoration-primary decoration-4 underline-offset-4">
@@ -86,26 +86,26 @@ export default function MetodologiaPage() {
             La misma disciplina táctica de Fuerzas Especiales, aplicada a tu empresa.
           </p>
           <div className="mt-6 flex flex-wrap gap-2 text-xs">
-            <span className="inline-flex items-center gap-1.5 bg-white border border-line rounded-full px-3 py-1.5 text-ink">
+            <span className="inline-flex items-center gap-1.5 bg-surface border border-line rounded-full px-3 py-1.5 text-foreground">
               <Clock size={14} className="text-primary" /> 90 días para tracción
             </span>
-            <span className="inline-flex items-center gap-1.5 bg-white border border-line rounded-full px-3 py-1.5 text-ink">
+            <span className="inline-flex items-center gap-1.5 bg-surface border border-line rounded-full px-3 py-1.5 text-foreground">
               <FileText size={14} className="text-primary" /> Entregables por paso
             </span>
-            <span className="inline-flex items-center gap-1.5 bg-white border border-line rounded-full px-3 py-1.5 text-ink">
+            <span className="inline-flex items-center gap-1.5 bg-surface border border-line rounded-full px-3 py-1.5 text-foreground">
               <Target size={14} className="text-primary" /> Tableros + OKRs
             </span>
           </div>
           <div className="mt-8 flex flex-wrap gap-3">
             <Link
               href="/contacto"
-              className="bg-primary text-white px-6 py-3 rounded-full text-sm font-medium hover:bg-primary-hover transition-colors inline-flex items-center gap-2"
+              className="bg-primary text-primary-fg px-6 py-3 rounded-full text-sm font-semibold hover:bg-primary-hover transition-colors inline-flex items-center gap-2"
             >
               Agendar Reunión Estratégica <ArrowRight size={16} />
             </Link>
             <Link
               href="/planes"
-              className="border border-line bg-white px-6 py-3 rounded-full text-sm font-medium text-ink hover:border-ink/20 hover:bg-white transition-colors inline-flex items-center gap-2"
+              className="border border-line bg-surface px-6 py-3 rounded-full text-sm font-semibold text-foreground hover:border-foreground/25 hover:bg-surface transition-colors inline-flex items-center gap-2"
             >
               Ver planes 1—4
             </Link>
@@ -120,8 +120,7 @@ export default function MetodologiaPage() {
             {/* Sticky intro (desktop) */}
             <div className="lg:col-span-4">
               <div className="lg:sticky lg:top-24 space-y-4">
-                <p className="text-xs tracking-[0.2em] text-muted">CÓMO TRABAJAMOS</p>
-                <h2 className="font-display text-3xl leading-none text-ink">
+                <h2 className="font-display text-3xl tracking-tight leading-none text-foreground">
                   Estrategia
                   <br />
                   <span className="text-primary">que se ejecuta.</span>
@@ -133,16 +132,16 @@ export default function MetodologiaPage() {
                 <div className="hidden lg:block pt-4">
                   <div className="h-px w-full bg-line" aria-hidden />
                   <div className="mt-4 grid grid-cols-3 gap-3 text-center">
-                    <div className="bg-white border border-line rounded-xl p-3">
+                    <div className="bg-surface border border-line rounded-xl p-3">
                       <p className="font-display text-xl leading-none text-primary">01—06</p>
                       <p className="text-[11px] tracking-widest text-muted mt-1">PASOS</p>
                     </div>
-                    <div className="bg-white border border-line rounded-xl p-3">
-                      <p className="font-display text-xl leading-none text-ink">90d</p>
+                    <div className="bg-surface border border-line rounded-xl p-3">
+                      <p className="font-display text-xl leading-none text-foreground">90d</p>
                       <p className="text-[11px] tracking-widest text-muted mt-1">ROADMAP</p>
                     </div>
-                    <div className="bg-white border border-line rounded-xl p-3">
-                      <p className="font-display text-xl leading-none text-ink">∞</p>
+                    <div className="bg-surface border border-line rounded-xl p-3">
+                      <p className="font-display text-xl leading-none text-foreground">∞</p>
                       <p className="text-[11px] tracking-widest text-muted mt-1">SEGUIMIENTO</p>
                     </div>
                   </div>
@@ -165,23 +164,23 @@ export default function MetodologiaPage() {
                   {steps.map((s) => (
                     <div
                       key={s.n}
-                      className="relative bg-white border border-line rounded-2xl p-6 md:p-7 flex flex-col gap-4 hover:shadow-sm hover:border-ink/10 transition-all"
+                      className="relative bg-surface border border-line rounded-2xl p-6 md:p-7 flex flex-col gap-4 hover:shadow-md hover:shadow-black/5 hover:border-foreground/10 transition-all"
                     >
                       {/* number badge */}
-                      <div className="absolute -left-3 top-7 hidden sm:flex w-10 h-10 rounded-full bg-primary text-white items-center justify-center text-xs font-bold tracking-widest border-4 border-paper shadow-sm">
+                      <div className="absolute -left-3 top-7 hidden sm:flex w-10 h-10 rounded-full bg-primary text-primary-fg items-center justify-center text-xs font-bold tracking-widest border-4 border-paper shadow-sm">
                         {s.n}
                       </div>
                       <div className="flex items-start justify-between gap-4 sm:pl-8">
                         <div>
                           <div className="flex items-center gap-3">
-                            <span className="sm:hidden inline-flex w-9 h-9 rounded-full bg-primary text-white items-center justify-center text-xs font-bold">
+                            <span className="sm:hidden inline-flex w-9 h-9 rounded-full bg-primary text-primary-fg items-center justify-center text-xs font-bold">
                               {s.n}
                             </span>
                             <p className="text-[11px] tracking-[0.16em] font-medium text-primary">{s.subtitle.toUpperCase()}</p>
                             <span className="h-px w-8 bg-primary/30 hidden sm:block" aria-hidden />
                             <span className="text-xs text-muted hidden sm:inline">{s.duracion}</span>
                           </div>
-                          <h3 className="font-display text-2xl leading-none mt-2 text-ink">{s.title}</h3>
+                          <h3 className="font-display text-2xl tracking-tight leading-none mt-2 text-foreground">{s.title}</h3>
                           <p className="text-sm text-muted leading-relaxed mt-2 max-w-xl">{s.desc}</p>
                         </div>
                         <span className="hidden md:block font-display text-5xl leading-none text-primary/15 select-none">
@@ -194,7 +193,7 @@ export default function MetodologiaPage() {
                           {s.entregables.map((e) => (
                             <span
                               key={e}
-                              className="inline-flex items-center gap-1.5 bg-paper border border-line rounded-full px-3 py-1.5 text-xs text-ink"
+                              className="inline-flex items-center gap-1.5 bg-paper border border-line rounded-full px-3 py-1.5 text-xs text-foreground"
                             >
                               <span className="w-5 h-5 rounded-full bg-success/10 border border-success/20 flex items-center justify-center text-success">
                                 <Check size={12} strokeWidth={2.5} />
@@ -211,7 +210,7 @@ export default function MetodologiaPage() {
               </div>
 
               {/* Quote */}
-              <blockquote className="mt-8 bg-ink text-white rounded-2xl p-6 md:p-8 relative overflow-hidden border border-white/10">
+              <blockquote className="mt-8 bg-ink-soft text-white rounded-2xl p-6 md:p-8 relative overflow-hidden border border-white/10">
                 <div className="absolute top-0 left-0 w-full h-1 bg-primary" aria-hidden />
                 <Quote size={22} className="text-primary mb-3" />
                 <p className="font-display text-lg md:text-xl leading-snug text-balance">
@@ -219,19 +218,19 @@ export default function MetodologiaPage() {
                   ejecute, mida y escale — incluso cuando vos no estés.&rdquo;
                 </p>
                 <footer className="mt-4 flex items-center gap-3">
-                  <span className="w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center text-xs font-bold">MB</span>
+                  <span className="w-8 h-8 rounded-full bg-primary text-primary-fg flex items-center justify-center text-xs font-bold">MB</span>
                   <span className="text-xs tracking-widest text-white/60">MARCOS BARBOSA — FUNDADOR</span>
                 </footer>
               </blockquote>
 
               <div className="mt-8 bg-primary-soft border border-primary/15 rounded-2xl p-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
                 <div>
-                  <h3 className="font-display text-xl leading-none text-ink">¿Listo para el Diagnóstico 01?</h3>
+                  <h3 className="font-display text-xl leading-none text-foreground">¿Listo para el Diagnóstico 01?</h3>
                   <p className="text-sm text-muted mt-1.5">Primera Reunión Estratégica — 45 min · Sin costo · Cupos limitados</p>
                 </div>
                 <Link
                   href="/contacto"
-                  className="shrink-0 bg-primary text-white px-6 py-3 rounded-full text-sm font-medium hover:bg-primary-hover transition-colors inline-flex items-center gap-2"
+                  className="shrink-0 bg-primary text-primary-fg px-6 py-3 rounded-full text-sm font-semibold hover:bg-primary-hover transition-colors inline-flex items-center gap-2"
                 >
                   Agendar Diagnóstico <ArrowRight size={16} />
                 </Link>

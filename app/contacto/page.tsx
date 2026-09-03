@@ -26,7 +26,7 @@ export default function ContactoPage() {
       <section className="pt-28 pb-10 border-b border-line bg-paper-2">
         <div className="max-w-7xl mx-auto px-6">
           <p className="text-xs tracking-[0.2em] text-muted">CONTACTO</p>
-          <h1 className="font-display text-4xl md:text-5xl leading-[0.9] mt-3 text-ink">
+          <h1 className="font-display text-4xl md:text-5xl lg:text-6xl tracking-tight leading-[0.95] mt-3 text-foreground">
             Agendá tu
             <span className="underline decoration-primary decoration-4 underline-offset-4">
               {" "}
@@ -42,7 +42,7 @@ export default function ContactoPage() {
             {trustBullets.map((t) => (
               <span
                 key={t}
-                className="inline-flex items-center gap-1.5 bg-white border border-line rounded-full px-3 py-1.5 text-ink"
+                className="inline-flex items-center gap-1.5 bg-surface border border-line rounded-full px-3 py-1.5 text-foreground"
               >
                 <span className="w-5 h-5 rounded-full bg-success/10 border border-success/20 flex items-center justify-center text-success">
                   <Check size={12} strokeWidth={2.5} />
@@ -59,10 +59,10 @@ export default function ContactoPage() {
         <div className="max-w-7xl mx-auto px-6 grid lg:grid-cols-12 gap-8 items-start">
           {/* Form card */}
           <div className="lg:col-span-7">
-            <div className="bg-white border border-line rounded-2xl p-6 md:p-8 shadow-sm">
+            <div className="bg-surface border border-line rounded-2xl p-6 md:p-8 shadow-sm">
               <div className="flex items-start justify-between gap-4 mb-6">
                 <div>
-                  <h2 className="font-display text-2xl leading-none text-ink">Contanos tu desafío</h2>
+                  <h2 className="font-display text-2xl tracking-tight leading-none text-foreground">Contanos tu desafío</h2>
                   <p className="text-sm text-muted mt-2">
                     Completá el formulario y te contactamos por WhatsApp. O escribinos directo.
                   </p>
@@ -90,15 +90,15 @@ export default function ContactoPage() {
 
             {/* Confianza strip debajo form */}
             <div className="mt-6 grid sm:grid-cols-3 gap-3">
-              <div className="bg-ink text-white rounded-xl p-4 border border-white/10">
+              <div className="bg-ink-soft text-white rounded-xl p-4 border border-white/10">
                 <p className="text-xs tracking-widest text-white/60">EXPERIENCIA</p>
                 <p className="font-display text-xl leading-none mt-1">15+ años</p>
                 <p className="text-xs text-white/60 mt-1">Empresas en LATAM y Europa</p>
                 <div className="mt-3 h-1 w-full bg-primary rounded-full" aria-hidden />
               </div>
-              <div className="bg-white border border-line rounded-xl p-4">
+              <div className="bg-surface border border-line rounded-xl p-4">
                 <p className="text-xs tracking-widest text-muted">MÉTODO</p>
-                <p className="font-display text-xl leading-none mt-1 text-ink">6 pasos</p>
+                <p className="font-display text-xl leading-none mt-1 text-foreground">6 pasos</p>
                 <p className="text-xs text-muted mt-1">De Diagnóstico a Escalamiento</p>
                 <Link
                   href="/metodologia"
@@ -107,9 +107,9 @@ export default function ContactoPage() {
                   Ver metodología <ArrowRight size={12} />
                 </Link>
               </div>
-              <div className="bg-white border border-line rounded-xl p-4">
+              <div className="bg-surface border border-line rounded-xl p-4">
                 <p className="text-xs tracking-widest text-muted">PLANES</p>
-                <p className="font-display text-xl leading-none mt-1 text-ink">1 — 4</p>
+                <p className="font-display text-xl leading-none mt-1 text-foreground">1 — 4</p>
                 <p className="text-xs text-muted mt-1">Desde Consultor a Board</p>
                 <Link
                   href="/planes"
@@ -124,7 +124,7 @@ export default function ContactoPage() {
           {/* Sidebar */}
           <aside className="lg:col-span-5 space-y-5">
             {/* WhatsApp direct */}
-            <div className="bg-ink text-white rounded-2xl p-6 relative overflow-hidden border border-white/10">
+            <div className="bg-ink-soft text-white rounded-2xl p-6 relative overflow-hidden border border-white/10">
               <div className="absolute top-0 left-0 w-full h-1 bg-primary" aria-hidden />
               <p className="text-xs tracking-[0.16em] text-white/60">CONTACTO DIRECTO</p>
               <h3 className="font-display text-xl leading-none mt-2">¿Preferís WhatsApp?</h3>
@@ -149,25 +149,25 @@ export default function ContactoPage() {
             </div>
 
             {/* Calendly embed placeholder */}
-            <div className="bg-white border border-line rounded-2xl p-6">
+            <div className="bg-surface border border-line rounded-2xl p-6">
               <div className="flex items-center gap-2">
                 <span className="w-8 h-8 rounded-lg bg-primary-soft border border-primary/15 flex items-center justify-center text-primary">
                   <Clock size={16} />
                 </span>
                 <div>
-                  <h3 className="text-sm font-semibold text-ink leading-none">Reservá en calendario</h3>
+                  <h3 className="text-sm font-semibold text-foreground leading-none">Reservá en calendario</h3>
                   <p className="text-xs text-muted mt-0.5">Elegí día y hora · 45 min · Meet/Presencial</p>
                 </div>
               </div>
               <div className="mt-4 rounded-xl border border-line bg-paper overflow-hidden">
                 {/* Calendly inline embed — src parametrizable */}
                 <div className="aspect-[4/3] md:aspect-[16/11] w-full bg-paper-2 flex flex-col items-center justify-center p-6 text-center">
-                  <p className="text-sm font-medium text-ink">Calendly Embed</p>
+                  <p className="text-sm font-medium text-foreground">Calendly Embed</p>
                   <p className="text-xs text-muted mt-1 max-w-sm">
                     Reemplazá este bloque por el embed real de Calendly/Cal.com cuando tengas el link
                     (iframe). Por ahora usá el formulario o WhatsApp arriba.
                   </p>
-                  <div className="mt-4 w-full rounded-lg border border-dashed border-line bg-white p-3 text-xs text-muted font-mono break-all">
+                  <div className="mt-4 w-full rounded-lg border border-dashed border-line bg-surface p-3 text-xs text-muted font-mono break-all">
                     {"<iframe src=\"https://calendly.com/...\" />"}
                   </div>
                   <Link
@@ -186,14 +186,14 @@ export default function ContactoPage() {
             </div>
 
             {/* Mapa Córdoba */}
-            <div className="bg-white border border-line rounded-2xl overflow-hidden">
+            <div className="bg-surface border border-line rounded-2xl overflow-hidden">
               <div className="p-6 pb-4">
                 <div className="flex items-center gap-2">
-                  <span className="w-8 h-8 rounded-lg bg-paper border border-line flex items-center justify-center text-ink">
+                  <span className="w-8 h-8 rounded-lg bg-paper border border-line flex items-center justify-center text-foreground">
                     <MapPin size={16} />
                   </span>
                   <div>
-                    <h3 className="text-sm font-semibold text-ink leading-none">Córdoba · Internacional</h3>
+                    <h3 className="text-sm font-semibold text-foreground leading-none">Córdoba · Internacional</h3>
                     <p className="text-xs text-muted mt-0.5">Base Córdoba, trabajo híbrido y en territorio</p>
                   </div>
                 </div>
@@ -224,24 +224,24 @@ export default function ContactoPage() {
 
             {/* FAQ corto */}
             <div className="bg-paper-2 border border-line rounded-2xl p-6">
-              <h3 className="font-display text-lg leading-none text-ink">Antes de agendar</h3>
+              <h3 className="font-display text-lg tracking-tight leading-none text-foreground">Antes de agendar</h3>
               <dl className="mt-4 space-y-4 text-sm">
                 <div>
-                  <dt className="font-medium text-ink">¿Qué pasa en la Primera Reunión?</dt>
+                  <dt className="font-medium text-foreground">¿Qué pasa en la Primera Reunión?</dt>
                   <dd className="text-muted leading-relaxed mt-1">
                     45 min de diagnóstico. Entendemos tu momento, equipo y números. Salís con claridad
                     y propuesta a medida (no genérica).
                   </dd>
                 </div>
                 <div>
-                  <dt className="font-medium text-ink">¿Tiene costo?</dt>
+                  <dt className="font-medium text-foreground">¿Tiene costo?</dt>
                   <dd className="text-muted leading-relaxed mt-1">
                     La primera reunión es estratégica y sin costo. Luego definimos plan y alcance según
                     diagnóstico.
                   </dd>
                 </div>
                 <div>
-                  <dt className="font-medium text-ink">¿Y si el CRM falla?</dt>
+                  <dt className="font-medium text-foreground">¿Y si el CRM falla?</dt>
                   <dd className="text-muted leading-relaxed mt-1">
                     Tu lead se guarda local seguro (sin pérdida) y te contactamos igual por WhatsApp.
                   </dd>
