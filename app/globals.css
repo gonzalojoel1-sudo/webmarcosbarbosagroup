@@ -64,17 +64,6 @@ textarea:focus-visible,
   border-radius: 4px;
 }
 
-/* ─── Glass nav (Apple-materials: blur + saturate) ───────── */
-.glass-nav {
-  background: rgba(255, 255, 255, 0.6);
-  backdrop-filter: blur(20px) saturate(180%);
-  -webkit-backdrop-filter: blur(20px) saturate(180%);
-  border: 1px solid var(--hairline);
-}
-.dark .glass-nav {
-  background: rgba(12, 12, 14, 0.7);
-}
-
 /* ─── Botones (bg plano, radius full, press scale 0.97) ──── */
 .btn-primary {
   background: rgb(var(--primary-rgb));
@@ -99,28 +88,6 @@ textarea:focus-visible,
   transform: scale(0.97);
 }
 
-/* aliases legacy hasta refactor de secciones (el radius lo pone el markup) */
-.btn-high-ticket {
-  background: rgb(var(--primary-rgb));
-  color: #fff;
-  transition: background-color 150ms var(--ease-out),
-    transform 150ms var(--ease-out);
-}
-.btn-high-ticket:active {
-  transform: scale(0.97);
-}
-
-.btn-ghost-lux {
-  background: rgb(var(--surface-rgb));
-  border: 1px solid var(--hairline);
-  color: rgb(var(--fg-rgb));
-  transition: border-color 150ms var(--ease-out),
-    transform 150ms var(--ease-out);
-}
-.btn-ghost-lux:active {
-  transform: scale(0.97);
-}
-
 /* ─── Cards (bg-surface + hairline + radius 16, sin blur ni gradiente) ── */
 .card-luxury {
   background: rgb(var(--surface-rgb));
@@ -139,12 +106,10 @@ textarea:focus-visible,
 
 /* ─── Hover gating (solo dispositivos con hover real) ────── */
 @media (hover: hover) and (pointer: fine) {
-  .btn-primary:hover,
-  .btn-high-ticket:hover {
+  .btn-primary:hover {
     background: rgb(var(--primary-hover-rgb));
   }
-  .btn-secondary:hover,
-  .btn-ghost-lux:hover {
+  .btn-secondary:hover {
     border-color: rgb(var(--primary-rgb) / 0.4);
   }
   .card-luxury:hover {
@@ -166,11 +131,6 @@ textarea:focus-visible,
   50% {
     opacity: 0.4;
   }
-}
-
-/* legacy: antes gradient-clip; primary sólido hasta refactor de secciones */
-.text-gradient-accent {
-  color: rgb(var(--primary-rgb));
 }
 
 /* ─── Scrollbar fina para carruseles ─────────────────────── */

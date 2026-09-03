@@ -7,8 +7,6 @@ import { theme } from "./config/theme"
  * (next-themes, class strategy) — un solo token, ambos modos.
  * hairline ya es rgba completa. primary/primary-hover son triplet fijos
  * para soportar alpha (bg-primary/10, border-primary/40, etc.).
- * Los aliases foreground/paper/paper-2/line/muted mantienen viva la API
- * legacy hasta el refactor de secciones.
  */
 const rgb = (v: string) => `rgb(var(--${v}-rgb) / <alpha-value>)`
 
@@ -33,12 +31,6 @@ const config: Config = {
         "primary-hover": rgb("primary-hover"),
         "primary-fg": theme.colors.primaryFg,
         success: rgb("success"),
-        /* aliases legacy (transición hasta refactor de secciones) */
-        foreground: rgb("fg"),
-        paper: rgb("bg"),
-        "paper-2": rgb("surface"),
-        line: "var(--hairline)",
-        muted: rgb("fg-muted"),
       },
       borderRadius: {
         lg: theme.radius,
@@ -50,9 +42,6 @@ const config: Config = {
         body: ["var(--font-body)", "Outfit", "sans-serif"],
         sans: ["var(--font-body)", "Outfit", "sans-serif"],
         mono: ["var(--font-mono)", "JetBrains Mono", "monospace"],
-        /* aliases legacy: mono micro-datos + monograma MB (ahora en Fraunces) */
-        "mono-tech": ["var(--font-mono)", "JetBrains Mono", "monospace"],
-        "serif-brand": ["var(--font-display)", "Fraunces", "Georgia", "serif"],
       },
       transitionTimingFunction: {
         "out-expo": "cubic-bezier(0.23, 1, 0.32, 1)",

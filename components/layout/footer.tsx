@@ -20,7 +20,7 @@ export function Footer() {
             </p>
           </div>
           <div>
-            <p className="text-[11px] uppercase tracking-[0.18em] text-[#F2F0EB]/40 mb-4">
+            <p className="text-[11px] uppercase tracking-[0.18em] text-[#F2F0EB]/50 mb-4">
               Navegación
             </p>
             <ul className="space-y-2.5 text-sm">
@@ -47,7 +47,7 @@ export function Footer() {
             </ul>
           </div>
           <div>
-            <p className="text-[11px] uppercase tracking-[0.18em] text-[#F2F0EB]/40 mb-4">
+            <p className="text-[11px] uppercase tracking-[0.18em] text-[#F2F0EB]/50 mb-4">
               Contacto
             </p>
             <ul className="space-y-2.5 text-sm">
@@ -73,7 +73,7 @@ export function Footer() {
             </ul>
           </div>
           <div>
-            <p className="text-[11px] uppercase tracking-[0.18em] text-[#F2F0EB]/40 mb-4">
+            <p className="text-[11px] uppercase tracking-[0.18em] text-[#F2F0EB]/50 mb-4">
               Redes
             </p>
             <ul className="space-y-2.5 text-sm">
