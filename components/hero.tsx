@@ -3,7 +3,6 @@
 import Image from "next/image"
 import Link from "next/link"
 import { motion, useReducedMotion } from "framer-motion"
-import { agendaHref, agendaLinkProps } from "@/lib/calendar"
 
 const EASE = [0.23, 1, 0.32, 1] as const
 
@@ -66,8 +65,7 @@ export function Hero() {
           </motion.p>
           <motion.div variants={item} className="mt-9 flex flex-wrap gap-3">
             <Link
-              href={agendaHref}
-              {...agendaLinkProps}
+              href="/contacto"
               className="btn-primary px-7 py-3.5 text-sm font-medium inline-flex items-center"
             >
               Agendar Reunión Estratégica

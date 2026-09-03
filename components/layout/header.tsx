@@ -5,7 +5,6 @@ import Link from "next/link"
 import { motion, useScroll, useSpring } from "framer-motion"
 import { Menu, X } from "lucide-react"
 import { ThemeToggle } from "@/components/theme-toggle"
-import { agendaHref, agendaLinkProps } from "@/lib/calendar"
 
 const NAV_LINKS = [
   { href: "/metodologia", label: "Metodología" },
@@ -74,8 +73,7 @@ export function Header() {
           <div className="hidden md:flex items-center gap-3">
             <ThemeToggle />
             <Link
-              href={agendaHref}
-              {...agendaLinkProps}
+              href="/contacto"
               className="btn-primary px-5 py-2 text-sm font-medium inline-flex items-center"
             >
               Agendar Reunión
@@ -109,8 +107,7 @@ export function Header() {
               </Link>
             ))}
             <Link
-              href={agendaHref}
-              {...agendaLinkProps}
+              href="/contacto"
               onClick={() => setOpen(false)}
               className="mt-4 btn-primary px-5 py-3 text-center text-sm font-medium"
             >
