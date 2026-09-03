@@ -10,6 +10,7 @@ export const theme = {
     line: "#E7E5E4",
     muted: "#6B7280",
     navy: "#111827",
+    success: "#0D7C66",
   },
   fonts: {
     display: "Instrument Serif",
