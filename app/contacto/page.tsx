@@ -134,28 +134,6 @@ export default function ContactoPage() {
 
           {/* Sidebar */}
           <aside className="lg:col-span-5 space-y-5">
-            {/* Google Calendar booking */}
-            {bookingUrl && (
-              <div className="card-luxury rounded-2xl p-6 border-primary/40">
-                <p className="text-[11px] uppercase tracking-[0.18em] text-fg-muted">
-                  Agenda directa
-                </p>
-                <h3 className="text-xl font-bold tracking-tight mt-2 text-fg">
-                  Elegí tu horario en la agenda de Marcos
-                </h3>
-                <p className="text-sm text-fg-muted leading-relaxed mt-2 inline-flex items-center gap-1.5">
-                  <Clock size={14} aria-hidden /> {theme.calendar.hours}
-                </p>
-                <a
-                  href={bookingUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="mt-5 w-full inline-flex items-center justify-center gap-2 btn-primary px-5 py-3 text-sm font-medium"
-                >
-                  <CalendarDays size={18} aria-hidden /> Agendar en Google Calendar
-                </a>
-              </div>
-            )}
             {/* WhatsApp direct */}
             <div className="card-luxury rounded-2xl p-6">
               <p className="text-[11px] uppercase tracking-[0.18em] text-fg-muted">
@@ -186,40 +164,30 @@ export default function ContactoPage() {
               </p>
             </div>
 
-            {/* Calendly embed placeholder */}
-            <div className="card-luxury rounded-2xl p-6">
+            {/* Agenda Google Calendar */}
+            <div className="card-luxury rounded-2xl p-6 border-primary/40">
               <div className="flex items-center gap-2">
                 <span className="w-8 h-8 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center text-primary">
-                  <Clock size={16} aria-hidden />
+                  <CalendarDays size={16} aria-hidden />
                 </span>
                 <div>
                   <h3 className="text-sm font-semibold text-fg leading-none">
-                    Reservá en calendario
+                    Elegí tu horario en la agenda de Marcos
                   </h3>
-                  <p className="text-xs text-fg-muted mt-0.5">Elegí día y hora · 45 min · Meet/Presencial</p>
+                  <p className="text-xs text-fg-muted mt-0.5">45 min · Meet/Presencial</p>
                 </div>
               </div>
-              <div className="mt-4 rounded-xl border border-hairline bg-surface-2 overflow-hidden">
-                {/* Calendly inline embed — src parametrizable */}
-                <div className="aspect-[4/3] md:aspect-[16/11] w-full flex flex-col items-center justify-center p-6 text-center">
-                  <p className="text-sm font-medium text-fg">Calendly Embed</p>
-                  <p className="text-xs text-fg-muted mt-1 max-w-sm">
-                    Reemplazá este bloque por el embed real de Calendly/Cal.com cuando tengas el link
-                    (iframe). Por ahora usá el formulario o WhatsApp arriba.
-                  </p>
-                  <div className="mt-4 w-full rounded-lg border border-dashed border-hairline bg-bg p-3 text-xs text-fg-muted font-mono break-all">
-                    {"<iframe src=\"https://calendly.com/...\" />"}
-                  </div>
-                  <Link
-                    href="https://wa.me/5493517334040"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="mt-4 inline-flex items-center gap-2 text-xs font-medium text-primary hover:text-primary-hover"
-                  >
-                    Agendar por WhatsApp <ArrowRight size={14} aria-hidden />
-                  </Link>
-                </div>
-              </div>
+              <p className="mt-4 inline-flex items-center gap-1.5 text-sm text-fg-muted">
+                <Clock size={14} aria-hidden /> {theme.calendar.hours}
+              </p>
+              <a
+                href={bookingUrl ?? "/contacto"}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-5 w-full inline-flex items-center justify-center gap-2 btn-primary px-5 py-3 text-sm font-medium"
+              >
+                <CalendarDays size={18} aria-hidden /> Agendar en Google Calendar
+              </a>
               <p className="mt-3 text-xs text-fg-muted leading-relaxed">
                 Si el calendario no carga, escribinos por WhatsApp y coordinamos manual.
               </p>
