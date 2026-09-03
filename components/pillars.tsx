@@ -30,12 +30,6 @@ const pillars = [
   },
 ] as const
 
-function onSpotlight(e: React.MouseEvent<HTMLDivElement>) {
-  const rect = e.currentTarget.getBoundingClientRect()
-  e.currentTarget.style.setProperty("--mouse-x", `${e.clientX - rect.left}px`)
-  e.currentTarget.style.setProperty("--mouse-y", `${e.clientY - rect.top}px`)
-}
-
 export function Pillars() {
   const reduce = useReducedMotion()
 
@@ -61,8 +55,7 @@ export function Pillars() {
           {pillars.map(({ id, title, desc, Icon }) => (
             <div
               key={id}
-              onMouseMove={onSpotlight}
-              className="card-luxury spotlight-card rounded-2xl p-8 group flex flex-col"
+              className="card-luxury rounded-2xl p-8 group flex flex-col"
             >
               <div className="flex items-center justify-between mb-6">
                 <span className="font-mono-tech text-xs text-primary tracking-widest px-2.5 py-1 rounded-md bg-primary/10 border border-primary/20 font-semibold">

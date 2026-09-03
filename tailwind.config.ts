@@ -2,10 +2,13 @@ import type { Config } from "tailwindcss"
 import { theme } from "./config/theme"
 
 /**
- * Tokens adaptativos (paper/paper2/surface/line/muted/foreground/success/
- * primary-soft) se definen como rgb-triplets en CSS vars y se intercambian
- * bajo `.dark` en globals.css — un solo token, ambos modos.
- * Tokens fijos (primary, primary-fg, ink, ink-soft) no cambian.
+ * Tokens adaptativos (bg/surface/surface-2/fg/fg-muted/success) se definen
+ * como rgb-triplets en CSS vars y se intercambian bajo `.dark` en globals.css
+ * (next-themes, class strategy) — un solo token, ambos modos.
+ * hairline ya es rgba completa. primary/primary-hover son triplet fijos
+ * para soportar alpha (bg-primary/10, border-primary/40, etc.).
+ * Los aliases foreground/paper/paper-2/line/muted mantienen viva la API
+ * legacy hasta el refactor de secciones.
  */
 const rgb = (v: string) => `rgb(var(--${v}-rgb) / <alpha-value>)`
 
@@ -20,21 +23,22 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        primary: rgb("primary"),
-        "primary-hover": theme.colors.primaryHover,
-        "primary-fg": rgb("primary-fg"),
-        "primary-soft": rgb("primary-soft"),
-        ink: rgb("ink"),
-        "ink-soft": rgb("ink-soft"),
-        foreground: rgb("foreground"),
-        paper: rgb("paper"),
-        "paper-2": rgb("paper-2"),
+        bg: rgb("bg"),
         surface: rgb("surface"),
-        line: rgb("line"),
-        muted: rgb("muted"),
-        navy: theme.colors.navy,
+        "surface-2": rgb("surface-2"),
+        hairline: "var(--hairline)",
+        fg: rgb("fg"),
+        "fg-muted": rgb("fg-muted"),
+        primary: rgb("primary"),
+        "primary-hover": rgb("primary-hover"),
+        "primary-fg": theme.colors.primaryFg,
         success: rgb("success"),
-        background: "var(--background)",
+        /* aliases legacy (transición hasta refactor de secciones) */
+        foreground: rgb("fg"),
+        paper: rgb("bg"),
+        "paper-2": rgb("surface"),
+        line: "var(--hairline)",
+        muted: rgb("fg-muted"),
       },
       borderRadius: {
         lg: theme.radius,
@@ -42,11 +46,13 @@ const config: Config = {
         sm: `calc(${theme.radius} - 4px)`,
       },
       fontFamily: {
-        display: ["var(--font-body)", "Plus Jakarta Sans", "sans-serif"],
-        body: ["var(--font-body)", "Plus Jakarta Sans", "sans-serif"],
-        sans: ["var(--font-body)", "Plus Jakarta Sans", "sans-serif"],
-        "mono-tech": ["var(--font-mono-tech)", "JetBrains Mono", "monospace"],
-        "serif-brand": ["var(--font-serif-brand)", "Cinzel", "serif"],
+        display: ["var(--font-display)", "Fraunces", "Georgia", "serif"],
+        body: ["var(--font-body)", "Outfit", "sans-serif"],
+        sans: ["var(--font-body)", "Outfit", "sans-serif"],
+        mono: ["var(--font-mono)", "JetBrains Mono", "monospace"],
+        /* aliases legacy: mono micro-datos + monograma MB (ahora en Fraunces) */
+        "mono-tech": ["var(--font-mono)", "JetBrains Mono", "monospace"],
+        "serif-brand": ["var(--font-display)", "Fraunces", "Georgia", "serif"],
       },
       transitionTimingFunction: {
         "out-expo": "cubic-bezier(0.23, 1, 0.32, 1)",
