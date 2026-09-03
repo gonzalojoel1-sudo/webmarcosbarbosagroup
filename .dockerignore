@@ -1,0 +1,16 @@
+node_modules
+.next
+out
+.git
+.gitignore
+README.md
+.env*.local
+.env
+data/leads.jsonl
+coverage
+.vercel
+.DS_Store
+*.pem
+npm-debug.log*
+.superpowers
+docs
