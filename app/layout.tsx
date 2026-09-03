@@ -1,20 +1,27 @@
 import type { Metadata } from "next"
-import { Fraunces, Outfit } from "next/font/google"
+import { Plus_Jakarta_Sans, JetBrains_Mono, Cinzel } from "next/font/google"
 import "./globals.css"
 import { Header } from "@/components/layout/header"
 import { Footer } from "@/components/layout/footer"
 import { Providers } from "@/components/providers"
+import { Backdrop } from "@/components/backdrop"
+import { SpotlightLayer } from "@/components/spotlight"
 
-const display = Fraunces({
-  subsets: ["latin"],
-  variable: "--font-display",
-  display: "swap",
-  axes: ["opsz"],
-})
-
-const body = Outfit({
+const body = Plus_Jakarta_Sans({
   subsets: ["latin"],
   variable: "--font-body",
+  display: "swap",
+})
+
+const monoTech = JetBrains_Mono({
+  subsets: ["latin"],
+  variable: "--font-mono-tech",
+  display: "swap",
+})
+
+const serifBrand = Cinzel({
+  subsets: ["latin"],
+  variable: "--font-serif-brand",
   display: "swap",
 })
 
@@ -34,9 +41,11 @@ export default function RootLayout({
     <html
       lang="es"
       suppressHydrationWarning
-      className={`${display.variable} ${body.variable}`}
+      className={`${body.variable} ${monoTech.variable} ${serifBrand.variable}`}
     >
       <body className="bg-paper text-foreground antialiased font-body">
+        <Backdrop />
+        <SpotlightLayer />
         <Providers>
           <Header />
           {children}

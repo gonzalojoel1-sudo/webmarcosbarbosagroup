@@ -21,20 +21,17 @@ const trustBullets = [
 
 export default function ContactoPage() {
   return (
-    <main className="bg-paper">
+    <main>
       {/* Header spacing + hero intro */}
-      <section className="pt-28 pb-10 border-b border-line bg-paper-2">
-        <div className="max-w-7xl mx-auto px-6">
-          <p className="text-xs tracking-[0.2em] text-muted">CONTACTO</p>
-          <h1 className="font-display text-4xl md:text-5xl lg:text-6xl tracking-tight leading-[0.95] mt-3 text-foreground">
-            Agendá tu
-            <span className="underline decoration-primary decoration-4 underline-offset-4">
-              {" "}
-              Primera Reunión
-            </span>{" "}
-            Estratégica
+      <section className="pt-32 md:pt-40 pb-10 border-b border-line bg-paper-2">
+        <div className="max-w-6xl mx-auto px-6">
+          <p className="font-mono-tech text-xs tracking-widest text-primary uppercase font-semibold">
+            [ CONTACTO ]
+          </p>
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight leading-[1.08] mt-3 text-foreground">
+            Agendá tu <span className="text-gradient-accent">Primera Reunión</span> Estratégica
           </h1>
-          <p className="mt-4 text-muted max-w-2xl leading-relaxed">
+          <p className="mt-4 text-muted max-w-2xl leading-relaxed font-light">
             Diagnóstico 360° de tu negocio. En 45 minutos definimos qué te frena y el camino a una
             empresa que crece sin depender de vos. Cupos limitados por mes.
           </p>
@@ -42,10 +39,10 @@ export default function ContactoPage() {
             {trustBullets.map((t) => (
               <span
                 key={t}
-                className="inline-flex items-center gap-1.5 bg-surface border border-line rounded-full px-3 py-1.5 text-foreground"
+                className="inline-flex items-center gap-1.5 glass-nav rounded-full px-3 py-1.5 text-foreground"
               >
                 <span className="w-5 h-5 rounded-full bg-success/10 border border-success/20 flex items-center justify-center text-success">
-                  <Check size={12} strokeWidth={2.5} />
+                  <Check size={12} strokeWidth={2.5} aria-hidden />
                 </span>
                 {t}
               </span>
@@ -55,67 +52,81 @@ export default function ContactoPage() {
       </section>
 
       {/* Main grid */}
-      <section className="py-10 md:py-12">
-        <div className="max-w-7xl mx-auto px-6 grid lg:grid-cols-12 gap-8 items-start">
+      <section className="py-16 md:py-24 px-6">
+        <div className="max-w-6xl mx-auto grid lg:grid-cols-12 gap-8 items-start">
           {/* Form card */}
           <div className="lg:col-span-7">
-            <div className="bg-surface border border-line rounded-2xl p-6 md:p-8 shadow-sm">
+            <div className="card-luxury rounded-2xl p-6 md:p-8">
               <div className="flex items-start justify-between gap-4 mb-6">
                 <div>
-                  <h2 className="font-display text-2xl tracking-tight leading-none text-foreground">Contanos tu desafío</h2>
+                  <h2 className="text-2xl font-bold tracking-tight text-foreground">
+                    Contanos tu desafío
+                  </h2>
                   <p className="text-sm text-muted mt-2">
                     Completá el formulario y te contactamos por WhatsApp. O escribinos directo.
                   </p>
                 </div>
-                <span className="hidden sm:inline-flex items-center gap-2 text-xs font-medium tracking-widest text-primary bg-primary-soft border border-primary/15 rounded-full px-3 py-1.5">
-                  <span className="w-2 h-2 rounded-full bg-primary animate-pulse" aria-hidden />
-                  CUPOS ABIERTOS
+                <span className="hidden sm:inline-flex items-center gap-2 text-[11px] font-mono-tech uppercase tracking-wider text-emerald-600 dark:text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 rounded-full px-3 py-1.5">
+                  <span className="w-2 h-2 rounded-full bg-emerald-500 pulse-dot" aria-hidden />
+                  Cupos abiertos
                 </span>
               </div>
 
               <LeadForm />
 
-              <div className="mt-6 pt-6 border-t border-line flex flex-col sm:flex-row gap-3 text-xs text-muted">
+              <div className="mt-6 pt-6 border-t border-line/60 dark:border-white/[0.06] flex flex-col sm:flex-row gap-3 text-[11px] font-mono-tech text-muted">
                 <span className="inline-flex items-center gap-1.5">
-                  <ShieldCheck size={14} className="text-success" /> Datos protegidos · Sin spam
+                  <ShieldCheck size={14} className="text-success" aria-hidden /> Datos protegidos · Sin spam
                 </span>
                 <span className="hidden sm:inline text-line" aria-hidden>
                   •
                 </span>
                 <span className="inline-flex items-center gap-1.5">
-                  <Clock size={14} /> Respuesta en 24h hábiles
+                  <Clock size={14} aria-hidden /> Respuesta en 24h hábiles
                 </span>
               </div>
             </div>
 
             {/* Confianza strip debajo form */}
             <div className="mt-6 grid sm:grid-cols-3 gap-3">
-              <div className="bg-ink-soft text-white rounded-xl p-4 border border-white/10">
-                <p className="text-xs tracking-widest text-white/60">EXPERIENCIA</p>
-                <p className="font-display text-xl leading-none mt-1">15+ años</p>
-                <p className="text-xs text-white/60 mt-1">Empresas en LATAM y Europa</p>
+              <div className="card-luxury rounded-xl p-4">
+                <p className="text-[10px] font-mono-tech tracking-widest text-muted uppercase">
+                  Experiencia
+                </p>
+                <p className="font-mono-tech text-xl font-bold leading-none mt-1 text-foreground">
+                  15+ años
+                </p>
+                <p className="text-xs text-muted mt-1">Empresas en LATAM y Europa</p>
                 <div className="mt-3 h-1 w-full bg-primary rounded-full" aria-hidden />
               </div>
-              <div className="bg-surface border border-line rounded-xl p-4">
-                <p className="text-xs tracking-widest text-muted">MÉTODO</p>
-                <p className="font-display text-xl leading-none mt-1 text-foreground">6 pasos</p>
+              <div className="card-luxury rounded-xl p-4">
+                <p className="text-[10px] font-mono-tech tracking-widest text-muted uppercase">
+                  Método
+                </p>
+                <p className="font-mono-tech text-xl font-bold leading-none mt-1 text-foreground">
+                  6 pasos
+                </p>
                 <p className="text-xs text-muted mt-1">De Diagnóstico a Escalamiento</p>
                 <Link
                   href="/metodologia"
                   className="mt-3 inline-flex items-center gap-1 text-xs font-medium text-primary hover:text-primary-hover"
                 >
-                  Ver metodología <ArrowRight size={12} />
+                  Ver metodología <ArrowRight size={12} aria-hidden />
                 </Link>
               </div>
-              <div className="bg-surface border border-line rounded-xl p-4">
-                <p className="text-xs tracking-widest text-muted">PLANES</p>
-                <p className="font-display text-xl leading-none mt-1 text-foreground">1 — 4</p>
+              <div className="card-luxury rounded-xl p-4">
+                <p className="text-[10px] font-mono-tech tracking-widest text-muted uppercase">
+                  Planes
+                </p>
+                <p className="font-mono-tech text-xl font-bold leading-none mt-1 text-foreground">
+                  1 — 4
+                </p>
                 <p className="text-xs text-muted mt-1">Desde Consultor a Board</p>
                 <Link
                   href="/planes"
                   className="mt-3 inline-flex items-center gap-1 text-xs font-medium text-primary hover:text-primary-hover"
                 >
-                  Comparar planes <ArrowRight size={12} />
+                  Comparar planes <ArrowRight size={12} aria-hidden />
                 </Link>
               </div>
             </div>
@@ -124,50 +135,57 @@ export default function ContactoPage() {
           {/* Sidebar */}
           <aside className="lg:col-span-5 space-y-5">
             {/* WhatsApp direct */}
-            <div className="bg-ink-soft text-white rounded-2xl p-6 relative overflow-hidden border border-white/10">
-              <div className="absolute top-0 left-0 w-full h-1 bg-primary" aria-hidden />
-              <p className="text-xs tracking-[0.16em] text-white/60">CONTACTO DIRECTO</p>
-              <h3 className="font-display text-xl leading-none mt-2">¿Preferís WhatsApp?</h3>
-              <p className="text-sm text-white/70 leading-relaxed mt-2">
+            <div className="card-luxury card-accent rounded-2xl p-6 relative overflow-hidden">
+              <p className="text-[11px] font-mono-tech tracking-widest text-primary uppercase font-semibold">
+                [ CONTACTO DIRECTO ]
+              </p>
+              <h3 className="text-xl font-bold tracking-tight mt-2 text-foreground">
+                ¿Preferís WhatsApp?
+              </h3>
+              <p className="text-sm text-muted leading-relaxed mt-2">
                 Escribinos directo y agendamos tu reunión sin formulario. Atención personal de Marcos.
               </p>
               <a
                 href="https://wa.me/5493517334040?text=Hola%20Marcos%2C%20quiero%20agendar%20mi%20Primera%20Reuni%C3%B3n%20Estrat%C3%A9gica"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mt-5 w-full inline-flex items-center justify-center gap-2 bg-primary hover:bg-primary-hover text-white rounded-full px-5 py-3 text-sm font-medium transition-colors"
+                className="mt-5 w-full inline-flex items-center justify-center gap-2 btn-high-ticket rounded-xl px-5 py-3 text-xs font-bold uppercase tracking-wider"
               >
-                <MessageCircle size={18} /> WhatsApp +54 9 351 733 4040
+                <MessageCircle size={18} aria-hidden /> WhatsApp +54 9 351 733 4040
               </a>
               <a
                 href="mailto:consultora.marcosbarbosa@gmail.com"
-                className="mt-3 w-full inline-flex items-center justify-center gap-2 bg-white/10 hover:bg-white/15 border border-white/15 text-white rounded-full px-5 py-3 text-sm font-medium transition-colors"
+                className="mt-3 w-full inline-flex items-center justify-center gap-2 btn-ghost-lux rounded-xl px-5 py-3 text-xs font-semibold"
               >
-                <Mail size={18} /> consultora.marcosbarbosa@gmail.com
+                <Mail size={18} aria-hidden /> consultora.marcosbarbosa@gmail.com
               </a>
-              <p className="mt-3 text-xs text-white/50 text-center">Córdoba, Argentina · Respuesta en 24h</p>
+              <p className="mt-3 text-[11px] font-mono-tech text-muted text-center">
+                Córdoba, Argentina · Respuesta en 24h
+              </p>
             </div>
 
             {/* Calendly embed placeholder */}
-            <div className="bg-surface border border-line rounded-2xl p-6">
+            <div className="card-luxury rounded-2xl p-6">
               <div className="flex items-center gap-2">
-                <span className="w-8 h-8 rounded-lg bg-primary-soft border border-primary/15 flex items-center justify-center text-primary">
-                  <Clock size={16} />
+                <span className="w-8 h-8 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center text-primary">
+                  <Clock size={16} aria-hidden />
                 </span>
                 <div>
-                  <h3 className="text-sm font-semibold text-foreground leading-none">Reservá en calendario</h3>
+                  <h3 className="text-sm font-semibold text-foreground leading-none">
+                    Reservá en calendario
+                  </h3>
                   <p className="text-xs text-muted mt-0.5">Elegí día y hora · 45 min · Meet/Presencial</p>
                 </div>
               </div>
-              <div className="mt-4 rounded-xl border border-line bg-paper overflow-hidden">
+              <div className="mt-4 rounded-xl border border-line dark:border-white/[0.08] bg-black/[0.02] dark:bg-white/[0.03] overflow-hidden">
                 {/* Calendly inline embed — src parametrizable */}
-                <div className="aspect-[4/3] md:aspect-[16/11] w-full bg-paper-2 flex flex-col items-center justify-center p-6 text-center">
+                <div className="aspect-[4/3] md:aspect-[16/11] w-full flex flex-col items-center justify-center p-6 text-center">
                   <p className="text-sm font-medium text-foreground">Calendly Embed</p>
                   <p className="text-xs text-muted mt-1 max-w-sm">
                     Reemplazá este bloque por el embed real de Calendly/Cal.com cuando tengas el link
                     (iframe). Por ahora usá el formulario o WhatsApp arriba.
                   </p>
-                  <div className="mt-4 w-full rounded-lg border border-dashed border-line bg-surface p-3 text-xs text-muted font-mono break-all">
+                  <div className="mt-4 w-full rounded-lg border border-dashed border-line dark:border-white/15 bg-surface/60 dark:bg-white/[0.04] p-3 text-xs text-muted font-mono break-all">
                     {"<iframe src=\"https://calendly.com/...\" />"}
                   </div>
                   <Link
@@ -176,7 +194,7 @@ export default function ContactoPage() {
                     rel="noopener noreferrer"
                     className="mt-4 inline-flex items-center gap-2 text-xs font-medium text-primary hover:text-primary-hover"
                   >
-                    Agendar por WhatsApp <ArrowRight size={14} />
+                    Agendar por WhatsApp <ArrowRight size={14} aria-hidden />
                   </Link>
                 </div>
               </div>
@@ -186,19 +204,23 @@ export default function ContactoPage() {
             </div>
 
             {/* Mapa Córdoba */}
-            <div className="bg-surface border border-line rounded-2xl overflow-hidden">
+            <div className="card-luxury rounded-2xl overflow-hidden">
               <div className="p-6 pb-4">
                 <div className="flex items-center gap-2">
-                  <span className="w-8 h-8 rounded-lg bg-paper border border-line flex items-center justify-center text-foreground">
-                    <MapPin size={16} />
+                  <span className="w-8 h-8 rounded-lg bg-black/[0.04] dark:bg-white/[0.04] flex items-center justify-center text-foreground">
+                    <MapPin size={16} aria-hidden />
                   </span>
                   <div>
-                    <h3 className="text-sm font-semibold text-foreground leading-none">Córdoba · Internacional</h3>
-                    <p className="text-xs text-muted mt-0.5">Base Córdoba, trabajo híbrido y en territorio</p>
+                    <h3 className="text-sm font-semibold text-foreground leading-none">
+                      Córdoba · Internacional
+                    </h3>
+                    <p className="text-xs text-muted mt-0.5">
+                      Base Córdoba, trabajo híbrido y en territorio
+                    </p>
                   </div>
                 </div>
               </div>
-              <div className="aspect-[16/10] w-full bg-paper-2 border-y border-line overflow-hidden">
+              <div className="aspect-[16/10] w-full bg-black/[0.02] dark:bg-white/[0.03] border-y border-line dark:border-white/[0.06] overflow-hidden">
                 <iframe
                   title="Mapa Córdoba"
                   src="https://www.openstreetmap.org/export/embed.html?bbox=-64.25%2C-31.5%2C-64.05%2C-31.35&layer=mapnik&marker=-31.4201%2C-64.1888"
@@ -217,14 +239,14 @@ export default function ContactoPage() {
                   rel="noopener noreferrer"
                   className="shrink-0 text-xs font-medium text-primary hover:text-primary-hover inline-flex items-center gap-1"
                 >
-                  Ver mapa <ArrowRight size={12} />
+                  Ver mapa <ArrowRight size={12} aria-hidden />
                 </a>
               </div>
             </div>
 
             {/* FAQ corto */}
-            <div className="bg-paper-2 border border-line rounded-2xl p-6">
-              <h3 className="font-display text-lg tracking-tight leading-none text-foreground">Antes de agendar</h3>
+            <div className="card-luxury rounded-2xl p-6">
+              <h3 className="text-lg font-bold tracking-tight text-foreground">Antes de agendar</h3>
               <dl className="mt-4 space-y-4 text-sm">
                 <div>
                   <dt className="font-medium text-foreground">¿Qué pasa en la Primera Reunión?</dt>

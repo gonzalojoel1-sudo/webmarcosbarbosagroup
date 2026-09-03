@@ -124,7 +124,7 @@ export function LeadForm() {
           disabled={isLoading || isOk}
           aria-invalid={!!fieldErrors.name}
           aria-describedby={fieldErrors.name ? "err-name" : undefined}
-          className="w-full border border-line rounded-lg px-4 py-3 bg-surface text-foreground placeholder:text-muted/60 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
+          className="w-full border border-line dark:border-white/10 rounded-lg px-4 py-3 bg-surface/70 dark:bg-white/[0.04] text-foreground placeholder:text-muted/60 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
         />
         {fieldErrors.name && (
           <p id="err-name" className="mt-1.5 text-sm text-red-600 dark:text-red-400 flex items-center gap-1">
@@ -148,7 +148,7 @@ export function LeadForm() {
           disabled={isLoading || isOk}
           aria-invalid={!!fieldErrors.email}
           aria-describedby={fieldErrors.email ? "err-email" : undefined}
-          className="w-full border border-line rounded-lg px-4 py-3 bg-surface text-foreground placeholder:text-muted/60 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-colors disabled:opacity-60"
+          className="w-full border border-line dark:border-white/10 rounded-lg px-4 py-3 bg-surface/70 dark:bg-white/[0.04] text-foreground placeholder:text-muted/60 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-colors disabled:opacity-60"
         />
         {fieldErrors.email && (
           <p id="err-email" className="mt-1.5 text-sm text-red-600 dark:text-red-400 flex items-center gap-1">
@@ -170,7 +170,7 @@ export function LeadForm() {
           disabled={isLoading || isOk}
           aria-invalid={!!fieldErrors.phone}
           aria-describedby={fieldErrors.phone ? "err-phone" : undefined}
-          className="w-full border border-line rounded-lg px-4 py-3 bg-surface text-foreground placeholder:text-muted/60 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-colors disabled:opacity-60"
+          className="w-full border border-line dark:border-white/10 rounded-lg px-4 py-3 bg-surface/70 dark:bg-white/[0.04] text-foreground placeholder:text-muted/60 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-colors disabled:opacity-60"
         />
         {fieldErrors.phone && (
           <p id="err-phone" className="mt-1.5 text-sm text-red-600 dark:text-red-400 flex items-center gap-1">
@@ -191,7 +191,7 @@ export function LeadForm() {
           disabled={isLoading || isOk}
           aria-invalid={!!fieldErrors.plan}
           aria-describedby={fieldErrors.plan ? "err-plan" : undefined}
-          className="w-full border border-line rounded-lg px-4 py-3 bg-surface text-foreground focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-colors disabled:opacity-60"
+          className="w-full border border-line dark:border-white/10 rounded-lg px-4 py-3 bg-surface/70 dark:bg-white/[0.04] text-foreground focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-colors disabled:opacity-60"
         >
           {PLAN_OPTIONS.map((p) => (
             <option key={p} value={p}>
@@ -219,7 +219,7 @@ export function LeadForm() {
           disabled={isLoading || isOk}
           aria-invalid={!!fieldErrors.mensaje}
           aria-describedby={fieldErrors.mensaje ? "err-mensaje" : undefined}
-          className="w-full border border-line rounded-lg px-4 py-3 bg-surface text-foreground placeholder:text-muted/60 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-colors resize-y min-h-[96px] disabled:opacity-60"
+          className="w-full border border-line dark:border-white/10 rounded-lg px-4 py-3 bg-surface/70 dark:bg-white/[0.04] text-foreground placeholder:text-muted/60 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-colors resize-y min-h-[96px] disabled:opacity-60"
         />
         {fieldErrors.mensaje && (
           <p id="err-mensaje" className="mt-1.5 text-sm text-red-600 dark:text-red-400 flex items-center gap-1">
@@ -231,7 +231,7 @@ export function LeadForm() {
       <button
         type="submit"
         disabled={isLoading || isOk}
-        className="w-full bg-primary text-primary-fg py-3.5 rounded-full font-semibold hover:bg-primary-hover transition-colors inline-flex items-center justify-center gap-2 disabled:opacity-60 disabled:cursor-not-allowed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
+        className="w-full btn-high-ticket py-3.5 rounded-full font-bold inline-flex items-center justify-center gap-2 disabled:opacity-60 disabled:cursor-not-allowed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
       >
         {isLoading ? (
           <>

@@ -2,17 +2,20 @@
 
 import { useState, useEffect } from "react"
 import Link from "next/link"
-import { motion, useMotionValueEvent, useScroll, useSpring } from "framer-motion"
-import { Menu, X } from "lucide-react"
+import { motion, useScroll, useSpring } from "framer-motion"
+import { Menu, X, ArrowUpRight } from "lucide-react"
 import { ThemeToggle } from "@/components/theme-toggle"
 
-export function Header() {
-  const [scrolled, setScrolled] = useState(false)
-  const [open, setOpen] = useState(false)
-  const { scrollY, scrollYProgress } = useScroll()
-  const progress = useSpring(scrollYProgress, { stiffness: 140, damping: 30, mass: 0.4 })
+const NAV_LINKS = [
+  { href: "/metodologia", label: "Metodología" },
+  { href: "/planes", label: "Planes" },
+  { href: "/sobre-marcos", label: "Sobre Marcos" },
+] as const
 
-  useMotionValueEvent(scrollY, "change", (v) => setScrolled(v > 10))
+export function Header() {
+  const [open, setOpen] = useState(false)
+  const { scrollYProgress } = useScroll()
+  const progress = useSpring(scrollYProgress, { stiffness: 140, damping: 30, mass: 0.4 })
 
   useEffect(() => {
     if (open) document.body.style.overflow = "hidden"
@@ -23,51 +26,44 @@ export function Header() {
   }, [open])
 
   return (
-    <header
-      className={`fixed top-0 w-full z-50 transition-colors duration-300 ${
-        scrolled || open
-          ? "bg-surface/90 backdrop-blur-md border-b border-line shadow-sm shadow-black/5"
-          : "bg-transparent border-b border-transparent"
-      }`}
-    >
-      {/* progress bar #fe4100 */}
-      <motion.div
-        className="absolute top-0 left-0 h-[2px] w-full bg-primary origin-left"
-        style={{ scaleX: progress }}
-        aria-hidden
-      />
-      <nav className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+    <header className="fixed top-5 inset-x-0 z-50 px-4">
+      <nav className="relative max-w-6xl mx-auto glass-nav rounded-full px-6 py-3 flex items-center justify-between shadow-xl shadow-black/10 dark:shadow-2xl dark:shadow-black/80 overflow-hidden">
+        {/* progress bar #fe4100 */}
+        <motion.div
+          className="absolute top-0 left-0 h-[2px] w-full bg-primary origin-left"
+          style={{ scaleX: progress }}
+          aria-hidden
+        />
         <Link
           href="/"
-          className="font-display text-xl tracking-tight text-foreground"
+          className="flex items-center gap-3 group"
           onClick={() => setOpen(false)}
         >
-          MARCOS BARBOSA
+          <span className="w-9 h-9 rounded-xl bg-gradient-to-br from-zinc-800 to-black border border-white/15 flex items-center justify-center font-serif-brand font-bold text-sm tracking-wider text-white group-hover:border-primary/60 transition-colors">
+            MB
+          </span>
+          <span className="font-bold tracking-tight text-sm text-foreground group-hover:text-muted transition-colors">
+            MARCOS BARBOSA
+          </span>
         </Link>
-        <div className="hidden md:flex items-center gap-8 text-sm font-medium text-foreground">
-          <Link
-            href="/metodologia"
-            className="hover:text-primary transition-colors"
-          >
-            Metodología
-          </Link>
-          <Link href="/planes" className="hover:text-primary transition-colors">
-            Planes
-          </Link>
-          <Link
-            href="/sobre-marcos"
-            className="hover:text-primary transition-colors"
-          >
-            Sobre Marcos
-          </Link>
+        <div className="hidden md:flex items-center gap-8 text-xs font-medium tracking-wide uppercase text-muted">
+          {NAV_LINKS.map((l) => (
+            <Link
+              key={l.href}
+              href={l.href}
+              className="hover:text-foreground transition-colors duration-200"
+            >
+              {l.label}
+            </Link>
+          ))}
         </div>
         <div className="hidden md:flex items-center gap-3">
           <ThemeToggle />
           <Link
             href="/contacto"
-            className="bg-primary text-primary-fg px-5 py-2 rounded-full text-sm font-semibold hover:bg-primary-hover transition-colors inline-flex items-center"
+            className="btn-high-ticket px-5 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider inline-flex items-center gap-2"
           >
-            Agendar Reunión
+            Agendar Reunión <ArrowUpRight className="w-3.5 h-3.5" aria-hidden />
           </Link>
         </div>
         <div className="flex md:hidden items-center gap-2">
@@ -84,48 +80,37 @@ export function Header() {
       </nav>
       {/* mobile drawer */}
       {open && (
-        <div className="md:hidden absolute top-16 left-0 w-full bg-surface border-b border-line shadow-lg">
+        <div className="md:hidden absolute top-[calc(100%+8px)] left-4 right-4 glass-nav rounded-2xl shadow-xl shadow-black/10 dark:shadow-2xl dark:shadow-black/80">
           <div className="px-6 py-6 flex flex-col gap-1">
-            <Link
-              href="/metodologia"
-              onClick={() => setOpen(false)}
-              className="py-3 text-base font-medium border-b border-line/60 hover:text-primary"
-            >
-              Metodología
-            </Link>
-            <Link
-              href="/planes"
-              onClick={() => setOpen(false)}
-              className="py-3 text-base font-medium border-b border-line/60 hover:text-primary"
-            >
-              Planes
-            </Link>
-            <Link
-              href="/sobre-marcos"
-              onClick={() => setOpen(false)}
-              className="py-3 text-base font-medium border-b border-line/60 hover:text-primary"
-            >
-              Sobre Marcos
-            </Link>
+            {NAV_LINKS.map((l) => (
+              <Link
+                key={l.href}
+                href={l.href}
+                onClick={() => setOpen(false)}
+                className="py-3 text-sm font-medium uppercase tracking-wide border-b border-line/60 hover:text-primary transition-colors"
+              >
+                {l.label}
+              </Link>
+            ))}
             <Link
               href="/contacto"
               onClick={() => setOpen(false)}
-              className="mt-4 bg-primary text-primary-fg px-5 py-3 rounded-full text-center text-sm font-semibold hover:bg-primary-hover transition-colors"
+              className="mt-4 btn-high-ticket px-5 py-3 rounded-full text-center text-xs font-bold uppercase tracking-wider"
             >
               Agendar Reunión
             </Link>
-            <div className="mt-4 pt-4 border-t border-line flex flex-col gap-2 text-sm text-muted">
+            <div className="mt-4 pt-4 border-t border-line flex flex-col gap-2 text-xs font-mono-tech text-muted">
               <a
                 href="https://wa.me/5493517334040"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="hover:text-foreground"
+                className="hover:text-foreground transition-colors"
               >
                 WhatsApp +54 9 351 733 4040
               </a>
               <a
                 href="mailto:consultora.marcosbarbosa@gmail.com"
-                className="hover:text-foreground break-all"
+                className="hover:text-foreground transition-colors break-all"
               >
                 consultora.marcosbarbosa@gmail.com
               </a>

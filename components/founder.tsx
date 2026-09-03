@@ -1,6 +1,6 @@
 import Image from "next/image"
 import Link from "next/link"
-import { Check, Quote } from "lucide-react"
+import { Check } from "lucide-react"
 
 const bullets = [
   {
@@ -23,56 +23,22 @@ const bullets = [
 
 export function Founder() {
   return (
-    <section className="bg-paper py-16 md:py-24">
-      <div className="max-w-7xl mx-auto px-6 grid lg:grid-cols-12 gap-10 lg:gap-14 items-start">
-        <div className="lg:col-span-5">
-          <div className="relative aspect-[4/5] overflow-hidden rounded-2xl border border-line bg-surface shadow-xl shadow-black/10">
-            <Image
-              src="/images/marcos-hero.jpg"
-              alt="Marcos Barbosa — Fundador"
-              fill
-              className="object-cover object-top"
-              sizes="(max-width:1024px) 100vw, 40vw"
-            />
-            <div
-              className="absolute inset-0 ring-1 ring-inset ring-white/10 rounded-2xl pointer-events-none"
-              aria-hidden
-            />
-            {/* badge glass */}
-            <div className="absolute bottom-4 left-4 right-4 bg-surface/75 backdrop-blur-md border border-line rounded-xl px-4 py-3 flex items-center gap-3 shadow-lg shadow-black/10">
-              <div className="w-9 h-9 rounded-full bg-primary text-primary-fg flex items-center justify-center font-display text-sm shrink-0">
-                MB
-              </div>
-              <div className="min-w-0">
-                <p className="text-sm font-semibold leading-none text-foreground">Marcos Barbosa</p>
-                <p className="text-xs text-muted leading-none mt-1">
-                  Fuerzas Especiales → Consultor de Líderes
-                </p>
-              </div>
-              <span className="ml-auto h-2 w-2 rounded-full bg-success shrink-0" aria-hidden />
-            </div>
-          </div>
-        </div>
-
-        <div className="lg:col-span-7">
-          <h2 className="font-display text-3xl md:text-4xl lg:text-5xl tracking-tight leading-[0.95] text-foreground">
-            De fuerzas especiales
-            <br />
-            <span className="text-primary">a formar líderes.</span>
+    <section className="relative bg-paper-2 border-t border-line py-24 px-6">
+      <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+        <div className="lg:col-span-8 space-y-6">
+          <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-foreground leading-tight">
+            De fuerzas especiales <span className="text-gradient-accent">a formar líderes.</span>
           </h2>
-          <p className="text-sm md:text-base leading-relaxed text-muted mt-5 max-w-xl">
+          <p className="text-sm md:text-base leading-relaxed text-muted max-w-xl font-light">
             Más de 15 años transformando empresarios en líderes y negocios en organizaciones que
             crecen sin depender de una persona. Disciplina táctica aplicada a la empresa real.
           </p>
 
-          <div className="mt-9 grid sm:grid-cols-2 gap-4">
+          <div className="grid sm:grid-cols-2 gap-4">
             {bullets.map((b) => (
-              <div
-                key={b.title}
-                className="bg-surface border border-line rounded-xl p-4 flex gap-3 hover:border-primary/30 transition-colors duration-200"
-              >
-                <span className="shrink-0 w-7 h-7 rounded-full bg-primary-soft border border-primary/15 flex items-center justify-center text-primary mt-0.5">
-                  <Check size={14} strokeWidth={2.5} />
+              <div key={b.title} className="card-luxury rounded-xl p-4 flex gap-3">
+                <span className="shrink-0 w-7 h-7 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center text-primary mt-0.5">
+                  <Check size={14} strokeWidth={2.5} aria-hidden />
                 </span>
                 <div>
                   <p className="text-sm font-semibold text-foreground leading-none">{b.title}</p>
@@ -82,29 +48,65 @@ export function Founder() {
             ))}
           </div>
 
-          <blockquote className="mt-10 bg-ink-soft text-white rounded-2xl p-7 md:p-9 relative overflow-hidden">
-            <div className="absolute top-0 left-0 w-full h-1 bg-primary" aria-hidden />
-            <Quote size={26} className="text-primary mb-4" strokeWidth={1.5} />
-            <p className="font-display text-2xl md:text-3xl leading-[1.15] tracking-tight text-balance">
-              &ldquo;La estrategia sin ejecución es solo una ilusión. Mi trabajo es que tu empresa
-              ejecute, mida y escale — incluso cuando vos no estés.&rdquo;
-            </p>
-            <footer className="mt-5 text-xs tracking-widest text-white/60">— MARCOS BARBOSA</footer>
+          <blockquote className="border-l-2 border-primary pl-4 py-1 italic text-zinc-700 dark:text-zinc-300 text-base font-light">
+            &ldquo;La estrategia sin ejecución es solo una ilusión. Mi trabajo es que tu empresa
+            ejecute, mida y escale — incluso cuando vos no estés.&rdquo;
           </blockquote>
 
-          <div className="mt-9 flex flex-wrap gap-3">
+          <div className="flex items-center gap-4 pt-2">
+            <span className="w-12 h-12 rounded-xl bg-gradient-to-tr from-zinc-800 to-black border border-white/15 flex items-center justify-center font-serif-brand font-bold text-base text-white">
+              MB
+            </span>
+            <span>
+              <span className="block font-bold text-foreground text-sm">Marcos Barbosa</span>
+              <span className="block text-xs text-muted font-mono-tech">
+                Fuerzas Especiales → Consultor de Líderes
+              </span>
+            </span>
+          </div>
+
+          <div className="flex flex-wrap gap-4 pt-2">
             <Link
               href="/sobre-marcos"
-              className="inline-flex items-center justify-center bg-primary text-primary-fg px-6 py-3 rounded-full text-sm font-semibold hover:bg-primary-hover transition-colors"
+              className="btn-high-ticket inline-flex items-center justify-center px-6 py-3 rounded-xl text-sm font-bold tracking-wide"
             >
               Conocer a Marcos
             </Link>
             <Link
               href="/contacto"
-              className="inline-flex items-center justify-center border border-line bg-surface px-6 py-3 rounded-full text-sm font-semibold text-foreground hover:border-foreground/25 transition-colors"
+              className="btn-ghost-lux inline-flex items-center justify-center px-6 py-3 rounded-xl text-sm font-semibold tracking-wide"
             >
               Agendar Reunión Estratégica
             </Link>
+          </div>
+        </div>
+
+        <div className="lg:col-span-4">
+          <div className="relative">
+            {/* glow ambiental del retrato */}
+            <div
+              aria-hidden
+              className="absolute -inset-4 bg-gradient-to-tr from-primary/25 to-transparent rounded-3xl blur-2xl -z-10 opacity-70"
+            />
+            <div className="relative aspect-[4/5] overflow-hidden rounded-3xl border border-line dark:border-white/[0.12] bg-[#09090C] shadow-2xl shadow-black/10 dark:shadow-black/60">
+              <Image
+                src="/images/marcos-hero.jpg"
+                alt="Marcos Barbosa — Fundador"
+                fill
+                className="object-cover object-top hover:scale-105 transition-transform duration-700 dark:mix-blend-luminosity dark:opacity-85"
+                sizes="(max-width:1024px) 100vw, 33vw"
+              />
+              <div
+                aria-hidden
+                className="absolute inset-0 bg-gradient-to-t from-[#040405] via-transparent to-transparent opacity-0 dark:opacity-100 pointer-events-none"
+              />
+            </div>
+          </div>
+          <div className="mt-6 card-luxury rounded-2xl p-5 flex items-center gap-3">
+            <span className="h-2 w-2 rounded-full bg-success pulse-dot shrink-0" aria-hidden />
+            <p className="text-[11px] font-mono-tech text-muted uppercase tracking-wider">
+              Cupos limitados por mes
+            </p>
           </div>
         </div>
       </div>

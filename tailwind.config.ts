@@ -42,9 +42,11 @@ const config: Config = {
         sm: `calc(${theme.radius} - 4px)`,
       },
       fontFamily: {
-        display: ["var(--font-display)", "Fraunces", "serif"],
-        body: ["var(--font-body)", "Outfit", "sans-serif"],
-        sans: ["var(--font-body)", "Outfit", "sans-serif"],
+        display: ["var(--font-body)", "Plus Jakarta Sans", "sans-serif"],
+        body: ["var(--font-body)", "Plus Jakarta Sans", "sans-serif"],
+        sans: ["var(--font-body)", "Plus Jakarta Sans", "sans-serif"],
+        "mono-tech": ["var(--font-mono-tech)", "JetBrains Mono", "monospace"],
+        "serif-brand": ["var(--font-serif-brand)", "Cinzel", "serif"],
       },
       transitionTimingFunction: {
         "out-expo": "cubic-bezier(0.23, 1, 0.32, 1)",

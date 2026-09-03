@@ -4,36 +4,37 @@
 
 /* ─── Tokens ───────────────────────────────────────────────
    Adaptativos: se intercambian bajo .dark (next-themes, class strategy)
-   Fijos: primary / primary-fg / ink / ink-soft (superficies oscuras en ambos modos) */
+   Dark = referencia high-ticket exacta (#040405 / #EDEDED / #FE4100)
+   Light = adaptación coherente (#FAFAFA / gray-900 / mismos acentos) */
 :root {
   --primary-rgb: 254 65 0;
-  --primary-hover: #e03a00;
-  --primary-fg-rgb: 15 17 21;
+  --primary-hover: #d83400;
+  --primary-fg-rgb: 255 255 255;
   --primary-soft-rgb: 255 241 235;
   --ink-rgb: 15 17 21;
   --ink-soft-rgb: 26 30 38;
-  --foreground-rgb: 15 17 21;
-  --paper-rgb: 245 243 239;
-  --paper-2-rgb: 255 251 245;
+  --foreground-rgb: 24 24 27;
+  --paper-rgb: 250 250 250;
+  --paper-2-rgb: 244 244 245;
   --surface-rgb: 255 255 255;
-  --line-rgb: 231 229 228;
-  --muted-rgb: 107 114 128;
-  --success-rgb: 13 124 102;
-  --background: #f5f3ef;
-  --foreground: #0f1115;
+  --line-rgb: 228 228 231;
+  --muted-rgb: 113 113 122;
+  --success-rgb: 5 150 105;
+  --background: #fafafa;
+  --foreground: #18181b;
 }
 
 .dark {
   --primary-soft-rgb: 42 21 12;
-  --foreground-rgb: 242 241 237;
-  --paper-rgb: 12 13 16;
-  --paper-2-rgb: 18 20 25;
-  --surface-rgb: 20 22 27;
-  --line-rgb: 40 42 49;
-  --muted-rgb: 163 169 180;
-  --success-rgb: 62 207 165;
-  --background: #0c0d10;
-  --foreground: #f2f1ed;
+  --foreground-rgb: 237 237 237;
+  --paper-rgb: 4 4 5;
+  --paper-2-rgb: 5 5 7;
+  --surface-rgb: 14 14 18;
+  --line-rgb: 24 24 27;
+  --muted-rgb: 161 161 170;
+  --success-rgb: 52 211 153;
+  --background: #040405;
+  --foreground: #ededed;
   color-scheme: dark;
 }
 
@@ -53,16 +54,7 @@ html {
 body {
   background: rgb(var(--paper-rgb));
   color: rgb(var(--foreground-rgb));
-  font-family: var(--font-body, Outfit, sans-serif);
-  font-feature-settings: "ss01" on;
-}
-
-h1,
-h2,
-h3,
-.font-display {
-  font-family: var(--font-display, Fraunces, serif);
-  font-optical-sizing: auto;
+  font-family: var(--font-body, "Plus Jakarta Sans", sans-serif);
 }
 
 /* ─── Focus visible ──────────────────────────────────────── */
@@ -77,37 +69,216 @@ textarea:focus-visible,
   border-radius: 4px;
 }
 
-/* ─── Botones: presión táctil + transición (spring-like ease-out) ── */
-a.bg-primary,
-button.bg-primary,
-a.bg-ink,
-button.bg-ink,
-a.bg-ink-soft,
-button.bg-ink-soft {
-  transition-property: transform, background-color, border-color, color, box-shadow;
-  transition-duration: 200ms;
-  transition-timing-function: cubic-bezier(0.23, 1, 0.32, 1);
+/* ─── Glass nav (referencia exacta) ──────────────────────── */
+.glass-nav {
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(24, 24, 27, 0.08);
 }
-a.bg-primary:active,
-button.bg-primary:active,
-a.bg-ink:active,
-button.bg-ink:active,
-a.bg-ink-soft:active,
-button.bg-ink-soft:active {
-  transform: scale(0.98);
-  transition-duration: 120ms;
+.dark .glass-nav {
+  background: rgba(11, 11, 14, 0.75);
+  border: 1px solid rgba(255, 255, 255, 0.07);
 }
 
-/* ─── Grain overlay ──────────────────────────────────────── */
-body::after {
+/* ─── Card luxury (glass + hover lift + ignición naranja) ── */
+.card-luxury {
+  position: relative;
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgb(var(--line-rgb));
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.card-luxury:hover {
+  border-color: rgba(254, 65, 0, 0.4);
+  transform: translateY(-3px);
+  box-shadow: 0 16px 40px -12px rgba(254, 65, 0, 0.12);
+}
+.dark .card-luxury {
+  background: linear-gradient(
+    180deg,
+    rgba(17, 17, 22, 0.75) 0%,
+    rgba(10, 10, 13, 0.85) 100%
+  );
+  border: 1px solid rgba(255, 255, 255, 0.07);
+}
+/* variantes de borde naranja (plan destacado, card 06) */
+.card-luxury.card-accent {
+  border-color: rgba(254, 65, 0, 0.3);
+}
+.card-luxury.card-accent-strong {
+  border-color: rgba(254, 65, 0, 0.6);
+}
+
+/* ─── CTA primario high-ticket (gradiente + shimmer + glow) ── */
+.btn-high-ticket {
+  position: relative;
+  background: linear-gradient(135deg, #fe4100 0%, #d83400 100%);
+  color: #fff;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  overflow: hidden;
+}
+.btn-high-ticket::after {
   content: "";
-  position: fixed;
-  inset: 0;
-  z-index: 60;
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    60deg,
+    transparent,
+    rgba(255, 255, 255, 0.25),
+    transparent
+  );
+  transform: rotate(30deg) translateX(-100%);
+  transition: transform 0.75s ease-in-out;
+}
+.btn-high-ticket:hover::after {
+  transform: rotate(30deg) translateX(100%);
+}
+.btn-high-ticket:hover {
+  box-shadow: 0 0 28px rgba(254, 65, 0, 0.5);
+  transform: scale(1.02);
+}
+
+/* ─── CTA secundario (ghost glass) ───────────────────────── */
+.btn-ghost-lux {
+  background: rgba(255, 255, 255, 0.65);
+  border: 1px solid rgb(var(--line-rgb));
+  color: rgb(var(--foreground-rgb));
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.btn-ghost-lux:hover {
+  background: #ffffff;
+  border-color: rgba(24, 24, 27, 0.2);
+}
+.dark .btn-ghost-lux {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #d4d4d8;
+}
+.dark .btn-ghost-lux:hover {
+  background: rgba(255, 255, 255, 0.07);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+/* ─── Grid táctico 40px + máscara radial ─────────────────── */
+.bg-grid-tactical {
+  background-size: 40px 40px;
+  background-image: linear-gradient(
+      to right,
+      rgba(24, 24, 27, 0.035) 1px,
+      transparent 1px
+    ),
+    linear-gradient(to bottom, rgba(24, 24, 27, 0.035) 1px, transparent 1px);
+}
+.dark .bg-grid-tactical {
+  background-image: linear-gradient(
+      to right,
+      rgba(255, 255, 255, 0.025) 1px,
+      transparent 1px
+    ),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+}
+.radial-mask {
+  mask-image: radial-gradient(
+    ellipse 80% 60% at 50% 20%,
+    #000 70%,
+    transparent 100%
+  );
+  -webkit-mask-image: radial-gradient(
+    ellipse 80% 60% at 50% 20%,
+    #000 70%,
+    transparent 100%
+  );
+}
+
+/* ─── Spotlight por-card (mouse-follow via CSS vars) ─────── */
+.spotlight-card {
+  position: relative;
+  overflow: hidden;
+}
+.spotlight-card::before {
+  content: "";
+  position: absolute;
+  top: var(--mouse-y, 0px);
+  left: var(--mouse-x, 0px);
+  width: 420px;
+  height: 420px;
+  background: radial-gradient(
+    circle,
+    rgba(254, 65, 0, 0.08) 0%,
+    transparent 70%
+  );
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
   pointer-events: none;
-  opacity: 0.03;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  background-size: 256px 256px;
+  z-index: 1;
+}
+.dark .spotlight-card::before {
+  background: radial-gradient(
+    circle,
+    rgba(254, 65, 0, 0.14) 0%,
+    transparent 70%
+  );
+}
+.spotlight-card:hover::before {
+  opacity: 1;
+}
+
+/* ─── Spotlight global (overlay fijo que sigue al cursor) ── */
+.spotlight-layer {
+  opacity: 0;
+  transition: opacity 0.6s ease;
+  z-index: 30;
+}
+.spotlight-layer::before {
+  content: "";
+  position: absolute;
+  top: var(--sy, -600px);
+  left: var(--sx, -600px);
+  width: 420px;
+  height: 420px;
+  background: radial-gradient(
+    circle,
+    rgba(254, 65, 0, 0.05) 0%,
+    transparent 70%
+  );
+  transform: translate(-50%, -50%);
+}
+.dark .spotlight-layer::before {
+  background: radial-gradient(
+    circle,
+    rgba(254, 65, 0, 0.11) 0%,
+    transparent 70%
+  );
+}
+
+/* ─── Dot pulsante (status) ──────────────────────────────── */
+.pulse-dot {
+  animation: pulseGlow 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+@keyframes pulseGlow {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.5;
+    transform: scale(1.25);
+  }
+}
+
+/* ─── Fragmento de título con gradiente accent ───────────── */
+.text-gradient-accent {
+  background: linear-gradient(135deg, #fe4100 0%, #d83400 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
 
 /* ─── Scrollbar fina para carruseles ─────────────────────── */
@@ -136,6 +307,9 @@ body::after {
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
+  }
+  .spotlight-layer {
+    display: none;
   }
   *,
   *::before,
