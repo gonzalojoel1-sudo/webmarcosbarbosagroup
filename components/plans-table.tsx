@@ -26,7 +26,7 @@ const plans: Plan[] = [
     name: "Consultor Empresarial",
     subtitle: "Plan 1 · Fundamentos",
     ideal: "Dueños que ordenan",
-    cta: "Empezar",
+    cta: "Elegir Plan 1",
   },
   {
     id: "p2",
@@ -49,7 +49,7 @@ const plans: Plan[] = [
     name: "Director Corporativo",
     subtitle: "Plan 4 · Board",
     ideal: "Grupos y directorios",
-    cta: "Hablar con Marcos",
+    cta: "Elegir Plan 4",
   },
 ]
 

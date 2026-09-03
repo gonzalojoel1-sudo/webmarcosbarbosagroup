@@ -177,7 +177,7 @@ export default function PlanesPage() {
                     href="/contacto"
                     className={`w-full inline-flex items-center justify-center gap-2 rounded-full px-5 py-3 text-sm font-semibold transition-colors ${p.highlight ? "bg-primary text-primary-fg hover:bg-primary-hover" : "bg-ink text-white hover:bg-ink-soft"}`}
                   >
-                    {p.highlight ? "Elegir Plan 3" : "Hablar de este plan"} <ArrowRight size={16} />
+                    Elegir {p.id} <ArrowRight size={16} />
                   </Link>
                   <p className="mt-2 text-xs text-muted text-center">Propuesta a medida tras diagnóstico.</p>
                 </div>
