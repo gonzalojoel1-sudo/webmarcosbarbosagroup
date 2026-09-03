@@ -18,7 +18,7 @@ export const theme = {
     url:
       process.env.NEXT_PUBLIC_CALENDAR_URL ??
       "https://calendar.app.google/KSvdQbgKepan1b1z9",
-    hours: "Lun a Vie · 8 a 12 y 14 a 19",
+    hours: "Lun a Vie · 9 a 13 y 15 a 18",
   },
 } as const
 
