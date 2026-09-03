@@ -71,41 +71,41 @@ export default function MetodologiaPage() {
   return (
     <main>
       {/* Hero */}
-      <section className="pt-32 md:pt-40 pb-12 border-b border-line bg-paper-2">
+      <section className="pt-32 md:pt-40 pb-12 border-b border-hairline bg-surface">
         <div className="max-w-6xl mx-auto px-6">
-          <p className="font-mono-tech text-xs tracking-widest text-primary uppercase font-semibold">
-            [ METODOLOGÍA 01 — 06 ]
+          <p className="text-[11px] uppercase tracking-[0.18em] text-fg-muted">
+            Metodología 01 — 06
           </p>
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight leading-[1.08] mt-3 text-foreground max-w-3xl">
+          <h1 className="mt-4 font-display text-4xl md:text-5xl lg:text-6xl tracking-tight leading-[1.05] text-fg max-w-3xl">
             Un camino probado.
             <br />
-            <span className="text-gradient-accent">Sin improvisación.</span>
+            <span className="italic text-primary">Sin improvisación.</span>
           </h1>
-          <p className="mt-5 text-muted max-w-2xl leading-relaxed font-light">
+          <p className="mt-5 text-fg-muted max-w-2xl leading-relaxed">
             Del Diagnóstico al Escalamiento. 6 pasos secuenciales con entregables, métricas y rituales.
             La misma disciplina táctica de Fuerzas Especiales, aplicada a tu empresa.
           </p>
           <div className="mt-6 flex flex-wrap gap-2 text-xs">
-            <span className="inline-flex items-center gap-1.5 glass-nav rounded-full px-3 py-1.5 text-foreground">
+            <span className="inline-flex items-center gap-1.5 rounded-full border border-hairline bg-surface px-3 py-1.5 text-fg">
               <Clock size={14} className="text-primary" aria-hidden /> 90 días para tracción
             </span>
-            <span className="inline-flex items-center gap-1.5 glass-nav rounded-full px-3 py-1.5 text-foreground">
+            <span className="inline-flex items-center gap-1.5 rounded-full border border-hairline bg-surface px-3 py-1.5 text-fg">
               <FileText size={14} className="text-primary" aria-hidden /> Entregables por paso
             </span>
-            <span className="inline-flex items-center gap-1.5 glass-nav rounded-full px-3 py-1.5 text-foreground">
+            <span className="inline-flex items-center gap-1.5 rounded-full border border-hairline bg-surface px-3 py-1.5 text-fg">
               <Target size={14} className="text-primary" aria-hidden /> Tableros + OKRs
             </span>
           </div>
           <div className="mt-8 flex flex-wrap gap-4">
             <Link
               href="/contacto"
-              className="btn-high-ticket px-6 py-3 rounded-xl text-sm font-bold tracking-wide inline-flex items-center gap-2"
+              className="btn-primary px-6 py-3 text-sm font-medium tracking-wide inline-flex items-center gap-2"
             >
               Agendar Reunión Estratégica <ArrowRight size={16} aria-hidden />
             </Link>
             <Link
               href="/planes"
-              className="btn-ghost-lux px-6 py-3 rounded-xl text-sm font-semibold tracking-wide inline-flex items-center gap-2"
+              className="btn-secondary px-6 py-3 text-sm font-medium tracking-wide inline-flex items-center gap-2"
             >
               Ver planes 1—4
             </Link>
@@ -120,33 +120,33 @@ export default function MetodologiaPage() {
             {/* Sticky intro (desktop) */}
             <div className="lg:col-span-4">
               <div className="lg:sticky lg:top-28 space-y-4">
-                <h2 className="text-3xl font-extrabold tracking-tight leading-tight text-foreground">
+                <h2 className="font-display text-3xl tracking-tight leading-tight text-fg">
                   Estrategia
                   <br />
-                  <span className="text-gradient-accent">que se ejecuta.</span>
+                  <span className="italic text-primary">que se ejecuta.</span>
                 </h2>
-                <p className="text-sm text-muted leading-relaxed">
+                <p className="text-sm text-fg-muted leading-relaxed">
                   Cada paso tiene dueño, entregable y métrica. Nada queda en ideas. Si no se mide y no
                   tiene ritual, no existe.
                 </p>
                 <div className="hidden lg:block pt-4">
-                  <div className="h-px w-full bg-line" aria-hidden />
+                  <div className="h-px w-full bg-hairline" aria-hidden />
                   <div className="mt-4 grid grid-cols-3 gap-3 text-center">
-                    <div className="card-luxury rounded-xl p-3">
-                      <p className="font-mono-tech text-xl leading-none text-primary">01—06</p>
-                      <p className="text-[10px] font-mono-tech tracking-widest text-muted mt-1 uppercase">
+                    <div className="card-luxury rounded-2xl p-3">
+                      <p className="font-mono text-xl leading-none text-primary">01—06</p>
+                      <p className="text-[10px] tracking-[0.18em] text-fg-muted mt-1 uppercase">
                         Pasos
                       </p>
                     </div>
-                    <div className="card-luxury rounded-xl p-3">
-                      <p className="font-mono-tech text-xl leading-none text-foreground">90d</p>
-                      <p className="text-[10px] font-mono-tech tracking-widest text-muted mt-1 uppercase">
+                    <div className="card-luxury rounded-2xl p-3">
+                      <p className="font-mono text-xl leading-none text-fg">90d</p>
+                      <p className="text-[10px] tracking-[0.18em] text-fg-muted mt-1 uppercase">
                         Roadmap
                       </p>
                     </div>
-                    <div className="card-luxury rounded-xl p-3">
-                      <p className="font-mono-tech text-xl leading-none text-foreground">∞</p>
-                      <p className="text-[10px] font-mono-tech tracking-widest text-muted mt-1 uppercase">
+                    <div className="card-luxury rounded-2xl p-3">
+                      <p className="font-mono text-xl leading-none text-fg">∞</p>
+                      <p className="text-[10px] tracking-[0.18em] text-fg-muted mt-1 uppercase">
                         Seguimiento
                       </p>
                     </div>
@@ -164,68 +164,44 @@ export default function MetodologiaPage() {
             {/* Timeline */}
             <div className="lg:col-span-8">
               <div className="relative">
-                {/* vertical line */}
+                {/* connecting hairline entre pasos */}
                 <div
-                  className="absolute left-[19px] md:left-[23px] top-4 bottom-4 w-px bg-line hidden sm:block"
+                  className="absolute left-4 top-4 bottom-4 w-px bg-hairline hidden sm:block"
                   aria-hidden
                 />
                 <div className="space-y-6">
                   {steps.map((s) => (
-                    <div
-                      key={s.n}
-                      className={`relative card-luxury rounded-2xl p-6 md:p-7 flex flex-col gap-4 ${
-                        s.n === "06" ? "card-accent" : ""
-                      }`}
-                    >
-                      {/* number badge */}
-                      <div className="absolute -left-3 top-7 hidden sm:flex w-10 h-10 rounded-xl bg-primary/10 border border-primary/20 backdrop-blur-md items-center justify-center text-xs font-mono-tech font-bold text-primary shadow-sm">
-                        {s.n}
-                      </div>
-                      <div className="flex items-start justify-between gap-4 sm:pl-8">
-                        <div>
-                          <div className="flex items-center gap-3">
-                            <span className="sm:hidden inline-flex w-9 h-9 rounded-xl bg-primary/10 border border-primary/20 items-center justify-center text-xs font-mono-tech font-bold text-primary">
-                              {s.n}
-                            </span>
-                            <p className="text-[11px] font-mono-tech tracking-wider text-primary uppercase font-semibold">
-                              {s.subtitle}
-                            </p>
-                            <span className="h-px w-8 bg-primary/30 hidden sm:block" aria-hidden />
-                            <span className="text-[11px] font-mono-tech text-muted hidden sm:inline uppercase tracking-wider">
-                              {s.duracion}
-                            </span>
-                          </div>
-                          <h3 className="text-2xl font-bold tracking-tight leading-tight mt-2 text-foreground">
-                            {s.title}
-                          </h3>
-                          <p className="text-sm text-muted leading-relaxed mt-2 max-w-xl">{s.desc}</p>
-                        </div>
-                        <span
-                          className={`hidden md:block font-mono-tech text-5xl leading-none select-none ${
-                            s.n === "06" ? "text-primary/30" : "text-primary/15"
-                          }`}
-                        >
+                    <div key={s.n} className="relative card-luxury rounded-2xl p-6 md:p-7">
+                      <div className="flex items-start justify-between gap-4 sm:pl-10">
+                        <span className="font-mono text-4xl md:text-5xl leading-none text-primary">
                           {s.n}
                         </span>
+                        <span className="shrink-0 mt-1 text-[11px] uppercase tracking-[0.18em] text-fg-muted">
+                          {s.duracion}
+                        </span>
                       </div>
-                      <div className="sm:pl-8">
-                        <div className="h-px w-full bg-line/60 dark:bg-white/[0.06]" aria-hidden />
+                      <div className="sm:pl-10">
+                        <p className="mt-5 text-sm font-medium text-primary">{s.subtitle}</p>
+                        <h3 className="font-display text-2xl tracking-tight leading-tight mt-1 text-fg">
+                          {s.title}
+                        </h3>
+                        <p className="text-sm text-fg-muted leading-relaxed mt-2 max-w-xl">{s.desc}</p>
+                      </div>
+                      <div className="sm:pl-10 mt-5">
+                        <div className="h-px w-full bg-hairline" aria-hidden />
                         <div className="mt-4 flex flex-wrap gap-2">
                           {s.entregables.map((e) => (
                             <span
                               key={e}
-                              className="inline-flex items-center gap-1.5 bg-black/[0.03] dark:bg-white/[0.04] border border-line dark:border-white/[0.08] rounded-full px-3 py-1.5 text-xs text-foreground"
+                              className="inline-flex items-center gap-1.5 bg-surface-2 border border-hairline rounded-full px-3 py-1.5 text-xs text-fg"
                             >
-                              <span className="w-5 h-5 rounded-full bg-success/10 border border-success/20 flex items-center justify-center text-success">
+                              <span className="w-5 h-5 rounded-full bg-success/10 flex items-center justify-center text-success">
                                 <Check size={12} strokeWidth={2.5} aria-hidden />
                               </span>
                               {e}
                             </span>
                           ))}
                         </div>
-                        <p className="sm:hidden text-[11px] font-mono-tech text-muted mt-3 uppercase tracking-wider">
-                          {s.duracion}
-                        </p>
                       </div>
                     </div>
                   ))}
@@ -233,26 +209,26 @@ export default function MetodologiaPage() {
               </div>
 
               {/* Quote — estilo referencia */}
-              <blockquote className="mt-8 border-l-2 border-primary pl-4 py-1 italic text-zinc-700 dark:text-zinc-300 text-base font-light">
+              <blockquote className="mt-8 border-l-2 border-primary pl-5 py-1 font-display italic text-xl md:text-2xl tracking-tight text-fg leading-snug">
                 &ldquo;La estrategia sin ejecución es solo una ilusión. Mi trabajo es que tu empresa
                 ejecute, mida y escale — incluso cuando vos no estés.&rdquo;
-                <footer className="mt-3 not-italic text-[11px] font-mono-tech tracking-widest text-muted uppercase">
+                <footer className="mt-3 not-italic font-body text-[11px] tracking-[0.18em] text-fg-muted uppercase">
                   — Marcos Barbosa · Fundador
                 </footer>
               </blockquote>
 
               <div className="mt-8 card-luxury card-accent rounded-2xl p-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
                 <div>
-                  <h3 className="text-xl font-bold tracking-tight text-foreground">
+                  <h3 className="font-display text-xl tracking-tight text-fg">
                     ¿Listo para el Diagnóstico 01?
                   </h3>
-                  <p className="text-sm text-muted mt-1.5">
+                  <p className="text-sm text-fg-muted mt-1.5">
                     Primera Reunión Estratégica — 45 min · Sin costo · Cupos limitados
                   </p>
                 </div>
                 <Link
                   href="/contacto"
-                  className="shrink-0 btn-high-ticket px-6 py-3 rounded-xl text-xs font-bold uppercase tracking-wider inline-flex items-center gap-2"
+                  className="shrink-0 btn-primary px-6 py-3 text-xs font-bold uppercase tracking-wider inline-flex items-center gap-2"
                 >
                   Agendar Diagnóstico <ArrowRight size={16} aria-hidden />
                 </Link>

@@ -41,13 +41,13 @@ export function MethodologyPreview() {
   const reduce = useReducedMotion()
 
   return (
-    <section className="relative bg-paper-2 border-t border-line py-24 px-6 overflow-hidden">
+    <section className="relative bg-surface border-t border-hairline py-24 px-6 overflow-hidden">
       <div className="max-w-6xl mx-auto">
         <div className="text-center max-w-2xl mx-auto mb-16">
-          <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-foreground leading-tight">
+          <h2 className="font-display text-3xl sm:text-4xl tracking-tight text-fg leading-tight">
             Un camino probado.
             <br />
-            <span className="text-gradient-accent">Sin improvisación.</span>
+            <span className="italic text-primary">Sin improvisación.</span>
           </h2>
         </div>
 
@@ -55,28 +55,15 @@ export function MethodologyPreview() {
           initial={reduce ? false : { opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.2 }}
-          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: 0.6, ease: [0.23, 1, 0.32, 1] }}
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
         >
           {steps.map((s) => (
-            <div
-              key={s.n}
-              className={`card-luxury p-7 rounded-2xl flex flex-col min-h-[210px] select-none ${
-                s.n === "06" ? "card-accent" : ""
-              }`}
-            >
-              <div className="flex items-center justify-between mb-4">
-                <span
-                  className={`font-mono-tech text-xl font-bold tracking-tight ${
-                    s.n === "06" ? "text-primary" : "text-foreground"
-                  }`}
-                >
-                  {s.n}
-                </span>
-              </div>
-              <h3 className="text-lg font-bold text-foreground mb-2">{s.title}</h3>
-              <p className="text-muted text-sm leading-relaxed mb-4">{s.desc}</p>
-              <p className="mt-auto text-[11px] font-mono-tech text-muted border-t border-line/60 dark:border-white/[0.06] pt-3 flex items-center gap-1.5">
+            <div key={s.n} className="card-luxury rounded-2xl p-7 flex flex-col min-h-[210px]">
+              <span className="font-mono text-4xl leading-none text-primary">{s.n}</span>
+              <h3 className="mt-5 font-display text-xl tracking-tight text-fg">{s.title}</h3>
+              <p className="mt-2 text-fg-muted text-sm leading-relaxed">{s.desc}</p>
+              <p className="mt-auto pt-4 text-[11px] font-mono text-fg-muted border-t border-hairline flex items-center gap-1.5">
                 <CheckCircle2 className="w-3.5 h-3.5 text-success shrink-0" aria-hidden />
                 {s.n} / 06
               </p>

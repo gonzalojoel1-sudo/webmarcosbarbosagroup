@@ -221,6 +221,11 @@ textarea:focus-visible,
   }
 }
 
+/* plan destacado: borde primary sólido (después del bloque hover para ganar cascada) */
+.card-luxury.card-highlight {
+  border-color: rgb(var(--primary-rgb));
+}
+
 /* ─── Reduced motion ─────────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
   html {
