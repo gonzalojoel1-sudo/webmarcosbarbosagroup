@@ -31,6 +31,9 @@ yarn-error.log*
 # vercel
 .vercel
 
+# leads fallback (keep dir, ignore runtime file)
+data/leads.jsonl
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts
