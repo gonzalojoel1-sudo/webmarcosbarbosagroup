@@ -1,6 +1,8 @@
 import type { Metadata } from "next"
 import { Instrument_Serif, Inter } from "next/font/google"
 import "./globals.css"
+import { Header } from "@/components/layout/header"
+import { Footer } from "@/components/layout/footer"
 
 const display = Instrument_Serif({
   subsets: ["latin"],
@@ -30,7 +32,9 @@ export default function RootLayout({
   return (
     <html lang="es" className={`${display.variable} ${body.variable}`}>
       <body className="bg-paper text-ink antialiased font-body">
+        <Header />
         {children}
+        <Footer />
       </body>
     </html>
   )
