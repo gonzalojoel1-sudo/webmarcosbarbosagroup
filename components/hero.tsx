@@ -3,116 +3,114 @@
 import Image from "next/image"
 import Link from "next/link"
 import { motion, useReducedMotion } from "framer-motion"
-import { ShieldCheck, TrendingUp } from "lucide-react"
 
-const EASE = [0.16, 1, 0.3, 1] as const
+const EASE = [0.23, 1, 0.32, 1] as const
+
+const METRICS = [
+  { value: "15+", label: "Años de experiencia" },
+  { value: "4", label: "Frentes de intervención" },
+  { value: "Internacional", label: "Latinoamérica y Europa" },
+] as const
 
 export function Hero() {
   const reduce = useReducedMotion()
 
   const container = {
     hidden: {},
-    show: { transition: { staggerChildren: reduce ? 0 : 0.08, delayChildren: 0.05 } },
+    show: { transition: { staggerChildren: reduce ? 0 : 0.06, delayChildren: 0.05 } },
   }
   const item = {
-    hidden: reduce ? {} : { opacity: 0, y: 24 },
-    show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: EASE } },
+    hidden: reduce ? { opacity: 0 } : { opacity: 0, y: 16 },
+    show: { opacity: 1, y: 0, transition: { duration: 0.3, ease: EASE } },
   }
 
   return (
-    <section className="relative overflow-hidden pt-32 pb-20 md:pt-40 md:pb-28 px-6">
+    <section className="relative overflow-hidden px-6 pt-32 pb-20 md:pt-40 md:pb-28">
+      {/* radial estático sutil detrás del lado de la foto */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute top-0 right-0 w-[40rem] h-[40rem] translate-x-1/3 -translate-y-1/4"
+        style={{
+          background:
+            "radial-gradient(closest-side, rgb(var(--primary-rgb) / 0.06), transparent)",
+        }}
+      />
+
       <div className="relative max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
         <motion.div
           variants={container}
           initial="hidden"
           animate="show"
-          className="lg:col-span-7 space-y-8"
+          className="lg:col-span-7"
         >
           <motion.p
             variants={item}
-            className="font-mono-tech text-xs tracking-widest text-primary uppercase font-semibold"
+            className="font-body text-[11px] uppercase tracking-[0.18em] text-fg-muted"
           >
-            [ CONSULTORÍA ESTRATÉGICA INTERNACIONAL ]
+            Consultoría Estratégica Internacional
           </motion.p>
           <motion.h1
             variants={item}
-            className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-[1.08] text-foreground text-balance"
+            className="mt-5 font-display text-5xl md:text-6xl lg:text-7xl tracking-tight leading-[1.05] text-fg text-balance"
           >
             Estrategia, liderazgo y tecnología para{" "}
-            <span className="text-gradient-accent">trascender</span>
+            <span className="italic text-primary">trascender</span>
           </motion.h1>
           <motion.p
             variants={item}
-            className="text-muted max-w-xl leading-relaxed font-light text-base sm:text-lg"
+            className="mt-6 max-w-xl text-base sm:text-lg leading-relaxed text-fg-muted"
           >
-            Transformamos empresarios en líderes, negocios en empresas y empresas
-            en organizaciones listas para crecer y automatizarse.
+            Transformamos empresarios en líderes, negocios en empresas y
+            empresas en organizaciones listas para crecer y automatizarse.
           </motion.p>
-          <motion.div variants={item} className="flex flex-wrap gap-4">
+          <motion.div variants={item} className="mt-9 flex flex-wrap gap-3">
             <Link
               href="/contacto"
-              className="btn-high-ticket px-8 py-4 rounded-xl font-bold text-sm tracking-wide inline-flex items-center"
+              className="btn-primary px-7 py-3.5 text-sm font-medium inline-flex items-center"
             >
               Agendar Reunión Estratégica
             </Link>
             <Link
               href="/planes"
-              className="btn-ghost-lux px-7 py-4 rounded-xl font-semibold text-sm tracking-wide inline-flex items-center"
+              className="btn-secondary px-7 py-3.5 text-sm font-medium inline-flex items-center"
             >
               Ver Planes
             </Link>
           </motion.div>
+          <motion.div
+            variants={item}
+            className="mt-12 pt-8 border-t border-hairline flex flex-wrap gap-x-12 gap-y-6"
+          >
+            {METRICS.map((m) => (
+              <div key={m.label}>
+                <p className="font-display text-2xl sm:text-3xl tracking-tight leading-none text-fg">
+                  {m.value}
+                </p>
+                <p className="mt-1.5 text-xs text-fg-muted">{m.label}</p>
+              </div>
+            ))}
+          </motion.div>
         </motion.div>
 
         <motion.div
-          initial={reduce ? false : { opacity: 0, scale: 0.97, y: 16 }}
-          animate={{ opacity: 1, scale: 1, y: 0 }}
-          transition={{ delay: 0.2, duration: 0.7, ease: EASE }}
+          initial={reduce ? { opacity: 0 } : { opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.15, duration: 0.3, ease: EASE }}
           className="lg:col-span-5 relative"
         >
-          {/* glow ambiental del retrato */}
-          <div
-            aria-hidden
-            className="absolute -inset-4 bg-gradient-to-tr from-primary/25 to-transparent rounded-3xl blur-2xl -z-10 opacity-70"
-          />
-          <div className="relative aspect-[4/5] overflow-hidden rounded-3xl border border-line dark:border-white/[0.12] bg-[#09090C] shadow-2xl shadow-black/10 dark:shadow-black/60">
+          <div className="relative aspect-[4/5] overflow-hidden rounded-2xl border border-hairline bg-surface shadow-[0_24px_60px_-24px_rgba(12,12,14,0.35)]">
             <Image
               src="/images/marcos-hero.jpg"
               alt="Marcos Barbosa — Consultor de Líderes y Negocios"
               fill
               priority
-              className="object-cover object-top hover:scale-105 transition-transform duration-700 dark:mix-blend-luminosity dark:opacity-85"
+              className="photo-bw object-cover object-top"
               sizes="(max-width:1024px) 100vw, 40vw"
             />
-            {/* fade inferior hacia el fondo (solo dark) */}
-            <div
-              aria-hidden
-              className="absolute inset-0 bg-gradient-to-t from-[#040405] via-transparent to-transparent opacity-0 dark:opacity-100 pointer-events-none"
-            />
           </div>
-          {/* badges glass flotantes */}
-          <div className="absolute top-6 right-6 glass-nav rounded-2xl px-4 py-2.5 shadow-xl flex items-center gap-3">
-            <span className="w-8 h-8 rounded-lg bg-primary/20 flex items-center justify-center text-primary shrink-0">
-              <ShieldCheck className="w-4 h-4" aria-hidden />
-            </span>
-            <span className="min-w-0">
-              <span className="block text-[11px] font-bold text-foreground leading-tight">
-                Marcos Barbosa
-              </span>
-              <span className="block text-[9px] font-mono-tech text-muted">
-                Fuerzas Especiales → Consultor
-              </span>
-            </span>
-          </div>
-          <div className="absolute bottom-6 -left-3 glass-nav rounded-2xl px-4 py-2.5 shadow-xl items-center gap-3 hidden sm:flex">
-            <span className="w-8 h-8 rounded-lg bg-emerald-500/20 flex items-center justify-center text-emerald-600 dark:text-emerald-400 shrink-0">
-              <TrendingUp className="w-4 h-4" aria-hidden />
-            </span>
-            <span className="min-w-0">
-              <span className="block text-[11px] font-bold text-foreground leading-tight">
-                Consultoría Estratégica
-              </span>
-              <span className="block text-[9px] font-mono-tech text-muted">Internacional</span>
+          <div className="mt-4 flex justify-center lg:justify-start">
+            <span className="inline-flex items-center rounded-full border border-hairline bg-surface px-4 py-1.5 text-xs text-fg-muted">
+              Marcos Barbosa · Fuerzas Especiales → Consultor
             </span>
           </div>
         </motion.div>

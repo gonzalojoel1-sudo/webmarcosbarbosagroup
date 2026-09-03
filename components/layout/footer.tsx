@@ -2,59 +2,61 @@ import Link from "next/link"
 
 export function Footer() {
   return (
-    <footer className="bg-black border-t border-white/[0.08] text-zinc-500 text-xs font-mono-tech">
+    <footer className="bg-[#0C0C0E] text-[#F2F0EB]/80 border-t border-white/[0.08]">
       <div className="max-w-6xl mx-auto px-6 py-12">
         <div className="grid md:grid-cols-4 gap-10">
           <div>
-            <div className="flex items-center gap-3">
-              <span className="w-6 h-6 rounded bg-zinc-900 border border-white/10 flex items-center justify-center font-serif-brand font-bold text-white text-[10px]">
+            <div className="flex items-center gap-2.5">
+              <span className="w-8 h-8 rounded-lg border border-white/10 bg-white/[0.04] flex items-center justify-center font-display font-semibold text-[13px] tracking-wide text-[#F2F0EB]">
                 MB
               </span>
-              <p className="text-zinc-300 font-sans font-bold">MARCOS BARBOSA GROUP</p>
+              <p className="text-sm font-semibold text-[#F2F0EB]">
+                Marcos Barbosa Group
+              </p>
             </div>
-            <p className="mt-4 leading-relaxed text-zinc-500">
-              Consultoría Estratégica Internacional. Estrategia, liderazgo y tecnología para
-              empresas que buscan trascender.
+            <p className="mt-4 text-sm leading-relaxed text-[#F2F0EB]/60">
+              Consultoría Estratégica Internacional. Estrategia, liderazgo y
+              tecnología para empresas que buscan trascender.
             </p>
           </div>
           <div>
-            <p className="text-[11px] uppercase tracking-widest text-white/40 mb-4">
+            <p className="text-[11px] uppercase tracking-[0.18em] text-[#F2F0EB]/40 mb-4">
               Navegación
             </p>
-            <ul className="space-y-2">
+            <ul className="space-y-2.5 text-sm">
               <li>
-                <Link href="/metodologia" className="hover:text-white transition-colors">
+                <Link href="/metodologia" className="hover:text-primary transition-colors duration-200">
                   Metodología
                 </Link>
               </li>
               <li>
-                <Link href="/planes" className="hover:text-white transition-colors">
+                <Link href="/planes" className="hover:text-primary transition-colors duration-200">
                   Planes
                 </Link>
               </li>
               <li>
-                <Link href="/sobre-marcos" className="hover:text-white transition-colors">
+                <Link href="/sobre-marcos" className="hover:text-primary transition-colors duration-200">
                   Sobre Marcos
                 </Link>
               </li>
               <li>
-                <Link href="/contacto" className="hover:text-white transition-colors">
+                <Link href="/contacto" className="hover:text-primary transition-colors duration-200">
                   Contacto
                 </Link>
               </li>
             </ul>
           </div>
           <div>
-            <p className="text-[11px] uppercase tracking-widest text-white/40 mb-4">
+            <p className="text-[11px] uppercase tracking-[0.18em] text-[#F2F0EB]/40 mb-4">
               Contacto
             </p>
-            <ul className="space-y-2">
+            <ul className="space-y-2.5 text-sm">
               <li>
                 <a
                   href="https://wa.me/5493517334040"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="hover:text-white transition-colors"
+                  className="hover:text-primary transition-colors duration-200"
                 >
                   WhatsApp +54 9 351 733 4040
                 </a>
@@ -62,45 +64,47 @@ export function Footer() {
               <li>
                 <a
                   href="mailto:consultora.marcosbarbosa@gmail.com"
-                  className="hover:text-white transition-colors break-all"
+                  className="hover:text-primary transition-colors duration-200 break-all"
                 >
                   consultora.marcosbarbosa@gmail.com
                 </a>
               </li>
-              <li className="text-zinc-600">Córdoba, Argentina</li>
+              <li className="text-[#F2F0EB]/50">Córdoba, Argentina</li>
             </ul>
           </div>
           <div>
-            <p className="text-[11px] uppercase tracking-widest text-white/40 mb-4">Redes</p>
-            <ul className="space-y-2">
+            <p className="text-[11px] uppercase tracking-[0.18em] text-[#F2F0EB]/40 mb-4">
+              Redes
+            </p>
+            <ul className="space-y-2.5 text-sm">
               <li>
-                <a href="#" className="hover:text-white transition-colors">
+                <a href="#" className="hover:text-primary transition-colors duration-200">
                   LinkedIn
                 </a>
               </li>
               <li>
-                <a href="#" className="hover:text-white transition-colors">
+                <a href="#" className="hover:text-primary transition-colors duration-200">
                   Instagram
                 </a>
               </li>
               <li>
-                <a href="#" className="hover:text-white transition-colors">
+                <a href="#" className="hover:text-primary transition-colors duration-200">
                   YouTube
                 </a>
               </li>
             </ul>
             <Link
               href="/contacto"
-              className="mt-6 inline-flex btn-high-ticket px-5 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider"
+              className="mt-6 inline-flex btn-primary px-5 py-2.5 text-sm font-medium"
             >
               Agendar Reunión
             </Link>
           </div>
         </div>
-        <div className="mt-12 pt-8 border-t border-white/[0.08] flex flex-col md:flex-row items-center justify-between gap-4">
+        <div className="mt-12 pt-8 border-t border-white/[0.08] flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-[#F2F0EB]/60">
           <p>© {new Date().getFullYear()} Marcos Barbosa Group. Todos los derechos reservados.</p>
-          <p className="text-zinc-600">Córdoba · Internacional</p>
-          <p className="flex items-center gap-2 text-emerald-400">
+          <p>Córdoba · Internacional</p>
+          <p className="flex items-center gap-2 font-mono text-xs text-emerald-400">
             <span className="w-2 h-2 rounded-full bg-emerald-500 pulse-dot" aria-hidden />
             Todos los sistemas operativos
           </p>
