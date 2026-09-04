@@ -83,18 +83,39 @@ export async function POST(req: NextRequest) {
   const crmUrl =
     process.env.NEXT_PUBLIC_CRM_URL || process.env.CRM_URL || "https://crm.marcosbarbosagroup.com"
 
-  const crmEndpoint = `${crmUrl.replace(/\/$/, "")}/api/v1/Lead`
+  const crmEndpoint = `${crmUrl.replace(/\/$/, "")}/api/resource/CRM%20Lead`
   const crmPayload = toCrmPayload(body)
+
+  // Frappe REST: data field es un JSON stringificado (estándar frappe)
+  const frappeBody = JSON.stringify({
+    data: JSON.stringify({
+      first_name: crmPayload.firstName,
+      last_name: crmPayload.lastName,
+      email: crmPayload.email,
+      mobile_no: crmPayload.phone ?? "",
+      custom_plan_interes: crmPayload.rawPlan ?? "",
+      notes: crmPayload.mensaje || crmPayload.description,
+      source: "Website",
+    }),
+  })
 
   // Try CRM with timeout
   try {
     const controller = new AbortController()
     const timeout = setTimeout(() => controller.abort(), 5000)
 
+    const apiKey = process.env.CRM_API_KEY
+    const apiSecret = process.env.CRM_API_SECRET
+
     const res = await fetch(crmEndpoint, {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(crmPayload),
+      headers: {
+        "Content-Type": "application/json",
+        ...(apiKey && apiSecret
+          ? { Authorization: `token ${apiKey}:${apiSecret}` }
+          : {}),
+      },
+      body: frappeBody,
       signal: controller.signal,
     })
 
