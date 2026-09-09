@@ -31,6 +31,30 @@ export const metadata: Metadata = {
   description:
     "Estrategia, liderazgo y tecnología para empresas que buscan trascender. +15 años, ex Fuerzas Especiales. Primera Reunión Estratégica.",
   metadataBase: new URL("https://marcosbarbosagroup.com"),
+  openGraph: {
+    title: "Marcos Barbosa Group — Consultoría Estratégica Internacional",
+    description:
+      "Estrategia, liderazgo y tecnología para empresas que buscan trascender. +15 años, ex Fuerzas Especiales.",
+    url: "https://marcosbarbosagroup.com",
+    siteName: "Marcos Barbosa Group",
+    locale: "es_AR",
+    type: "website",
+    images: [
+      {
+        url: "https://marcosbarbosagroup.com/images/marcos-hero.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Marcos Barbosa Group",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Marcos Barbosa Group",
+    description:
+      "Estrategia, liderazgo y tecnología para empresas que buscan trascender.",
+    images: ["https://marcosbarbosagroup.com/images/marcos-hero.jpg"],
+  },
 }
 
 export default function RootLayout({
