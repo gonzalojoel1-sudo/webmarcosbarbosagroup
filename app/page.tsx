@@ -1,17 +1,18 @@
-import { Hero } from "@/components/hero"
-import { Pillars } from "@/components/pillars"
-import { MethodologyPreview } from "@/components/methodology-preview"
-import { PlansTable } from "@/components/plans-table"
+import { GroupHero } from "@/components/home/group-hero"
+import { VerticalsGrid } from "@/components/home/verticals-grid"
 import { Founder } from "@/components/founder"
+import { CtaBand } from "@/components/site/blocks"
 
 export default function Home() {
   return (
     <>
-      <Hero />
-      <Pillars />
-      <MethodologyPreview />
-      <PlansTable />
+      <GroupHero />
+      <VerticalsGrid />
       <Founder />
+      <CtaBand
+        title="Hablemos de lo que necesitás."
+        sub="Contanos tu desafío y te orientamos a la vertical correcta."
+      />
     </>
   )
 }

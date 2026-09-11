@@ -1,10 +1,13 @@
 import Link from "next/link"
+import { verticals, getVertical } from "@/config/verticals"
 
 export function Footer() {
+  const consultora = getVertical("consultora")
+
   return (
     <footer className="bg-[#0C0C0E] text-[#F2F0EB]/80 border-t border-white/[0.08]">
       <div className="max-w-6xl mx-auto px-6 py-12">
-        <div className="grid md:grid-cols-4 gap-10">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-10">
           <div>
             <div className="flex items-center gap-2.5">
               <span className="w-8 h-8 rounded-lg border border-white/10 bg-white/[0.04] flex items-center justify-center font-display font-semibold text-[13px] tracking-wide text-[#F2F0EB]">
@@ -15,37 +18,53 @@ export function Footer() {
               </p>
             </div>
             <p className="mt-4 text-sm leading-relaxed text-[#F2F0EB]/60">
-              Consultoría Estratégica Internacional. Estrategia, liderazgo y
-              tecnología para empresas que buscan trascender.
+              Fe, estrategia, servicio y tecnología. Siete frentes, una sola
+              visión: que las personas y las empresas crezcan de verdad.
             </p>
+            <Link
+              href="/contacto"
+              className="mt-6 inline-flex btn-primary px-5 py-2.5 text-sm font-medium"
+            >
+              Agendar Reunión
+            </Link>
           </div>
+
           <div>
             <p className="text-[11px] uppercase tracking-[0.18em] text-[#F2F0EB]/50 mb-4">
-              Navegación
+              Verticales
             </p>
             <ul className="space-y-2.5 text-sm">
-              <li>
-                <Link href="/metodologia" className="hover:text-primary transition-colors duration-200">
-                  Metodología
-                </Link>
-              </li>
-              <li>
-                <Link href="/planes" className="hover:text-primary transition-colors duration-200">
-                  Planes
-                </Link>
-              </li>
-              <li>
-                <Link href="/sobre-marcos" className="hover:text-primary transition-colors duration-200">
-                  Sobre Marcos
-                </Link>
-              </li>
-              <li>
-                <Link href="/contacto" className="hover:text-primary transition-colors duration-200">
-                  Contacto
-                </Link>
-              </li>
+              {verticals.map((v) => (
+                <li key={v.id}>
+                  <Link
+                    href={v.slug}
+                    className="hover:text-primary transition-colors duration-200"
+                  >
+                    {v.title}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
+
+          <div>
+            <p className="text-[11px] uppercase tracking-[0.18em] text-[#F2F0EB]/50 mb-4">
+              {consultora?.title ?? "Consultora"}
+            </p>
+            <ul className="space-y-2.5 text-sm">
+              {consultora?.children.map((c) => (
+                <li key={c.slug}>
+                  <Link
+                    href={c.slug}
+                    className="hover:text-primary transition-colors duration-200"
+                  >
+                    {c.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
           <div>
             <p className="text-[11px] uppercase tracking-[0.18em] text-[#F2F0EB]/50 mb-4">
               Contacto
@@ -70,39 +89,34 @@ export function Footer() {
                 </a>
               </li>
               <li className="text-[#F2F0EB]/50">Córdoba, Argentina</li>
-            </ul>
-          </div>
-          <div>
-            <p className="text-[11px] uppercase tracking-[0.18em] text-[#F2F0EB]/50 mb-4">
-              Redes
-            </p>
-            <ul className="space-y-2.5 text-sm">
               <li>
-                <a href="#" className="hover:text-primary transition-colors duration-200">
-                  LinkedIn
-                </a>
+                <Link
+                  href="/sobre-marcos"
+                  className="hover:text-primary transition-colors duration-200"
+                >
+                  Sobre Marcos
+                </Link>
               </li>
-              <li>
-                <a href="#" className="hover:text-primary transition-colors duration-200">
-                  Instagram
-                </a>
-              </li>
-              <li>
-                <a href="#" className="hover:text-primary transition-colors duration-200">
-                  YouTube
-                </a>
+              <li className="flex gap-3 pt-1">
+                <Link href="/privacidad" className="hover:text-primary transition-colors duration-200">
+                  Privacidad
+                </Link>
+                <span className="text-[#F2F0EB]/30" aria-hidden>
+                  ·
+                </span>
+                <Link href="/terminos" className="hover:text-primary transition-colors duration-200">
+                  Términos
+                </Link>
               </li>
             </ul>
-            <Link
-              href="/contacto"
-              className="mt-6 inline-flex btn-primary px-5 py-2.5 text-sm font-medium"
-            >
-              Agendar Reunión
-            </Link>
           </div>
         </div>
+
         <div className="mt-12 pt-8 border-t border-white/[0.08] flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-[#F2F0EB]/60">
-          <p>© {new Date().getFullYear()} Marcos Barbosa Group. Todos los derechos reservados.</p>
+          <p>
+            © {new Date().getFullYear()} Marcos Barbosa Group. Todos los derechos
+            reservados.
+          </p>
           <p>Córdoba · Internacional</p>
           <p className="flex items-center gap-2 font-mono text-xs text-emerald-400">
             <span className="w-2 h-2 rounded-full bg-emerald-500 pulse-dot" aria-hidden />
