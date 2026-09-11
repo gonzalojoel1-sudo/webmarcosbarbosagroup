@@ -108,7 +108,7 @@ export default function ContactoPage() {
                 </p>
                 <p className="text-xs text-fg-muted mt-1">De Diagnóstico a Escalamiento</p>
                 <Link
-                  href="/metodologia"
+                  href="/consultora/metodologia"
                   className="mt-3 inline-flex items-center gap-1 text-xs font-medium text-primary hover:text-primary-hover"
                 >
                   Ver metodología <ArrowRight size={12} aria-hidden />
@@ -123,7 +123,7 @@ export default function ContactoPage() {
                 </p>
                 <p className="text-xs text-fg-muted mt-1">Desde Consultor a Board</p>
                 <Link
-                  href="/planes"
+                  href="/consultora/planes"
                   className="mt-3 inline-flex items-center gap-1 text-xs font-medium text-primary hover:text-primary-hover"
                 >
                   Comparar planes <ArrowRight size={12} aria-hidden />

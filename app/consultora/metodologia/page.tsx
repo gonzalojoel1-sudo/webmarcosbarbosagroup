@@ -10,10 +10,10 @@ export const metadata: Metadata = {
     title: "Metodología 01—06 | Marcos Barbosa Group",
     description:
       "Un camino probado de Diagnóstico a Escalamiento. Estrategia + ejecución + tableros. Sin improvisación.",
-    url: "https://marcosbarbosagroup.com/metodologia",
+    url: "https://marcosbarbosagroup.com/consultora/metodologia",
     type: "website",
   },
-  alternates: { canonical: "https://marcosbarbosagroup.com/metodologia" },
+  alternates: { canonical: "https://marcosbarbosagroup.com/consultora/metodologia" },
 }
 
 const steps = [
@@ -104,7 +104,7 @@ export default function MetodologiaPage() {
               Agendar Reunión Estratégica <ArrowRight size={16} aria-hidden />
             </Link>
             <Link
-              href="/planes"
+              href="/consultora/planes"
               className="btn-secondary px-6 py-3 text-sm font-medium tracking-wide inline-flex items-center gap-2"
             >
               Ver planes 1—4

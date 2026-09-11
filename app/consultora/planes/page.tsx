@@ -11,10 +11,10 @@ export const metadata: Metadata = {
     title: "Planes 1—4 | Marcos Barbosa Group",
     description:
       "De Consultor a Board. 4 niveles de intervención. El Plan 3 es el más elegido para escalar sin perder control.",
-    url: "https://marcosbarbosagroup.com/planes",
+    url: "https://marcosbarbosagroup.com/consultora/planes",
     type: "website",
   },
-  alternates: { canonical: "https://marcosbarbosagroup.com/planes" },
+  alternates: { canonical: "https://marcosbarbosagroup.com/consultora/planes" },
 }
 
 const planDetails = [
@@ -118,7 +118,7 @@ export default function PlanesPage() {
               Agendar Reunión Estratégica <ArrowRight size={16} aria-hidden />
             </Link>
             <Link
-              href="/metodologia"
+              href="/consultora/metodologia"
               className="btn-secondary px-6 py-3 text-sm font-medium tracking-wide inline-flex items-center gap-2"
             >
               Ver metodología 01—06

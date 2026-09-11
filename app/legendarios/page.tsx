@@ -1,0 +1,23 @@
+import type { Metadata } from "next"
+import { getVertical } from "@/config/verticals"
+import { VerticalLanding } from "@/components/site/vertical-landing"
+
+export const metadata: Metadata = {
+  title: "Legendarios — Movimiento Global de Hombres | Marcos Barbosa Group",
+  description:
+    "Legendarios: un movimiento global de transformación de hombres, con presencia en Argentina. Conocé qué es, las próximas fechas y los traslados.",
+  alternates: { canonical: "https://marcosbarbosagroup.com/legendarios" },
+}
+
+export default function Page() {
+  const vertical = getVertical("legendarios")!
+  return (
+    <VerticalLanding
+      vertical={vertical}
+      title="Hombres que"
+      italic="se levantan."
+      intro="Legendarios es un movimiento global que busca transformar hombres, familias y comunidades. En Argentina está creciendo, y queremos que seas parte."
+      chips={["Movimiento global", "Argentina", "Encuentros"]}
+    />
+  )
+}

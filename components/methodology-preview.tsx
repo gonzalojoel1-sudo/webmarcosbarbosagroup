@@ -73,7 +73,7 @@ export function MethodologyPreview() {
 
         <div className="mt-10 text-center">
           <Link
-            href="/metodologia"
+            href="/consultora/metodologia"
             className="inline-flex items-center gap-2 text-sm font-medium text-primary hover:text-primary-hover underline-offset-4 hover:underline transition-colors"
           >
             Ver metodología completa <ArrowUpRight size={16} aria-hidden />
