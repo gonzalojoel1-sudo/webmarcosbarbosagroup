@@ -27,6 +27,7 @@
 
 **Crear — config**
 - `config/verticals.json` — datos puros: 7 verticales, hijos con label/slug/description.
+- `config/extra-routes.json` — rutas que existen pero no son hijos de navegación (las 5 sub-rutas de Seguridad), para sitemap y verificador.
 - `config/verticals.ts` — tipos, mapa de íconos, `verticals`, `allRoutes`, `getVertical`, `getVerticalBySlug`, `getVerticalForPath`.
 - `scripts/check-routes.mjs` — verifica que cada slug tenga `app/<slug>/page.tsx`.
 
@@ -71,7 +72,22 @@
 **Interfaces:**
 - Produces: `verticals: Vertical[]`, `allRoutes: string[]`, `getVertical(id)`, `getVerticalBySlug(slug)`, `getVerticalForPath(path)`, tipos `Vertical`/`VerticalChild`. JSON fields: `id, label, title, slug, description, children[{label, slug, description}]`.
 
-- [ ] **Step 1: Crear `config/verticals.json`**
+- [ ] **Step 1: Crear `config/verticals.json` y `config/extra-routes.json`**
+
+`config/verticals.json`: el array de 7 verticales (contenido completo abajo).
+
+`config/extra-routes.json`:
+```json
+[
+  "/servicios/seguridad/fisica",
+  "/servicios/seguridad/electronica",
+  "/servicios/seguridad/ciberseguridad",
+  "/servicios/seguridad/auditoria",
+  "/servicios/seguridad/nosotros"
+]
+```
+
+`config/verticals.json`:
 
 ```json
 [
@@ -174,6 +190,7 @@ import {
   GraduationCap,
 } from "lucide-react"
 import data from "./verticals.json"
+import extraRoutes from "./extra-routes.json"
 
 export type VerticalChild = {
   label: string
@@ -211,6 +228,7 @@ export const verticals: Vertical[] = data.map((v) => ({
 export const allRoutes: string[] = [
   "/",
   ...verticals.flatMap((v) => [v.slug, ...v.children.map((c) => c.slug)]),
+  ...extraRoutes,
   "/contacto",
   "/sobre-marcos",
   "/privacidad",
@@ -241,11 +259,14 @@ const root = join(dirname(fileURLToPath(import.meta.url)), "..")
 const verticals = JSON.parse(
   readFileSync(join(root, "config", "verticals.json"), "utf8")
 )
+const extraRoutes = JSON.parse(
+  readFileSync(join(root, "config", "extra-routes.json"), "utf8")
+)
 
-const routes = verticals.flatMap((v) => [
-  v.slug,
-  ...v.children.map((c) => c.slug),
-])
+const routes = [
+  ...verticals.flatMap((v) => [v.slug, ...v.children.map((c) => c.slug)]),
+  ...extraRoutes,
+]
 
 const extra = ["/contacto", "/sobre-marcos", "/privacidad", "/terminos"]
 const missing = []
@@ -287,7 +308,7 @@ Expected: PASS (los archivos nuevos compilan; las rutas nuevas aún no existen p
 - [ ] **Step 7: Commit**
 
 ```bash
-git add config/verticals.json config/verticals.ts scripts/check-routes.mjs package.json
+git add config/verticals.json config/extra-routes.json config/verticals.ts scripts/check-routes.mjs package.json
 git commit -m "feat(config): verticales del portal + verificador de rutas"
 ```
 
@@ -677,6 +698,7 @@ export function VerticalCard({
 - [ ] **Step 2: Crear `components/site/vertical-landing.tsx`**
 
 ```tsx
+import type { ReactNode } from "react"
 import type { Vertical } from "@/config/verticals"
 import { PageHero } from "./page-hero"
 import { SubNav } from "./sub-nav"
@@ -689,12 +711,14 @@ export function VerticalLanding({
   italic,
   intro,
   chips,
+  children,
 }: {
   vertical: Vertical
   title: string
   italic?: string
   intro: string
   chips?: string[]
+  children?: ReactNode
 }) {
   return (
     <main>
@@ -722,6 +746,7 @@ export function VerticalLanding({
           </div>
         </SectionShell>
       ) : null}
+      {children}
     </main>
   )
 }
@@ -1911,17 +1936,16 @@ export const metadata: Metadata = {
 export default function Page() {
   const vertical = getVertical("consultora")!
   return (
-    <>
-      <VerticalLanding
-        vertical={vertical}
-        title="Estrategia que"
-        italic="se ejecuta."
-        intro="Del Diagnóstico al Escalamiento. Estrategia, liderazgo y tecnología para empresas que buscan trascender, con método probado y sin improvisación."
-        chips={["Metodología 01—06", "Planes 1—4", "Acompañamiento en territorio"]}
-      />
+    <VerticalLanding
+      vertical={vertical}
+      title="Estrategia que"
+      italic="se ejecuta."
+      intro="Del Diagnóstico al Escalamiento. Estrategia, liderazgo y tecnología para empresas que buscan trascender, con método probado y sin improvisación."
+      chips={["Metodología 01—06", "Planes 1—4", "Acompañamiento en territorio"]}
+    >
       <Pillars />
       <MethodologyPreview />
-    </>
+    </VerticalLanding>
   )
 }
 ```
@@ -3260,7 +3284,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 - [ ] **Step 3: Verificador de rutas debe estar en verde**
 
 Run: `npm run check:routes`
-Expected: PASS con `OK: 31 rutas con page.tsx` (7 verticales + 20 hijos + contacto/sobre-marcos/privacidad/terminos). Las 5 sub-rutas de Seguridad no están en el config de Servicios; las valida `npm run build`.
+Expected: PASS con `OK: 36 rutas con page.tsx` (7 verticales + 20 hijos + 5 sub-rutas de Seguridad + contacto/sobre-marcos/privacidad/terminos).
 
 - [ ] **Step 4: Build final y verificación de redirects**
 
