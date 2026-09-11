@@ -1,0 +1,84 @@
+[
+  {
+    "id": "cuerpo-de-cristo",
+    "label": "Cuerpo de Cristo",
+    "title": "Cuerpo de Cristo",
+    "slug": "/cuerpo-de-cristo",
+    "description": "Fe que sirve. Consejería, ministerio, solidaridad y un lugar para soltar las cargas.",
+    "children": [
+      { "label": "Consejería Cristiana", "slug": "/cuerpo-de-cristo/consejeria-cristiana", "description": "Acompañamiento espiritual y consejo bíblico para personas, familias y matrimonios." },
+      { "label": "Ministerio Empresarial", "slug": "/cuerpo-de-cristo/ministerio-empresarial", "description": "Fe y empresa en la misma mesa: principios bíblicos aplicados a la conducción." },
+      { "label": "Confesionario", "slug": "/cuerpo-de-cristo/confesionario", "description": "Un lugar reservado para librarte de tus cargas, con total confidencialidad." },
+      { "label": "Ofrenda", "slug": "/cuerpo-de-cristo/ofrenda", "description": "Sostené la obra de Dios. Ofrendá con alegría y propósito." },
+      { "label": "Solidaridad", "slug": "/cuerpo-de-cristo/solidaridad", "description": "Obra social: visitamos familias, llevamos alimento y acompañamos." }
+    ]
+  },
+  {
+    "id": "consultora",
+    "label": "Consultora",
+    "title": "Consultora Estratégica",
+    "slug": "/consultora",
+    "description": "Estrategia, liderazgo y tecnología para empresas que buscan trascender.",
+    "children": [
+      { "label": "Metodología", "slug": "/consultora/metodologia", "description": "El método 01—06: de Diagnóstico a Escalamiento, sin improvisación." },
+      { "label": "Planes", "slug": "/consultora/planes", "description": "Cuatro niveles de intervención, del Consultor al Board." },
+      { "label": "Casos de Éxito", "slug": "/consultora/casos-de-exito", "description": "Empresas reales que ordenaron, ejecutaron y escalaron." },
+      { "label": "Modelos de Negocio", "slug": "/consultora/modelos-de-negocio", "description": "Diseño y rediseño de modelos que sostienen el crecimiento." },
+      { "label": "Capacitaciones", "slug": "/consultora/capacitaciones", "description": "Conducción y liderazgo, ventas, oratoria, PNL y gestión de emociones." },
+      { "label": "Recursos", "slug": "/consultora/recursos", "description": "Libros, archivos y automatizaciones para tu empresa." }
+    ]
+  },
+  {
+    "id": "servicios",
+    "label": "Servicios",
+    "title": "Servicios",
+    "slug": "/servicios",
+    "description": "Seguridad integral y limpieza profesional para empresas y eventos.",
+    "children": [
+      { "label": "Seguridad", "slug": "/servicios/seguridad", "description": "Física, electrónica, ciber y auditoría. Cobertura integral." },
+      { "label": "Limpieza", "slug": "/servicios/limpieza", "description": "Limpieza profesional para empresas, consorcios y eventos." }
+    ]
+  },
+  {
+    "id": "software",
+    "label": "Software",
+    "title": "Software y Aplicaciones",
+    "slug": "/software",
+    "description": "Software a medida para empresas: webs, CRMs, tableros y automatizaciones.",
+    "children": []
+  },
+  {
+    "id": "legendarios",
+    "label": "Legendarios",
+    "title": "Legendarios",
+    "slug": "/legendarios",
+    "description": "Un movimiento global de hombres que se levantan. Lo que está pasando en Argentina.",
+    "children": [
+      { "label": "Qué es Legendarios", "slug": "/legendarios/que-es", "description": "El movimiento global y su despliegue en Argentina." },
+      { "label": "Próximas Fechas", "slug": "/legendarios/proximas-fechas", "description": "Encuentros, retiros y conferencias que vienen." },
+      { "label": "Traslados", "slug": "/legendarios/traslados", "description": "Logística y traslados para llegar a cada encuentro." }
+    ]
+  },
+  {
+    "id": "1000-socios",
+    "label": "1000 Socios",
+    "title": "Los 1000 Socios",
+    "slug": "/1000-socios",
+    "description": "Una red de empresarios y talento. Oportunidades reales, conexiones reales.",
+    "children": [
+      { "label": "Bolsa de Trabajo", "slug": "/1000-socios/bolsa-de-trabajo", "description": "Empresas cargan sus búsquedas; nosotros hacemos la conexión." },
+      { "label": "Postulate", "slug": "/1000-socios/postulate", "description": "Dejá tu CV y postulate a las oportunidades de la red." }
+    ]
+  },
+  {
+    "id": "formate",
+    "label": "Formate",
+    "title": "Formate con Nosotros",
+    "slug": "/formate",
+    "description": "Formación integral para personas que quieren crecer de verdad.",
+    "children": [
+      { "label": "Rompiendo Barreras", "slug": "/formate/rompiendo-barreras", "description": "Formación integral: hábitos, mentalidad, liderazgo y propósito." },
+      { "label": "Próximas Formaciones", "slug": "/formate/proximas-formaciones", "description": "Fechas, sedes y cupos de las próximas camadas." }
+    ]
+  }
+]
