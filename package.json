@@ -9,7 +9,8 @@
     "lint": "next lint",
     "check:routes": "node scripts/check-routes.mjs",
     "check:donations": "node --experimental-strip-types scripts/check-donations.ts",
-    "check:board": "node --experimental-strip-types scripts/check-board.ts"
+    "check:board": "node --experimental-strip-types scripts/check-board.ts",
+    "check:confessions": "node --experimental-strip-types scripts/check-confessions.ts"
   },
   "dependencies": {
     "@base-ui/react": "^1.7.0",
