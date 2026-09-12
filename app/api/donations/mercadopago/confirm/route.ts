@@ -5,6 +5,8 @@ import { isMpConfigured, searchLatestByReference } from "@/lib/donations/mp"
 export const runtime = "nodejs"
 export const dynamic = "force-dynamic"
 
+const NO_STORE = { "Cache-Control": "no-store" }
+
 export async function POST(req: NextRequest) {
   const body = await req.json().catch(() => null)
   const externalReference = body?.externalReference
@@ -12,33 +14,39 @@ export async function POST(req: NextRequest) {
   if (!externalReference || typeof externalReference !== "string") {
     return NextResponse.json(
       { ok: false, error: "externalReference requerido" },
-      { status: 400 }
+      { status: 400, headers: NO_STORE }
     )
   }
 
   const ledger = getLedger()
   const intent = ledger.getByExternalReference(externalReference)
   if (!intent) {
-    return NextResponse.json({ ok: true, status: "unknown" })
+    return NextResponse.json({ ok: true, status: "unknown" }, { headers: NO_STORE })
   }
 
   if (!isMpConfigured()) {
-    return NextResponse.json({ ok: true, status: intent.status })
+    return NextResponse.json(
+      { ok: true, status: intent.status },
+      { headers: NO_STORE }
+    )
   }
 
   let payment
   try {
     payment = await searchLatestByReference(externalReference)
-  } catch (err) {
-    console.error(
-      "[donations/mp/confirm] search failed:",
-      err instanceof Error ? err.message : "error"
+  } catch {
+    console.error("[donations/mp/confirm] provider search failed")
+    return NextResponse.json(
+      { ok: true, status: intent.status },
+      { headers: NO_STORE }
     )
-    return NextResponse.json({ ok: true, status: intent.status })
   }
 
   if (!payment) {
-    return NextResponse.json({ ok: true, status: intent.status })
+    return NextResponse.json(
+      { ok: true, status: intent.status },
+      { headers: NO_STORE }
+    )
   }
 
   if (payment.status === "approved") {
@@ -50,7 +58,7 @@ export async function POST(req: NextRequest) {
         status: "in_process",
         statusDetail: "amount_mismatch",
       })
-      return NextResponse.json({ ok: true, status: "in_process" })
+      return NextResponse.json({ ok: true, status: "in_process" }, { headers: NO_STORE })
     }
   }
 
@@ -62,9 +70,12 @@ export async function POST(req: NextRequest) {
   })
 
   const updated = ledger.getByExternalReference(externalReference)
-  return NextResponse.json({
-    ok: true,
-    status: updated?.status ?? payment.status,
-    status_detail: updated?.status_detail ?? payment.status_detail,
-  })
+  return NextResponse.json(
+    {
+      ok: true,
+      status: updated?.status ?? payment.status,
+      status_detail: updated?.status_detail ?? payment.status_detail,
+    },
+    { headers: NO_STORE }
+  )
 }

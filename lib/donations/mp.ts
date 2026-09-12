@@ -5,6 +5,10 @@ export function isMpConfigured(): boolean {
   return Boolean(process.env.MP_ACCESS_TOKEN)
 }
 
+export function isMpCheckoutReady(): boolean {
+  return Boolean(process.env.MP_ACCESS_TOKEN && process.env.MP_WEBHOOK_SECRET)
+}
+
 function config(): MercadoPagoConfig {
   const accessToken = process.env.MP_ACCESS_TOKEN
   if (!accessToken) throw new Error("MP_NOT_CONFIGURED")

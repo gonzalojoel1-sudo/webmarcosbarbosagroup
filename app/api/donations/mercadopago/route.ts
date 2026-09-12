@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server"
 import { randomUUID } from "node:crypto"
 import { donationIntentSchema, resolveAmountCents } from "@/lib/donations/amounts"
 import { getLedger } from "@/lib/donations/ledger"
-import { createPreference, isMpConfigured } from "@/lib/donations/mp"
+import { createPreference, isMpCheckoutReady } from "@/lib/donations/mp"
 
 export const runtime = "nodejs"
 export const dynamic = "force-dynamic"
@@ -16,6 +16,9 @@ function rateLimited(ip: string): boolean {
   const now = Date.now()
   const windowMs = 60_000
   const max = 10
+  for (const [key, entry] of Array.from(hits.entries())) {
+    if (now - entry.ts > windowMs) hits.delete(key)
+  }
   const h = hits.get(ip)
   if (!h || now - h.ts > windowMs) {
     hits.set(ip, { count: 1, ts: now })
@@ -26,7 +29,7 @@ function rateLimited(ip: string): boolean {
 }
 
 export async function POST(req: NextRequest) {
-  if (!isMpConfigured()) {
+  if (!isMpCheckoutReady()) {
     return NextResponse.json(
       {
         ok: false,
@@ -105,11 +108,8 @@ export async function POST(req: NextRequest) {
       siteUrl: SITE_URL,
     })
     return NextResponse.json({ ok: true, init_point: initPoint, donation_id: donationId })
-  } catch (err) {
-    console.error(
-      "[donations/mp] create preference failed:",
-      err instanceof Error ? err.message : "error"
-    )
+  } catch {
+    console.error("[donations/mp] create preference failed")
     return NextResponse.json(
       { ok: false, error: "No pudimos iniciar el pago. Intentá de nuevo." },
       { status: 502 }

@@ -101,6 +101,21 @@ async function main() {
     assert.equal(ledger.recordWebhookEvent("mercadopago", "evt-1"), true)
     assert.equal(ledger.recordWebhookEvent("mercadopago", "evt-1"), false)
   })
+  ok("hasWebhookEvent refleja lo insertado", () => {
+    assert.equal(ledger.hasWebhookEvent("mercadopago", "evt-1"), true)
+    assert.equal(ledger.hasWebhookEvent("mercadopago", "evt-x"), false)
+  })
+  ok("intención pendiente actualiza el monto al reintentar", () => {
+    ledger.upsertIntent({
+      id: ref,
+      provider: "mercadopago",
+      amountCents: 100000,
+      currency: "ARS",
+      externalReference: ref,
+    })
+    assert.equal(ledger.getByExternalReference(ref)?.amount_cents, 100000)
+    assert.equal(ledger.list().length, 1)
+  })
   ok("aprobar pago actualiza estado", () => {
     ledger.applyProviderPayment({
       externalReference: ref,
@@ -111,6 +126,31 @@ async function main() {
     assert.equal(row?.status, "approved")
     assert.ok(row?.approved_at)
     assert.equal(row?.provider_payment_id, "999")
+  })
+  ok("rechazo/cancelación posterior no des-aprueba", () => {
+    ledger.applyProviderPayment({
+      externalReference: ref,
+      providerPaymentId: "999",
+      status: "rejected",
+      statusDetail: "cc_rejected_other_reason",
+    })
+    assert.equal(ledger.getByExternalReference(ref)?.status, "approved")
+    ledger.applyProviderPayment({
+      externalReference: ref,
+      providerPaymentId: "999",
+      status: "cancelled",
+    })
+    assert.equal(ledger.getByExternalReference(ref)?.status, "approved")
+  })
+  ok("intención ya aprobada no cambia de monto", () => {
+    ledger.upsertIntent({
+      id: ref,
+      provider: "mercadopago",
+      amountCents: 777777,
+      currency: "ARS",
+      externalReference: ref,
+    })
+    assert.equal(ledger.getByExternalReference(ref)?.amount_cents, 100000)
   })
   ok("reembolso avanza el estado", () => {
     ledger.applyProviderPayment({

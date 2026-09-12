@@ -1,6 +1,6 @@
 # syntax=docker/dockerfile:1.7
 # Multi-stage — 85MB runtime en CX23 Dokploy (Traefik SSL auto)
-FROM node:22-alpine AS base
+FROM node:22.13-alpine AS base
 WORKDIR /app
 
 # --- deps: layer cache npm ci ---
@@ -18,7 +18,7 @@ ENV NODE_ENV=production
 RUN npm run build
 
 # --- runner: minimal standalone ---
-FROM node:22-alpine AS runner
+FROM node:22.13-alpine AS runner
 WORKDIR /app
 ENV NODE_ENV=production
 ENV NEXT_TELEMETRY_DISABLED=1

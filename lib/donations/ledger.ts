@@ -5,11 +5,13 @@ import { DatabaseSync } from "node:sqlite"
 export type DonationStatus =
   | "pending"
   | "in_process"
+  | "authorized"
   | "approved"
   | "rejected"
   | "cancelled"
   | "refunded"
   | "charged_back"
+  | "in_mediation"
 
 export type DonationRecord = {
   id: string
@@ -38,10 +40,12 @@ export type IntentInput = {
 const STATUS_RANK: Record<string, number> = {
   pending: 0,
   in_process: 1,
+  authorized: 1,
+  rejected: 1,
+  cancelled: 1,
   approved: 2,
-  rejected: 2,
-  cancelled: 2,
   refunded: 3,
+  in_mediation: 3,
   charged_back: 4,
 }
 
@@ -50,6 +54,7 @@ function isUniqueViolation(err: unknown): boolean {
 }
 
 export interface LedgerStore {
+  hasWebhookEvent(provider: string, eventId: string): boolean
   recordWebhookEvent(provider: string, eventId: string): boolean
   upsertIntent(intent: IntentInput): void
   getByExternalReference(ref: string): DonationRecord | undefined
@@ -100,13 +105,22 @@ export function createSqliteLedger(dbPath: string): LedgerStore {
     ) STRICT;
   `)
 
+  const selectEvent = db.prepare(
+    `SELECT 1 FROM webhook_events WHERE provider = ? AND event_id = ?`
+  )
   const insertEvent = db.prepare(
-    `INSERT INTO webhook_events (provider, event_id, received_at) VALUES (?, ?, ?)`
+    `INSERT OR IGNORE INTO webhook_events (provider, event_id, received_at) VALUES (?, ?, ?)`
   )
   const insertIntent = db.prepare(
-    `INSERT OR IGNORE INTO donations
+    `INSERT INTO donations
       (id, provider, amount_cents, currency, status, external_reference, donor_email, created_at, updated_at)
-     VALUES (?, ?, ?, ?, 'pending', ?, ?, ?, ?)`
+     VALUES (?, ?, ?, ?, 'pending', ?, ?, ?, ?)
+     ON CONFLICT(id) DO UPDATE SET
+       amount_cents = excluded.amount_cents,
+       currency = excluded.currency,
+       donor_email = COALESCE(excluded.donor_email, donations.donor_email),
+       updated_at = excluded.updated_at
+     WHERE donations.status = 'pending' AND donations.provider_payment_id IS NULL`
   )
   const selectRef = db.prepare(
     `SELECT * FROM donations WHERE external_reference = ?`
@@ -126,14 +140,13 @@ export function createSqliteLedger(dbPath: string): LedgerStore {
   )
 
   return {
+    hasWebhookEvent(provider, eventId) {
+      return Boolean(selectEvent.get(provider, eventId))
+    },
+
     recordWebhookEvent(provider, eventId) {
-      try {
-        insertEvent.run(provider, eventId, new Date().toISOString())
-        return true
-      } catch (err) {
-        if (isUniqueViolation(err)) return false
-        throw err
-      }
+      const res = insertEvent.run(provider, eventId, new Date().toISOString())
+      return Number(res.changes) > 0
     },
 
     upsertIntent(intent) {
@@ -164,13 +177,15 @@ export function createSqliteLedger(dbPath: string): LedgerStore {
       const now = new Date().toISOString()
       const currentRank = STATUS_RANK[current.status] ?? 0
       const nextRank = STATUS_RANK[status] ?? 0
-      const nextStatus = nextRank >= currentRank ? status : current.status
+      const advance = nextRank > currentRank
+      const writeStatus = advance ? status : current.status
+      const writeDetail = advance ? statusDetail ?? null : current.status_detail
       updatePayment.run(
         String(providerPaymentId),
-        nextStatus,
-        statusDetail ?? null,
+        writeStatus,
+        writeDetail,
         now,
-        nextStatus,
+        writeStatus,
         now,
         rawJson ?? null,
         externalReference
