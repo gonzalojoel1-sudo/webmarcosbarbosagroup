@@ -14,7 +14,7 @@ export async function setJobStatus(formData: FormData) {
   const status = String(formData.get("status") ?? "")
   if (id && JOB_STATUS.has(status)) {
     getBoard().setJobStatus(id, status)
-    revalidatePath("/admin")
+    revalidatePath("/pastor/inbox")
   }
 }
 
@@ -23,7 +23,7 @@ export async function setCandidateStatus(formData: FormData) {
   const status = String(formData.get("status") ?? "")
   if (id && CANDIDATE_STATUS.has(status)) {
     getBoard().setCandidateStatus(id, status)
-    revalidatePath("/admin")
+    revalidatePath("/pastor/inbox")
   }
 }
 
@@ -34,7 +34,7 @@ export async function markConfessionRead(formData: FormData) {
   if (!id) return
   const changed = getConfessions().markRead(id)
   safeLog("confession.markRead", { id, status: changed ? 200 : 304 })
-  revalidatePath("/admin")
+  revalidatePath("/pastor/inbox")
 }
 
 const MAX_NOTE = 8000
@@ -59,7 +59,7 @@ export async function setPastoralNote(formData: FormData) {
   }
   const ok = getConfessions().setPastoralNote(id, cipher)
   safeLog("confession.setNote", { id, status: ok ? 200 : 404 })
-  revalidatePath("/admin")
+  revalidatePath("/pastor/inbox")
 }
 
 export async function deleteConfession(formData: FormData) {
@@ -68,5 +68,5 @@ export async function deleteConfession(formData: FormData) {
   if (!id || confirm !== "BORRAR") return
   const ok = getConfessions().deleteConfession(id)
   safeLog("confession.delete", { id, status: ok ? 200 : 404 })
-  revalidatePath("/admin")
+  revalidatePath("/pastor/inbox")
 }

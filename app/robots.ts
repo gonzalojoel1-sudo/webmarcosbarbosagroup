@@ -5,7 +5,7 @@ export default function robots(): MetadataRoute.Robots {
     rules: {
       userAgent: "*",
       allow: "/",
-      disallow: ["/api/", "/admin"],
+      disallow: ["/api/", "/pastor/", "/pastor/inbox"],
     },
     sitemap: "https://marcosbarbosagroup.com/sitemap.xml",
     host: "https://marcosbarbosagroup.com",
