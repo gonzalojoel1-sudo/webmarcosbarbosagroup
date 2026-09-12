@@ -14,6 +14,9 @@ export const metadata: Metadata = {
     description: "Webs, sistemas, CRMs, tableros y automatizaciones hechas a medida.",
     url: "https://marcosbarbosagroup.com/software",
     type: "website",
+    siteName: "Marcos Barbosa Group",
+    locale: "es_AR",
+    images: [{ url: "https://marcosbarbosagroup.com/images/marcos-hero.jpg", width: 1200, height: 630, alt: "Marcos Barbosa Group" }],
   },
 }
 

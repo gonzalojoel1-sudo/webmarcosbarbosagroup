@@ -12,6 +12,9 @@ export const metadata: Metadata = {
     description: "Consejería, ministerio, confesionario, ofrenda y solidaridad.",
     url: "https://marcosbarbosagroup.com/cuerpo-de-cristo",
     type: "website",
+    siteName: "Marcos Barbosa Group",
+    locale: "es_AR",
+    images: [{ url: "https://marcosbarbosagroup.com/images/marcos-hero.jpg", width: 1200, height: 630, alt: "Marcos Barbosa Group" }],
   },
 }
 

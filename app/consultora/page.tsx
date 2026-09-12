@@ -14,6 +14,9 @@ export const metadata: Metadata = {
     description: "Metodología 01—06, planes 1—4, casos de éxito, modelos de negocio, capacitaciones y recursos.",
     url: "https://marcosbarbosagroup.com/consultora",
     type: "website",
+    siteName: "Marcos Barbosa Group",
+    locale: "es_AR",
+    images: [{ url: "https://marcosbarbosagroup.com/images/marcos-hero.jpg", width: 1200, height: 630, alt: "Marcos Barbosa Group" }],
   },
 }
 

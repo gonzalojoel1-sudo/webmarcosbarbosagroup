@@ -7,7 +7,7 @@ import { SectionHead, Prose, BulletGrid, CtaBand } from "@/components/site/block
 export const metadata: Metadata = {
   title: "Qué es Legendarios — Movimiento Global | Legendarios",
   description:
-    "Qué es Legendarios: movimiento cristocéntrico interdenominacional fundado en 2015 en Guatemala, presente en más de 170 ciudades del mundo y activo en Argentina.",
+    "Qué es Legendarios: el movimiento cristocéntrico interdenominacional y su presencia en Argentina.",
   alternates: { canonical: "https://marcosbarbosagroup.com/legendarios/que-es" },
 }
 

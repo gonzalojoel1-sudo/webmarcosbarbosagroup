@@ -12,6 +12,9 @@ export const metadata: Metadata = {
     description: "Qué es el movimiento, próximas fechas y traslados en Argentina.",
     url: "https://marcosbarbosagroup.com/legendarios",
     type: "website",
+    siteName: "Marcos Barbosa Group",
+    locale: "es_AR",
+    images: [{ url: "https://marcosbarbosagroup.com/images/marcos-hero.jpg", width: 1200, height: 630, alt: "Marcos Barbosa Group" }],
   },
 }
 
