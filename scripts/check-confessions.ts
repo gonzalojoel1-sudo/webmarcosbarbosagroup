@@ -190,6 +190,15 @@ await ok("honeypot poblado parsea OK (la política es a nivel handler)", () => {
   assert.equal(r.success, true)
 })
 
+await ok("honeypot whitespace-only NO se trimea (debe disparar silent-200)", () => {
+  const r = confessionSchema.safeParse({ ...validPayload, honeypot: "   " })
+  assert.equal(r.success, true)
+  if (r.success) {
+    assert.equal(r.data.honeypot, "   ")
+    assert.ok(r.data.honeypot.length > 0, "whitespace-only debe llegar no-vacío al handler")
+  }
+})
+
 await ok("pseudonym > 60 falla", () => {
   const r = confessionSchema.safeParse({ ...validPayload, pseudonym: "x".repeat(61) })
   assert.equal(r.success, false)

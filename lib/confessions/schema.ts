@@ -22,7 +22,7 @@ export const confessionSchema = z
     contactValue: optionalShort(160),
     consent: z.literal(true),
     policyVersion: z.literal(POLICY_VERSION),
-    honeypot: optionalShort(255),
+    honeypot: z.string().max(255).optional().or(z.literal("")),
   })
   .superRefine((val, ctx) => {
     if (val.wantsResponse && (!val.contactMethod || !val.contactValue)) {
