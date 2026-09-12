@@ -81,9 +81,9 @@ export default function AdminPage({
               Cerrar sesión
             </button>
           </form>
-          <a href="/api/admin/export?type=jobs&format=csv" className="btn-secondary px-3 py-2">Export búsquedas CSV</a>
-          <a href="/api/admin/export?type=candidates&format=csv" className="btn-secondary px-3 py-2">Export candidatos CSV</a>
-          <a href="/api/admin/export?type=jobs&format=json" className="btn-secondary px-3 py-2">JSON</a>
+          <a href="/api/pastor/export?type=jobs&format=csv" className="btn-secondary px-3 py-2">Export búsquedas CSV</a>
+          <a href="/api/pastor/export?type=candidates&format=csv" className="btn-secondary px-3 py-2">Export candidatos CSV</a>
+          <a href="/api/pastor/export?type=jobs&format=json" className="btn-secondary px-3 py-2">JSON</a>
         </div>
       </div>
 
@@ -177,7 +177,7 @@ export default function AdminPage({
                     <div className="mt-3 border-t border-hairline pt-3 flex flex-wrap items-center gap-3 text-xs">
                       {c.cv_file ? (
                         <a
-                          href={`/api/admin/cv/${c.id}`}
+                          href={`/api/pastor/cv/${c.id}`}
                           className="btn-primary px-3 py-2 text-xs font-medium"
                         >
                           Descargar CV
