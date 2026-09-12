@@ -186,6 +186,24 @@ textarea:focus-visible,
   border-color: rgb(var(--primary-rgb));
 }
 
+/* ─── Disclosure marker (ConfessionRow) ───────────────────── */
+.confession-disclosure-marker-open,
+.confession-disclosure-marker-closed {
+  display: inline-block;
+}
+.confession-disclosure[open] .confession-disclosure-marker-open {
+  display: inline-block;
+}
+.confession-disclosure[open] .confession-disclosure-marker-closed {
+  display: none;
+}
+.confession-disclosure:not([open]) .confession-disclosure-marker-open {
+  display: none;
+}
+.confession-disclosure:not([open]) .confession-disclosure-marker-closed {
+  display: inline-block;
+}
+
 /* ─── Reduced motion ─────────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
   html {

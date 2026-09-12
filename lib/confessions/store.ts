@@ -11,7 +11,7 @@ export type ConfessionRecord = {
   contact_method: string | null
   contact_value_encrypted: string | null
   consent: number
-  consent_at: string | null
+  consent_at: string
   policy_version: string
   ip_hash: string
   user_agent: string | null
@@ -67,7 +67,7 @@ export function createSqliteConfessions(dbPath: string): ConfessionStore {
       contact_method           TEXT,
       contact_value_encrypted  TEXT,
       consent                  INTEGER NOT NULL,
-      consent_at               TEXT,
+      consent_at               TEXT NOT NULL,
       policy_version           TEXT NOT NULL,
       ip_hash                  TEXT NOT NULL,
       user_agent               TEXT,
@@ -85,6 +85,18 @@ export function createSqliteConfessions(dbPath: string): ConfessionStore {
     CREATE INDEX IF NOT EXISTS ix_confessions_ip_hash_created
       ON confessions(ip_hash, created_at DESC);
   `)
+
+  // Migración idempotente: tabla creada antes del spec §4.1 tenía consent_at NULL.
+  // DEFAULT '' mantiene válidos los rows existentes; SQLite no permite cambiar nullability con ALTER.
+  for (const sql of [
+    "ALTER TABLE confessions ADD COLUMN consent_at TEXT NOT NULL DEFAULT ''",
+  ]) {
+    try {
+      db.exec(sql)
+    } catch {
+      /* column already exists or already NOT NULL */
+    }
+  }
 
   const insert = db.prepare(
     `INSERT INTO confessions
