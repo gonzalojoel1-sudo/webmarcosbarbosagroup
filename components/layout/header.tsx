@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation"
 import { motion, useScroll, useSpring } from "framer-motion"
 import { Menu, X, ChevronDown } from "lucide-react"
 import { ThemeToggle } from "@/components/theme-toggle"
+import { Logo } from "@/components/logo"
 import { verticals } from "@/config/verticals"
 
 export function Header() {
@@ -87,9 +88,7 @@ export function Header() {
             className="flex items-center gap-2.5 shrink-0"
             onClick={() => setOpen(false)}
           >
-            <span className="w-8 h-8 rounded-lg border border-hairline bg-surface flex items-center justify-center font-display font-semibold text-[13px] tracking-wide text-fg">
-              MB
-            </span>
+            <Logo size={32} />
             <span className="text-sm font-medium tracking-tight text-fg">
               Marcos Barbosa
             </span>

@@ -1,5 +1,6 @@
 import Link from "next/link"
 import { verticals, getVertical } from "@/config/verticals"
+import { Logo } from "@/components/logo"
 
 export function Footer() {
   const consultora = getVertical("consultora")
@@ -10,9 +11,7 @@ export function Footer() {
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-10">
           <div>
             <div className="flex items-center gap-2.5">
-              <span className="w-8 h-8 rounded-lg border border-white/10 bg-white/[0.04] flex items-center justify-center font-display font-semibold text-[13px] tracking-wide text-[#F2F0EB]">
-                MB
-              </span>
+              <Logo size={32} />
               <p className="text-sm font-semibold text-[#F2F0EB]">
                 Marcos Barbosa Group
               </p>

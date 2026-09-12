@@ -1,6 +1,7 @@
 import Image from "next/image"
 import Link from "next/link"
 import { Check } from "lucide-react"
+import { Logo } from "@/components/logo"
 
 const bullets = [
   {
@@ -54,9 +55,7 @@ export function Founder() {
           </blockquote>
 
           <div className="flex items-center gap-4 pt-2">
-            <span className="w-12 h-12 rounded-full bg-surface-2 border border-hairline flex items-center justify-center font-display font-semibold text-base text-fg">
-              MB
-            </span>
+            <Logo size={48} rounded="rounded-full" />
             <span>
               <span className="block font-semibold text-fg text-sm">Marcos Barbosa</span>
               <span className="block text-xs text-fg-muted">
