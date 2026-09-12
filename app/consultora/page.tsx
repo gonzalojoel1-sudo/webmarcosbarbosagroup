@@ -9,6 +9,12 @@ export const metadata: Metadata = {
   description:
     "Consultoría estratégica internacional: metodología 01—06, planes 1—4, casos de éxito, modelos de negocio, capacitaciones y recursos.",
   alternates: { canonical: "https://marcosbarbosagroup.com/consultora" },
+  openGraph: {
+    title: "Consultora Estratégica | Marcos Barbosa Group",
+    description: "Metodología 01—06, planes 1—4, casos de éxito, modelos de negocio, capacitaciones y recursos.",
+    url: "https://marcosbarbosagroup.com/consultora",
+    type: "website",
+  },
 }
 
 export default function Page() {

@@ -7,6 +7,12 @@ export const metadata: Metadata = {
   description:
     "Seguridad física, electrónica, ciberseguridad y auditoría, más limpieza profesional para empresas y eventos.",
   alternates: { canonical: "https://marcosbarbosagroup.com/servicios" },
+  openGraph: {
+    title: "Servicios | Marcos Barbosa Group",
+    description: "Seguridad integral (física, electrónica, ciber, auditoría) y limpieza profesional.",
+    url: "https://marcosbarbosagroup.com/servicios",
+    type: "website",
+  },
 }
 
 export default function Page() {

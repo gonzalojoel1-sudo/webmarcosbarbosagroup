@@ -7,6 +7,12 @@ export const metadata: Metadata = {
   description:
     "Consejería cristiana, ministerio empresarial, confesionario, ofrenda y solidaridad. Fe que sirve y acompaña.",
   alternates: { canonical: "https://marcosbarbosagroup.com/cuerpo-de-cristo" },
+  openGraph: {
+    title: "Cuerpo de Cristo | Marcos Barbosa Group",
+    description: "Consejería, ministerio, confesionario, ofrenda y solidaridad.",
+    url: "https://marcosbarbosagroup.com/cuerpo-de-cristo",
+    type: "website",
+  },
 }
 
 export default function Page() {

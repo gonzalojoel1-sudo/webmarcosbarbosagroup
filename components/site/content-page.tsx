@@ -11,6 +11,7 @@ export function ContentPage({
   intro,
   chips,
   cta,
+  breadcrumb,
   children,
 }: {
   vertical: Vertical
@@ -21,6 +22,7 @@ export function ContentPage({
   intro: string
   chips?: string[]
   cta?: { href: string; label: string }
+  breadcrumb?: { label: string; href?: string }[]
   children: ReactNode
 }) {
   return (
@@ -31,11 +33,13 @@ export function ContentPage({
         italic={italic}
         intro={intro}
         chips={chips}
-        breadcrumb={[
-          { label: "Inicio", href: "/" },
-          { label: vertical.label, href: vertical.slug },
-          { label: child.label },
-        ]}
+        breadcrumb={
+          breadcrumb ?? [
+            { label: "Inicio", href: "/" },
+            { label: vertical.label, href: vertical.slug },
+            { label: child.label },
+          ]
+        }
         primary={cta}
       />
       {children}

@@ -22,6 +22,12 @@ export default function Page() {
       italic="electrónica."
       intro="Instalación de cámaras y sistemas de alarma. Ves lo que pasa, lo registrás y lo revisás cuando lo necesitás."
       chips={["Cámaras", "Alarmas", "Instalación"]}
+      breadcrumb={[
+        { label: "Inicio", href: "/" },
+        { label: "Servicios", href: "/servicios" },
+        { label: "Seguridad", href: "/servicios/seguridad" },
+        { label: "Seguridad Electrónica" },
+      ]}
       cta={{ href: "/contacto", label: "Pedir instalación" }}
     >
       <SectionShell>

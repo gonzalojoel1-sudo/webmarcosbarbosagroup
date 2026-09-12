@@ -22,6 +22,12 @@ export default function Page() {
       italic="somos."
       intro="Nuestra historia, visión y, sobre todo, la documentación que respalda cada servicio. En seguridad, la habilitación no es un detalle."
       chips={["Habilitaciones", "Documentación", "Trayectoria"]}
+      breadcrumb={[
+        { label: "Inicio", href: "/" },
+        { label: "Servicios", href: "/servicios" },
+        { label: "Seguridad", href: "/servicios/seguridad" },
+        { label: "Sobre Nosotros" },
+      ]}
       cta={{ href: "/contacto", label: "Solicitar documentación" }}
     >
       <SectionShell>

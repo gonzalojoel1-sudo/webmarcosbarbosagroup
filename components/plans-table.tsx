@@ -241,7 +241,7 @@ export function PlansTable() {
 
         <div className="mt-10 text-center">
           <Link
-            href="/planes"
+            href="/consultora/planes"
             className="inline-flex items-center gap-2 text-sm font-medium text-primary hover:text-primary-hover underline-offset-4 hover:underline"
           >
             Comparar planes en detalle <ArrowRight size={16} aria-hidden />

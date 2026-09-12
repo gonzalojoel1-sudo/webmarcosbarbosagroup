@@ -7,7 +7,6 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "check:routes": "node scripts/check-routes.mjs",
     "check:routes": "node scripts/check-routes.mjs"
   },
   "dependencies": {

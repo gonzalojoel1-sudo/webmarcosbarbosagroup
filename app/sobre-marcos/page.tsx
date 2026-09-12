@@ -132,7 +132,7 @@ export default function SobreMarcosPage() {
                 Agendar Reunión Estratégica <ArrowRight size={16} aria-hidden />
               </Link>
               <Link
-                href="/metodologia"
+                href="/consultora/metodologia"
                 className="btn-secondary inline-flex items-center justify-center px-6 py-3 text-sm font-medium tracking-wide"
               >
                 Ver metodología

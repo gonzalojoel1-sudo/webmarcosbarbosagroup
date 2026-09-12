@@ -20,7 +20,7 @@ export default function Page() {
       child={child}
       title="Qué es"
       italic="Legendarios."
-      intro="Un movimiento cristocéntrico e interdenominacional que busca transformar hombres, familias y comunidades. Nació en Guatemala en 2015 y hoy está en más de 170 ciudades del mundo."
+      intro="Un movimiento cristocéntrico e interdenominacional que busca transformar hombres, familias y comunidades. [VALIDAR] Nació en Guatemala en 2015 y hoy está en más de 170 ciudades del mundo."
       chips={["Global", "Argentina", "Propósito"]}
       cta={{ href: "/contacto", label: "Quiero saber más" }}
     >
@@ -66,14 +66,21 @@ export default function Page() {
         <SectionHead kicker="En Argentina" title="El movimiento" italic="ya está acá." />
         <Prose>
           <p>
-            Legendarios está activo en Argentina, con sedes y encuentros como
-            <strong> Legendarios Buenos Aires</strong> y tracks de potencial en el
-            país. Fundado en Guatemala en 2015, el movimiento ya impactó a más de
-            135.000 hombres en más de 170 ciudades, 20 países y 3 continentes.
+            Legendarios está activo en Argentina, con sedes y encuentros como{" "}
+            <strong>[VALIDAR] Legendarios Buenos Aires</strong> y tracks de
+            potencial en el país. [VALIDAR] Fundado en Guatemala en 2015, el
+            movimiento ya impactó a más de 135.000 hombres en más de 170
+            ciudades, 20 países y 3 continentes.
           </p>
           <p>
             [VALIDAR] Líderes locales, sedes oficiales y calendario en Argentina
             deben confirmarse con el equipo nacional antes de publicar.
+          </p>
+          <p className="text-xs">
+            Fuentes: loslegendarios.org (el movimiento y su historia),
+            quintopoder.com.gt (alcance de 170 ciudades y 135.000 hombres),
+            legendariosbuenosaires.com (presencia en Argentina). Consulta:
+            2026-09.
           </p>
         </Prose>
       </SectionShell>

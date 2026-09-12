@@ -9,6 +9,12 @@ export const metadata: Metadata = {
   description:
     "Software a medida: webs, sistemas, CRMs, tableros y automatizaciones que se adaptan a tu operación.",
   alternates: { canonical: "https://marcosbarbosagroup.com/software" },
+  openGraph: {
+    title: "Software a Medida para Empresas | Marcos Barbosa Group",
+    description: "Webs, sistemas, CRMs, tableros y automatizaciones hechas a medida.",
+    url: "https://marcosbarbosagroup.com/software",
+    type: "website",
+  },
 }
 
 export default function Page() {

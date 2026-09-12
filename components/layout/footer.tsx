@@ -108,6 +108,23 @@ export function Footer() {
                   Términos
                 </Link>
               </li>
+              <li className="flex gap-3 pt-2 text-[#F2F0EB]/60">
+                <a href="#" className="hover:text-primary transition-colors duration-200">
+                  LinkedIn
+                </a>
+                <span className="text-[#F2F0EB]/30" aria-hidden>
+                  ·
+                </span>
+                <a href="#" className="hover:text-primary transition-colors duration-200">
+                  Instagram
+                </a>
+                <span className="text-[#F2F0EB]/30" aria-hidden>
+                  ·
+                </span>
+                <a href="#" className="hover:text-primary transition-colors duration-200">
+                  YouTube
+                </a>
+              </li>
             </ul>
           </div>
         </div>

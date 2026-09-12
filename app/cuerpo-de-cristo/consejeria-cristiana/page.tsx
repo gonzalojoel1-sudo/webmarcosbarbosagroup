@@ -41,9 +41,9 @@ export default function Page() {
         <div className="mt-10">
           <Prose>
             <p>
-              Cada proceso empieza con una charla inicial sin costo. A partir de
-              ahí definimos juntos la frecuencia y el enfoque. Todo lo que se
-              habla queda entre vos y quien te acompaña.
+              [VALIDAR] Cada proceso empieza con una charla inicial sin costo. A
+              partir de ahí definimos juntos la frecuencia y el enfoque. Todo lo
+              que se habla queda entre vos y quien te acompaña.
             </p>
           </Prose>
         </div>

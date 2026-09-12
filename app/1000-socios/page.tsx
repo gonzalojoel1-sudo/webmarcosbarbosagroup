@@ -7,6 +7,12 @@ export const metadata: Metadata = {
   description:
     "Una red de empresarios y talento: bolsa de trabajo para empresas y postulación para candidatos.",
   alternates: { canonical: "https://marcosbarbosagroup.com/1000-socios" },
+  openGraph: {
+    title: "Los 1000 Socios | Marcos Barbosa Group",
+    description: "Bolsa de trabajo para empresas y postulación de talento.",
+    url: "https://marcosbarbosagroup.com/1000-socios",
+    type: "website",
+  },
 }
 
 export default function Page() {

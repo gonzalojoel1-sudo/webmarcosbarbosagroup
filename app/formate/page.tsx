@@ -7,6 +7,12 @@ export const metadata: Metadata = {
   description:
     "Formación integral para personas que quieren crecer: Rompiendo Barreras y próximas formaciones.",
   alternates: { canonical: "https://marcosbarbosagroup.com/formate" },
+  openGraph: {
+    title: "Formate con Nosotros | Marcos Barbosa Group",
+    description: "Rompiendo Barreras y próximas formaciones.",
+    url: "https://marcosbarbosagroup.com/formate",
+    type: "website",
+  },
 }
 
 export default function Page() {

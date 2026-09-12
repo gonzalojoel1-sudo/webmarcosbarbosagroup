@@ -22,6 +22,12 @@ export default function Page() {
       italic="seguridad."
       intro="Tu empresa también se defiende en digital. Monitoreo, protección y respuesta para reducir el riesgo de un incidente."
       chips={["Monitoreo", "Protección", "Respuesta"]}
+      breadcrumb={[
+        { label: "Inicio", href: "/" },
+        { label: "Servicios", href: "/servicios" },
+        { label: "Seguridad", href: "/servicios/seguridad" },
+        { label: "Ciberseguridad" },
+      ]}
       cta={{ href: "/contacto", label: "Evaluar mi riesgo" }}
     >
       <SectionShell>

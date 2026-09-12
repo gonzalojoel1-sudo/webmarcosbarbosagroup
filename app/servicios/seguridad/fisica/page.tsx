@@ -22,6 +22,12 @@ export default function Page() {
       italic="física."
       intro="Guardias de seguridad y custodia para empresas, consorcios y eventos. Presencia, protocolo y personal capacitado."
       chips={["Guardias", "Custodia", "Control de accesos"]}
+      breadcrumb={[
+        { label: "Inicio", href: "/" },
+        { label: "Servicios", href: "/servicios" },
+        { label: "Seguridad", href: "/servicios/seguridad" },
+        { label: "Seguridad Física" },
+      ]}
       cta={{ href: "/contacto", label: "Solicitar personal" }}
     >
       <SectionShell>

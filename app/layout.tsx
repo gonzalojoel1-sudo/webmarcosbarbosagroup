@@ -27,14 +27,14 @@ const mono = JetBrains_Mono({
 })
 
 export const metadata: Metadata = {
-  title: "Marcos Barbosa Group — Consultoría Estratégica Internacional",
+  title: "Marcos Barbosa Group — Fe, Empresa, Servicio y Tecnología",
   description:
-    "Estrategia, liderazgo y tecnología para empresas que buscan trascender. +15 años, ex Fuerzas Especiales. Primera Reunión Estratégica.",
+    "Un grupo con siete frentes: ministerio, consultoría, seguridad y limpieza, software, Legendarios, empleo y formación. Estrategia, liderazgo y servicio para trascender.",
   metadataBase: new URL("https://marcosbarbosagroup.com"),
   openGraph: {
-    title: "Marcos Barbosa Group — Consultoría Estratégica Internacional",
+    title: "Marcos Barbosa Group — Fe, Empresa, Servicio y Tecnología",
     description:
-      "Estrategia, liderazgo y tecnología para empresas que buscan trascender. +15 años, ex Fuerzas Especiales.",
+      "Siete frentes, una sola visión: que las personas y las empresas crezcan con propósito. Consultoría, ministerio, seguridad, software y más.",
     url: "https://marcosbarbosagroup.com",
     siteName: "Marcos Barbosa Group",
     locale: "es_AR",
@@ -52,7 +52,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Marcos Barbosa Group",
     description:
-      "Estrategia, liderazgo y tecnología para empresas que buscan trascender.",
+      "Fe, empresa, servicio y tecnología. Siete frentes, una sola visión.",
     images: ["https://marcosbarbosagroup.com/images/marcos-hero.jpg"],
   },
 }

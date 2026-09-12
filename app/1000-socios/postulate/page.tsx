@@ -29,7 +29,7 @@ export default function Page() {
           items={[
             { title: "Dejá tu CV", desc: "Contanos qué hacés y qué buscás." },
             { title: "Entramos en contacto", desc: "Te avisamos cuando haya una búsqueda que encaje." },
-            { title: "Sin costo", desc: "Postularte y estar en la red no tiene costo." },
+            { title: "[VALIDAR] Sin costo", desc: "Postularte y estar en la red no tiene costo." },
           ]}
         />
         <div className="mt-10">

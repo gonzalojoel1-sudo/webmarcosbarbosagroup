@@ -21,6 +21,17 @@ export function Header() {
     mass: 0.4,
   })
   const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null)
+  const barRef = useRef<HTMLDivElement | null>(null)
+
+  useEffect(() => {
+    const onDocClick = (e: MouseEvent) => {
+      if (barRef.current && !barRef.current.contains(e.target as Node)) {
+        setOpenDropdown(null)
+      }
+    }
+    document.addEventListener("mousedown", onDocClick)
+    return () => document.removeEventListener("mousedown", onDocClick)
+  }, [])
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8)
@@ -64,6 +75,7 @@ export function Header() {
         aria-hidden
       />
       <div
+        ref={barRef}
         className={`bg-white/60 dark:bg-[#0C0C0E]/70 backdrop-blur-[20px] backdrop-saturate-[1.8] border-b transition-colors duration-200 ${
           scrolled ? "border-hairline" : "border-transparent"
         }`}
@@ -139,6 +151,9 @@ export function Header() {
                       <div className="card-luxury rounded-2xl p-2 shadow-[0_24px_60px_-24px_rgba(12,12,14,0.35)]">
                         <p className="px-3 pt-2 pb-1 text-[11px] uppercase tracking-[0.18em] text-fg-muted">
                           {v.title}
+                        </p>
+                        <p className="px-3 pb-2 text-xs text-fg-muted leading-snug">
+                          {v.description}
                         </p>
                         <ul className="py-1">
                           {v.children.map((c) => (

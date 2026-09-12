@@ -22,6 +22,12 @@ export default function Page() {
       italic="de seguridad."
       intro="Antes de contratar más seguridad, entendé dónde están las grietas. Diagnosticamos vulnerabilidades y priorizamos lo urgente."
       chips={["Diagnóstico", "Vulnerabilidades", "Plan"]}
+      breadcrumb={[
+        { label: "Inicio", href: "/" },
+        { label: "Servicios", href: "/servicios" },
+        { label: "Seguridad", href: "/servicios/seguridad" },
+        { label: "Auditoría" },
+      ]}
       cta={{ href: "/contacto", label: "Pedir una auditoría" }}
     >
       <SectionShell>

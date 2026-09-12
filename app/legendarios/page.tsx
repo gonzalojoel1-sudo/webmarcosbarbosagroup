@@ -7,6 +7,12 @@ export const metadata: Metadata = {
   description:
     "Legendarios: un movimiento global de transformación de hombres, con presencia en Argentina. Conocé qué es, las próximas fechas y los traslados.",
   alternates: { canonical: "https://marcosbarbosagroup.com/legendarios" },
+  openGraph: {
+    title: "Legendarios — Movimiento Global de Hombres | Marcos Barbosa Group",
+    description: "Qué es el movimiento, próximas fechas y traslados en Argentina.",
+    url: "https://marcosbarbosagroup.com/legendarios",
+    type: "website",
+  },
 }
 
 export default function Page() {
