@@ -29,6 +29,9 @@ export type Candidate = {
   cv_file: string | null
   cv_size: number | null
   cv_mime: string | null
+  consent: number
+  consent_at: string | null
+  policy_version: string | null
   status: string
   created_at: string
 }
@@ -87,12 +90,27 @@ export function createSqliteBoard(dbPath: string): BoardStore {
       experience     TEXT,
       cv_original_name TEXT,
       cv_file        TEXT,
-      cv_size        INTEGER,
+      cv_size          INTEGER,
       cv_mime          TEXT,
+      consent          INTEGER NOT NULL DEFAULT 1,
+      consent_at       TEXT,
+      policy_version   TEXT,
       status           TEXT NOT NULL DEFAULT 'new',
       created_at       TEXT NOT NULL
     ) STRICT;
   `)
+
+  for (const sql of [
+    "ALTER TABLE candidates ADD COLUMN consent INTEGER NOT NULL DEFAULT 1",
+    "ALTER TABLE candidates ADD COLUMN consent_at TEXT",
+    "ALTER TABLE candidates ADD COLUMN policy_version TEXT",
+  ]) {
+    try {
+      db.exec(sql)
+    } catch {
+      /* column already exists */
+    }
+  }
 
   const insertJob = db.prepare(
     `INSERT INTO job_posts
@@ -101,8 +119,8 @@ export function createSqliteBoard(dbPath: string): BoardStore {
   )
   const insertCandidate = db.prepare(
     `INSERT INTO candidates
-      (id, name, email, phone, desired_role, experience, cv_original_name, cv_file, cv_size, cv_mime, created_at)
-     VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`
+      (id, name, email, phone, desired_role, experience, cv_original_name, cv_file, cv_size, cv_mime, consent, consent_at, policy_version, created_at)
+     VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`
   )
   const listJobsStmt = db.prepare(
     `SELECT * FROM job_posts ORDER BY created_at DESC LIMIT ?`
@@ -142,6 +160,9 @@ export function createSqliteBoard(dbPath: string): BoardStore {
         candidate.cv_file ?? null,
         candidate.cv_size ?? null,
         candidate.cv_mime ?? null,
+        candidate.consent,
+        candidate.consent_at ?? null,
+        candidate.policy_version ?? null,
         new Date().toISOString()
       )
       return id

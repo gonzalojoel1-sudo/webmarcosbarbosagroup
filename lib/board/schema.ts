@@ -13,7 +13,7 @@ export const jobSchema = z.object({
   contactName: z.string().min(2).max(120),
   contactEmail: z.string().email().max(160),
   contactPhone: optionalText(30),
-  honeypot: z.string().max(0).optional().or(z.literal("")),
+  honeypot: z.string().max(255).optional().or(z.literal("")),
 })
 
 export const candidateSchema = z.object({
@@ -23,7 +23,7 @@ export const candidateSchema = z.object({
   desiredRole: optionalText(140),
   experience: optionalText(4000),
   consent: z.literal(true),
-  honeypot: z.string().max(0).optional().or(z.literal("")),
+  honeypot: z.string().max(255).optional().or(z.literal("")),
 })
 
 export type JobInput = z.infer<typeof jobSchema>

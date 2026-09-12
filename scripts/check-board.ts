@@ -93,6 +93,9 @@ async function main() {
       cv_file: "abc.pdf",
       cv_size: 1234,
       cv_mime: "application/pdf",
+      consent: 1,
+      consent_at: new Date().toISOString(),
+      policy_version: "2026-09",
     })
     assert.ok(id)
     const c = board.listCandidates()
