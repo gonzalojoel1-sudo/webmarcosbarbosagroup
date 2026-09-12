@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server"
 import { validateAndParse } from "@/lib/auth/session"
 import { COOKIE_NAME } from "@/lib/auth/config"
+import { safeLog } from "@/lib/confessions/log"
 
 export const config = {
   matcher: [
@@ -42,6 +43,7 @@ export async function middleware(req: NextRequest) {
   const payload = await validateAndParse(cookieValue)
 
   if (!payload) {
+    safeLog("pastor.session.expired", { status: 401 })
     return redirectToLogin(req, true)
   }
 
