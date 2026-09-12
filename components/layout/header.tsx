@@ -83,15 +83,15 @@ export function Header() {
             </span>
           </Link>
 
-          <nav className="hidden lg:flex items-center gap-6" aria-label="Principal">
-            {verticals.map((v) => {
+          <nav className="hidden xl:flex items-center gap-5" aria-label="Principal">
+            {verticals.map((v, i) => {
               const active = isActive(v.slug)
               if (v.children.length === 0) {
                 return (
                   <Link
                     key={v.id}
                     href={v.slug}
-                    className={`text-sm transition-colors ${
+                    className={`text-sm whitespace-nowrap transition-colors ${
                       active ? "text-primary" : "text-fg-muted hover:text-fg"
                     }`}
                   >
@@ -119,8 +119,8 @@ export function Header() {
                     type="button"
                     aria-expanded={ddOpen}
                     aria-haspopup="true"
-                    onClick={() => setOpenDropdown((cur) => (cur === v.id ? null : v.id))}
-                    className={`inline-flex items-center gap-1 text-sm transition-colors ${
+                    onClick={() => setOpenDropdown(v.id)}
+                    className={`inline-flex items-center gap-1 whitespace-nowrap text-sm transition-colors ${
                       active ? "text-primary" : "text-fg-muted hover:text-fg"
                     }`}
                   >
@@ -131,7 +131,11 @@ export function Header() {
                     />
                   </button>
                   {ddOpen ? (
-                    <div className="absolute left-1/2 -translate-x-1/2 top-full pt-3 w-[22rem]">
+                    <div
+                      className={`absolute top-full pt-3 w-[22rem] ${
+                        i >= 5 ? "right-0" : "left-1/2 -translate-x-1/2"
+                      }`}
+                    >
                       <div className="card-luxury rounded-2xl p-2 shadow-[0_24px_60px_-24px_rgba(12,12,14,0.35)]">
                         <p className="px-3 pt-2 pb-1 text-[11px] uppercase tracking-[0.18em] text-fg-muted">
                           {v.title}
@@ -162,17 +166,17 @@ export function Header() {
             })}
           </nav>
 
-          <div className="hidden lg:flex items-center gap-3">
+          <div className="hidden xl:flex items-center gap-3">
             <ThemeToggle />
             <Link
               href="/contacto"
-              className="btn-primary px-5 py-2 text-sm font-medium inline-flex items-center"
+              className="btn-primary px-5 py-2 text-sm font-medium inline-flex items-center whitespace-nowrap"
             >
               Agendar Reunión
             </Link>
           </div>
 
-          <div className="flex lg:hidden items-center gap-2">
+          <div className="flex xl:hidden items-center gap-2">
             <ThemeToggle />
             <button
               className="p-2 -mr-2 text-fg"
@@ -187,7 +191,7 @@ export function Header() {
       </div>
 
       {open ? (
-        <div className="lg:hidden drawer-enter bg-white/95 dark:bg-[#0C0C0E]/95 backdrop-blur-[20px] border-b border-hairline max-h-[calc(100vh-4rem)] overflow-y-auto">
+        <div className="xl:hidden drawer-enter bg-white/95 dark:bg-[#0C0C0E]/95 backdrop-blur-[20px] border-b border-hairline max-h-[calc(100vh-4rem)] overflow-y-auto">
           <div className="px-6 py-4">
             {verticals.map((v) => {
               const expanded = openAccordion === v.id

@@ -2,6 +2,7 @@ import type { Metadata } from "next"
 import Link from "next/link"
 import { PlansTable } from "@/components/plans-table"
 import { Check, ArrowRight, ShieldCheck, Clock, Crown, CheckCircle2 } from "lucide-react"
+import { Breadcrumb } from "@/components/site/breadcrumb"
 
 export const metadata: Metadata = {
   title: "Planes 1—4 — Comparativa Consultoría Estratégica | Marcos Barbosa Group",
@@ -88,7 +89,14 @@ export default function PlanesPage() {
       {/* Hero */}
       <section className="pt-32 md:pt-40 pb-10 border-b border-hairline bg-surface">
         <div className="max-w-6xl mx-auto px-6">
-          <p className="text-[11px] uppercase tracking-[0.18em] text-fg-muted">Planes 1 — 4</p>
+          <Breadcrumb
+            items={[
+              { label: "Inicio", href: "/" },
+              { label: "Consultora", href: "/consultora" },
+              { label: "Planes" },
+            ]}
+          />
+          <p className="text-[11px] uppercase tracking-[0.18em] text-fg-muted mt-4">Planes 1 — 4</p>
           <h1 className="mt-4 font-display text-4xl md:text-5xl lg:text-6xl tracking-tight leading-[1.05] text-fg max-w-3xl">
             Elegí la intensidad.
             <br />

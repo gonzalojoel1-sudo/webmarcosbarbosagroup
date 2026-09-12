@@ -1,6 +1,7 @@
 import type { Metadata } from "next"
 import Link from "next/link"
 import { ArrowRight, Check, Clock, FileText, Target } from "lucide-react"
+import { Breadcrumb } from "@/components/site/breadcrumb"
 
 export const metadata: Metadata = {
   title: "Metodología 01—06 — De Diagnóstico a Escalamiento | Marcos Barbosa Group",
@@ -73,7 +74,14 @@ export default function MetodologiaPage() {
       {/* Hero */}
       <section className="pt-32 md:pt-40 pb-12 border-b border-hairline bg-surface">
         <div className="max-w-6xl mx-auto px-6">
-          <p className="text-[11px] uppercase tracking-[0.18em] text-fg-muted">
+          <Breadcrumb
+            items={[
+              { label: "Inicio", href: "/" },
+              { label: "Consultora", href: "/consultora" },
+              { label: "Metodología" },
+            ]}
+          />
+          <p className="text-[11px] uppercase tracking-[0.18em] text-fg-muted mt-4">
             Metodología 01 — 06
           </p>
           <h1 className="mt-4 font-display text-4xl md:text-5xl lg:text-6xl tracking-tight leading-[1.05] text-fg max-w-3xl">
