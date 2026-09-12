@@ -2,6 +2,7 @@ import { getBoard } from "@/lib/board/store"
 import { getConfessions } from "@/lib/confessions/store"
 import { getEncryptionKey } from "@/lib/confessions/crypto"
 import { setJobStatus, setCandidateStatus } from "./actions"
+import { logoutPastor } from "../actions"
 import { ConfessionRow } from "@/components/admin/confession-row"
 
 export const dynamic = "force-dynamic"
@@ -74,7 +75,12 @@ export default function AdminPage({
             Búsquedas, postulaciones y confesionario
           </h1>
         </div>
-        <div className="flex flex-wrap gap-2 text-xs">
+        <div className="flex flex-wrap items-center gap-3">
+          <form action={logoutPastor}>
+            <button type="submit" className="btn-secondary px-3 py-2 text-xs font-medium">
+              Cerrar sesión
+            </button>
+          </form>
           <a href="/api/admin/export?type=jobs&format=csv" className="btn-secondary px-3 py-2">Export búsquedas CSV</a>
           <a href="/api/admin/export?type=candidates&format=csv" className="btn-secondary px-3 py-2">Export candidatos CSV</a>
           <a href="/api/admin/export?type=jobs&format=json" className="btn-secondary px-3 py-2">JSON</a>
