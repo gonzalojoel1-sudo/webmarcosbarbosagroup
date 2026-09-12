@@ -1,0 +1,47 @@
+# Pendientes — marcosbarbosagroup.com
+
+Actualizado: 2026-09-12 · Estado del repo: `main`
+
+## Hecho
+- **Portal 7 verticales**: Cuerpo de Cristo, Consultora, Servicios, Software, Legendarios, Los 1000 Socios, Formate. Nav con dropdowns, drawer mobile, sub-nav, breadcrumbs, footer, sitemap, redirects 301.
+- **Logo MB real** en header, footer, founder y favicon (`app/icon.svg`).
+- **Ofrendas** (`/cuerpo-de-cristo/ofrenda`): monto libre + chips, Mercado Pago Checkout Pro + transferencia, ledger idempotente (`node:sqlite`), webhook firmado, página de gracias. Código en `main`; **falta activar credenciales** (ver pendientes).
+- **Bolsa de trabajo + Postulate** (`/1000-socios/...`): empresa publica búsqueda y candidato sube CV (archivo privado, magic-bytes, máx 5 MB, consentimiento). Store `data/board.db` + CVs en `data/cvs/`.
+- **Panel interno** `/admin` (Basic Auth): ver búsquedas y candidatos, descargar CV, cambiar estado, export CSV/JSON.
+
+## Pendientes (en orden de prioridad)
+
+### 1. Dokploy — volumen persistente y panel (CRÍTICO)
+- Montar volumen persistente en **`/app/data`**; `chown -R 1001:1001`; **replicas = 1**.
+- **Backup** del volumen (Dokploy Volume Backups / S3).
+- Variables: `ADMIN_USER`, `ADMIN_PASS`, `NEXT_PUBLIC_SITE_URL`.
+- **Sin esto se borran ofrendas, leads, búsquedas y CVs en cada deploy.**
+
+### 2. Activar Mercado Pago (cuando estén las cuentas)
+- Dokploy: `MP_ACCESS_TOKEN`, `MP_WEBHOOK_SECRET`, `MP_ENV`, `NEXT_PUBLIC_SITE_URL`.
+- Datos de transferencia: `NEXT_PUBLIC_TRANSFER_ALIAS`, `NEXT_PUBLIC_TRANSFER_CVU`, `NEXT_PUBLIC_TRANSFER_HOLDER`.
+- En Mercado Pago: URL de notificación `https://marcosbarbosagroup.com/api/webhooks/mercadopago`.
+- **Stripe descartado** hasta tener entidad/LLC en EE.UU. (Stripe Atlas ~USD 500 + compliance). ARQ (cuenta personal USDc) no habilita Stripe.
+
+### 3. CRM nuevo
+- Definir el CRM (el Frappe actual se reemplaza por poco práctico) e integrar búsquedas, candidatos, ofrendas y leads.
+- Ya hay costura (`lib/board/store.ts`, interfaz `BoardStore`) y **export** `/api/admin/export?type=jobs|candidates&format=csv|json`.
+
+### 4. Contenido `[VALIDAR]` (~36 marcas en 19 páginas)
+- **Servicios / Seguridad**: habilitaciones, documentación, valores, "sobre nosotros".
+- **Legendarios**: fechas, sedes, líderes en Argentina, traslados.
+- **Consultora**: casos de éxito reales, precios de Capacitaciones, catálogo de Recursos.
+- **Formate**: fechas y sedes de próximas formaciones.
+- **Ofrenda**: alias/CVU/titular (hoy placeholders por env).
+
+### 5. Confesionario (buzón privado)
+- Hoy es página informativa con CTA humano. Falta diseño de privacidad (quién lee, cifrado, retención) antes de construir.
+
+### 6. Recursos (tienda)
+- Catálogo (libros/archivos/automatizaciones) + compra. Bloqueado por la activación de pagos y por el catálogo real.
+
+## Referencias
+- Specs: `docs/superpowers/specs/`
+- Planes: `docs/superpowers/plans/`
+- Research de pagos/persistencia: `docs/research/`
+- Runbook de deploy y variables: `README.md`
