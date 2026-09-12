@@ -11,7 +11,8 @@
     "check:donations": "node --experimental-strip-types scripts/check-donations.ts",
     "check:board": "node --experimental-strip-types scripts/check-board.ts",
     "check:confessions": "node --experimental-strip-types scripts/check-confessions.ts",
-    "check:confessions:api": "node --experimental-strip-types scripts/check-confessions-api.ts"
+    "check:confessions:api": "node --experimental-strip-types scripts/check-confessions-api.ts",
+    "check:auth": "node --experimental-strip-types scripts/check-auth.ts"
   },
   "dependencies": {
     "@base-ui/react": "^1.7.0",
