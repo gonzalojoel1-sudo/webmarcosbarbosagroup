@@ -24,6 +24,7 @@ const limiter = new RateLimiter(RATE_LIMIT_MAX, RATE_LIMIT_WINDOW_MS)
 function safeNext(next: string | null): string {
   if (!next) return "/pastor/inbox"
   if (!next.startsWith("/pastor")) return "/pastor/inbox"
+  if (next.split("/").includes("..")) return "/pastor/inbox"
   if (next.includes("//")) return "/pastor/inbox"
   if (next.includes(":")) return "/pastor/inbox"
   return next
