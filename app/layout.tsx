@@ -3,6 +3,7 @@ import { Fraunces, Outfit, JetBrains_Mono } from "next/font/google"
 import "./globals.css"
 import { Header } from "@/components/layout/header"
 import { Footer } from "@/components/layout/footer"
+import { SiteChrome } from "@/components/layout/site-chrome"
 import { Providers } from "@/components/providers"
 
 const display = Fraunces({
@@ -70,9 +71,13 @@ export default function RootLayout({
     >
       <body className="bg-bg text-fg antialiased font-body">
         <Providers>
-          <Header />
+          <SiteChrome>
+            <Header />
+          </SiteChrome>
           {children}
-          <Footer />
+          <SiteChrome>
+            <Footer />
+          </SiteChrome>
         </Providers>
       </body>
     </html>
