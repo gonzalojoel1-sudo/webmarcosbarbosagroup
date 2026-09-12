@@ -8,8 +8,9 @@ function toCsv(rows: Record<string, unknown>[]): string {
   if (rows.length === 0) return ""
   const headers = Object.keys(rows[0])
   const escape = (v: unknown) => {
-    const s = v === null || v === undefined ? "" : String(v)
-    return /[",\n]/.test(s) ? `"${s.replace(/"/g, '""')}"` : s
+    let s = v === null || v === undefined ? "" : String(v)
+    s = s.replace(/^[=+\-@\t\r]/, (m) => `'${m}`)
+    return /[",\n\r]/.test(s) ? `"${s.replace(/"/g, '""')}"` : s
   }
   const lines = [headers.join(",")]
   for (const row of rows) {
@@ -42,6 +43,7 @@ export async function GET(req: NextRequest) {
     headers: {
       "Content-Type": "text/csv; charset=utf-8",
       "Content-Disposition": `attachment; filename="${type}.csv"`,
+      "X-Content-Type-Options": "nosniff",
       "Cache-Control": "no-store",
     },
   })

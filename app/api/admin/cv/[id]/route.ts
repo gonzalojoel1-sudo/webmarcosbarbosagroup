@@ -15,20 +15,31 @@ export async function GET(
     return new NextResponse("No encontrado", { status: 404 })
   }
 
-  const safe = path.basename(candidate.cv_file)
-  const full = path.join(cvsDir(), safe)
-  if (!full.startsWith(cvsDir())) {
+  let dir: string
+  try {
+    dir = path.resolve(cvsDir())
+  } catch {
+    console.error("[admin/cv] storage unavailable")
+    return new NextResponse("No disponible", { status: 503 })
+  }
+
+  const full = path.join(dir, path.basename(candidate.cv_file))
+  if (full !== dir && !full.startsWith(dir + path.sep)) {
     return new NextResponse("No encontrado", { status: 404 })
   }
 
+  const ext = path.extname(full).replace(".", "") || "pdf"
+  const downloadName = `cv-${candidate.id}.${ext}`
+
   try {
     const buf = await readFile(full)
-    const downloadName = (candidate.cv_original_name || safe).replace(/"/g, "")
     return new NextResponse(new Uint8Array(buf), {
       status: 200,
       headers: {
         "Content-Type": candidate.cv_mime || "application/octet-stream",
-        "Content-Disposition": `attachment; filename="${downloadName}"`,
+        "Content-Disposition": `attachment; filename="${downloadName}"; filename*=UTF-8''${encodeURIComponent(downloadName)}`,
+        "X-Content-Type-Options": "nosniff",
+        "Referrer-Policy": "no-referrer",
         "Cache-Control": "no-store",
       },
     })

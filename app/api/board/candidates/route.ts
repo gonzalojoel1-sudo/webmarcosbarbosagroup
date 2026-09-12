@@ -105,13 +105,15 @@ export async function POST(req: NextRequest) {
   }
 
   const storedName = `${randomUUID()}.${ext}`
-  const finalPath = path.join(cvsDir(), storedName)
-  const tmpPath = `${finalPath}.tmp`
+  let tmpPath = ""
+  let finalPath = ""
   try {
+    finalPath = path.join(cvsDir(), storedName)
+    tmpPath = `${finalPath}.tmp`
     await writeFile(tmpPath, bytes)
     await rename(tmpPath, finalPath)
   } catch {
-    await unlink(tmpPath).catch(() => {})
+    if (tmpPath) await unlink(tmpPath).catch(() => {})
     console.error("[board/candidates] cv write failed")
     return NextResponse.json({ ok: false, error: "No pudimos guardar tu CV. Probá de nuevo." }, { status: 500 })
   }
