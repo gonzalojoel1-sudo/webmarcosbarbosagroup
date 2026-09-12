@@ -34,9 +34,11 @@ Actualizado: 2026-09-12 · Estado del repo: `main`
 - **Formate**: fechas y sedes de próximas formaciones.
 - **Ofrenda**: alias/CVU/titular (hoy placeholders por env).
 
-### 5. Confesionario (buzón privado)
-- ✅ **Diseño listo** — spec en `docs/superpowers/specs/2026-09-12-confesionario-design.md` (commit `55082ab`). Cifrado AES-256-GCM en reposo, anónimo + canal de respuesta opcional, nota pastoral cifrada, pestana en `/admin`.
-- ⏳ **Pendiente para próxima sesión**: plan de implementación + código (vía `writing-plans` + TDD).
+### 5. Confesionario (buzón privado) — ✅ implementado 2026-09-12
+- Spec: `docs/superpowers/specs/2026-09-12-confesionario-design.md`
+- Plan: `docs/superpowers/plans/2026-09-12-confesionario.md`
+- AES-256-GCM en reposo, rate-limit 5/h, honeypot, IP-hash, admin con pestaña, nota pastoral cifrada, doble confirmación de borrado.
+- **Activación pendiente**: setear `CONFESSIONS_ENCRYPTION_KEY` y `CONFESSIONS_IP_SALT` en Dokploy (ver §1 del README).
 
 ### 6. Recursos (tienda)
 - Catálogo (libros/archivos/automatizaciones) + compra. Bloqueado por la activación de pagos y por el catálogo real.
