@@ -19,8 +19,16 @@ const schema = z.object({
 })
 
 export async function POST(req: NextRequest) {
-  // Gate: solo funciona en dev/test, NUNCA en producción
-  if (process.env.NODE_ENV === "production") {
+  // Gate: bloqueado en producción salvo opt-in explícito para integration tests.
+  // Por qué el opt-in: `next start` corre el router-server con
+  // `process.env.NODE_ENV = "production"` hardcodeado (incluso si NODE_ENV=test
+  // se setea en el shell). El escape hatch `ENABLE_PASTOR_LOGIN_TEST=1` permite
+  // a scripts/check-confessions-api.ts obtener un cookie firmado cuando se corre
+  // contra `npm start`. En Dokploy esta env var NUNCA debe estar presente.
+  if (
+    process.env.NODE_ENV === "production" &&
+    process.env.ENABLE_PASTOR_LOGIN_TEST !== "1"
+  ) {
     return NextResponse.json({ ok: false, error: "Not found" }, { status: 404 })
   }
 
