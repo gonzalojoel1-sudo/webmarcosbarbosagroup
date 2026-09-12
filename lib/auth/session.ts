@@ -45,13 +45,9 @@ export function getSessionKey(): Uint8Array {
 
 async function importKey(): Promise<CryptoKey> {
   const keyBytes = getSessionKey()
-  const keyBytesBuffer = new Uint8Array(keyBytes.length)
-  for (let i = 0; i < keyBytes.length; i++) {
-    keyBytesBuffer[i] = keyBytes[i]
-  }
   return crypto.subtle.importKey(
     "raw",
-    keyBytesBuffer,
+    keyBytes,
     { name: "AES-GCM" },
     false,
     ["encrypt", "decrypt"]
