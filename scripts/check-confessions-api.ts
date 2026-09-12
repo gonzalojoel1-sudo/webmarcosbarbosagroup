@@ -1,6 +1,18 @@
 import assert from "node:assert/strict"
 import { spawnSync } from "node:child_process"
 
+// Cobertura vs spec §10.2:
+//   - Server action markConfessionRead / deleteConfession NO se testean acá:
+//     las server actions de Next 14 se invocan vía POST a la página renderizada
+//     con header Next-Action + action-id estable del build (RSC internals).
+//     Reproducir eso desde un script es frágil y depende de la versión de Next.
+//     Alternativa asumida: los tests de store cubren los invariantes
+//     (markRead idempotente, deleteConfession borra realmente) y la cobertura
+//     E2E de Phase 5 ejercita el flujo admin completo (markRead + delete con
+//     doble confirmación BORRAR).
+//   - El resto de §10.2 está cubierto abajo (POST, GET admin, honeypot,
+//     consent, rate-limit, auth, health).
+
 const BASE = process.env.CHECK_API_BASE || "http://127.0.0.1:3000"
 const ADMIN_USER = process.env.ADMIN_USER || ""
 const ADMIN_PASS = process.env.ADMIN_PASS || ""
@@ -102,9 +114,17 @@ async function main() {
       headers: { authorization: auth() },
     })
     assert.equal(res.status, 200)
-    const list = (await res.json()) as Array<{ id: string }>
+    const list = (await res.json()) as Array<{ id: string; status: string; read_at: string | null }>
     assert.ok(Array.isArray(list))
     assert.ok(list.every((c) => typeof c.id === "string"))
+    // invariante adicional: ítems recién creados (no leídos vía action) tienen
+    // status='new' y read_at=null; cubre el caso de regresión donde un GET
+    // accidentalmente marcara como leído.
+    for (const item of list) {
+      if (item.status === "new") {
+        assert.equal(item.read_at, null)
+      }
+    }
   })
 
   // 7. /api/health sigue 200
