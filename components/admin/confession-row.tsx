@@ -3,7 +3,7 @@ import {
   markConfessionRead,
   setPastoralNote,
   deleteConfession,
-} from "@/app/admin/actions"
+} from "@/app/pastor/inbox/actions"
 import type { ConfessionRecord } from "@/lib/confessions/store"
 
 const fmt = (iso: string | null) =>
