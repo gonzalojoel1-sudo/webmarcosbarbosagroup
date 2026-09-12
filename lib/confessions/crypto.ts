@@ -1,6 +1,5 @@
 import { createCipheriv, createDecipheriv, randomBytes } from "node:crypto"
 
-const VERSION_BYTE = 0x01
 const VERSION_PREFIX = "0x01"
 const IV_LEN = 12
 const TAG_LEN = 16
