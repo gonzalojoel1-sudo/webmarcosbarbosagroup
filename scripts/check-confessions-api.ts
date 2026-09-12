@@ -12,10 +12,12 @@ import { spawnSync } from "node:child_process"
 //     doble confirmación BORRAR).
 //   - El resto de §10.2 está cubierto abajo (POST, GET admin, honeypot,
 //     consent, rate-limit, auth, health).
+//   - Auth: el script usa /api/pastor/login-test (gated por NODE_ENV !==
+//     "production") para obtener un cookie firmado y luego enviarlo como
+//     `Cookie: __Host-pastor_session=<cookie>`. Reemplaza el HTTP Basic Auth
+//     histórico.
 
 const BASE = process.env.CHECK_API_BASE || "http://127.0.0.1:3000"
-const ADMIN_USER = process.env.ADMIN_USER || ""
-const ADMIN_PASS = process.env.ADMIN_PASS || ""
 
 let passed = 0
 const ok = async (name: string, fn: () => void | Promise<void>) => {
@@ -24,9 +26,6 @@ const ok = async (name: string, fn: () => void | Promise<void>) => {
     console.log(`PASS  ${name}`)
   })
 }
-
-const auth = () =>
-  "Basic " + Buffer.from(`${ADMIN_USER}:${ADMIN_PASS}`).toString("base64")
 
 async function postJSON(path: string, body: unknown) {
   return fetch(`${BASE}${path}`, {
@@ -48,6 +47,23 @@ const validPayload = () => ({
 })
 
 async function main() {
+  // Login via test endpoint para obtener cookie firmado.
+  // El endpoint está gated por NODE_ENV !== "production"; el integrador
+  // debe setear NODE_ENV=test (o development) antes de `npm start`.
+  const loginRes = await fetch(`${BASE}/api/pastor/login-test`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      username: process.env.ADMIN_USER || "tester",
+      password: process.env.ADMIN_PASS || "tester123",
+    }),
+  })
+  if (loginRes.status !== 200) {
+    throw new Error(`Login test falló: ${loginRes.status}`)
+  }
+  const { cookie } = (await loginRes.json()) as { cookie: string }
+  const cookieHeader = `__Host-pastor_session=${cookie}`
+
   // 1. POST válido → 200
   await ok("POST /api/confessions válido → 200 + id", async () => {
     const res = await postJSON("/api/confessions", validPayload())
@@ -59,8 +75,8 @@ async function main() {
 
   // 2. POST con honeypot → 200, no persiste
   await ok("POST con honeypot → 200 silencioso (no persiste)", async () => {
-    const before = await fetch(`${BASE}/api/admin/confessions?limit=500`, {
-      headers: { authorization: auth() },
+    const before = await fetch(`${BASE}/api/pastor/confessions?limit=500`, {
+      headers: { Cookie: cookieHeader },
     })
     const beforeList = (await before.json()) as unknown[]
     const res = await postJSON("/api/confessions", {
@@ -68,8 +84,8 @@ async function main() {
       honeypot: "i-am-a-bot",
     })
     assert.equal(res.status, 200)
-    const after = await fetch(`${BASE}/api/admin/confessions?limit=500`, {
-      headers: { authorization: auth() },
+    const after = await fetch(`${BASE}/api/pastor/confessions?limit=500`, {
+      headers: { Cookie: cookieHeader },
     })
     const afterList = (await after.json()) as unknown[]
     assert.equal(afterList.length, beforeList.length)
@@ -102,16 +118,21 @@ async function main() {
     assert.equal(lastStatus, 429)
   })
 
-  // 5. GET /api/admin/confessions sin auth → 401
-  await ok("GET admin sin auth → 401", async () => {
-    const res = await fetch(`${BASE}/api/admin/confessions`)
-    assert.equal(res.status, 401)
+  // 5. GET /api/pastor/confessions sin auth → 302 (middleware redirige a /pastor).
+  // Usamos redirect: "manual" para no seguir el redirect y poder inspeccionar el 302.
+  await ok("GET admin sin auth → 302 redirect a /pastor", async () => {
+    const res = await fetch(`${BASE}/api/pastor/confessions`, {
+      redirect: "manual",
+    })
+    assert.equal(res.status, 302)
+    const location = res.headers.get("location") ?? ""
+    assert.ok(location.startsWith("/pastor"))
   })
 
-  // 6. GET /api/admin/confessions con auth → 200 + lista
+  // 6. GET /api/pastor/confessions con cookie → 200 + lista
   await ok("GET admin con auth → 200 + lista", async () => {
-    const res = await fetch(`${BASE}/api/admin/confessions`, {
-      headers: { authorization: auth() },
+    const res = await fetch(`${BASE}/api/pastor/confessions`, {
+      headers: { Cookie: cookieHeader },
     })
     assert.equal(res.status, 200)
     const list = (await res.json()) as Array<{ id: string; status: string; read_at: string | null }>
