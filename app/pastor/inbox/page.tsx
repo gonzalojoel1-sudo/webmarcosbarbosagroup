@@ -89,7 +89,7 @@ export default function AdminPage({
 
       <nav className="mb-8 flex gap-1 border-b border-hairline">
         <a
-          href="/admin?tab=jobs"
+          href="/pastor/inbox?tab=jobs"
           aria-current={tab === "jobs" ? "page" : undefined}
           className={
             tab === "jobs"
@@ -100,7 +100,7 @@ export default function AdminPage({
           Búsquedas y candidatos ({jobs.length + candidates.length})
         </a>
         <a
-          href="/admin?tab=confesionario"
+          href="/pastor/inbox?tab=confesionario"
           aria-current={tab === "confesionario" ? "page" : undefined}
           className={
             tab === "confesionario"
