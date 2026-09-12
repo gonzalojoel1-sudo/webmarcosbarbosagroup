@@ -39,6 +39,7 @@ data/*.jsonl
 data/*.db
 data/*.db-wal
 data/*.db-shm
+data/cvs/
 
 # typescript
 *.tsbuildinfo

@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "next lint",
     "check:routes": "node scripts/check-routes.mjs",
-    "check:donations": "node --experimental-strip-types scripts/check-donations.ts"
+    "check:donations": "node --experimental-strip-types scripts/check-donations.ts",
+    "check:board": "node --experimental-strip-types scripts/check-board.ts"
   },
   "dependencies": {
     "@base-ui/react": "^1.7.0",

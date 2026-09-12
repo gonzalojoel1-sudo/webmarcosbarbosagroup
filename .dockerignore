@@ -10,6 +10,7 @@ data/*.jsonl
 data/*.db
 data/*.db-wal
 data/*.db-shm
+data/cvs/
 coverage
 .vercel
 .DS_Store

@@ -2,7 +2,8 @@ import type { Metadata } from "next"
 import { getVertical } from "@/config/verticals"
 import { ContentPage } from "@/components/site/content-page"
 import { SectionShell } from "@/components/site/section-shell"
-import { SectionHead, Prose, BulletGrid, CtaBand } from "@/components/site/blocks"
+import { SectionHead, BulletGrid, CtaBand } from "@/components/site/blocks"
+import { JobForm } from "@/components/board/job-form"
 
 export const metadata: Metadata = {
   title: "Bolsa de Trabajo para Empresas | Los 1000 Socios",
@@ -22,7 +23,7 @@ export default function Page() {
       italic="búsqueda."
       intro="Cargá la propuesta laboral y nosotros hacemos la conexión con el talento de la red. Menos ruido, más candidatos alineados."
       chips={["Empresas", "Búsquedas", "Conexión"]}
-      cta={{ href: "/contacto", label: "Cargar una búsqueda" }}
+      cta={{ href: "#publicar", label: "Cargar una búsqueda" }}
     >
       <SectionShell>
         <SectionHead kicker="Para empresas" title="Tu búsqueda," italic="nuestra red." />
@@ -33,17 +34,24 @@ export default function Page() {
             { title: "Menos fricción", desc: "Menos CVs al azar y más candidatos alineados." },
           ]}
         />
-        <div className="mt-10">
-          <Prose>
-            <p>
-              [VALIDAR] En esta etapa las búsquedas se reciben por contacto
-              directo (WhatsApp/email); el formulario de carga y el panel de la
-              bolsa se suman en la próxima fase.
-            </p>
-          </Prose>
-        </div>
       </SectionShell>
-      <CtaBand title="¿Buscás incorporar talento?" sub="Contanos el puesto y lo difundimos en la red." label="Cargar búsqueda" />
+
+      <SectionShell id="publicar" className="border-t border-hairline">
+        <SectionHead
+          kicker="Publicar búsqueda"
+          title="Cargá los datos"
+          italic="del puesto."
+          sub="Completá la propuesta. El equipo la revisa y hace la conexión con la red."
+        />
+        <JobForm />
+      </SectionShell>
+
+      <CtaBand
+        title="¿Preferís contarnos por WhatsApp?"
+        sub="Escribinos y cargamos la búsqueda con vos."
+        label="Escribir por WhatsApp"
+        href="https://wa.me/5493517334040?text=Hola%2C%20quiero%20publicar%20una%20b%C3%BAsqueda%20laboral"
+      />
     </ContentPage>
   )
 }
