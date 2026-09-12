@@ -71,3 +71,16 @@ openssl rand -hex 16
 ```
 
 Setear en Dokploy → Variables. **Nunca** commitear valores reales al repo. Sin clave configurada, el endpoint público responde 503 y la pestaña `/admin?tab=confesionario` muestra un banner persistente.
+
+## Generar claves del Pastor Login
+
+> ⚠ Crítico: estas claves dan acceso al panel interno. Backupear en bóveda cifrada (1Password / Bitwarden) **fuera** del volumen persistente.
+
+```
+# Clave de cifrado de sesión AES-256-GCM (32 bytes base64)
+openssl rand -base64 32
+```
+
+Setear en Dokploy → Variables como `ADMIN_SESSION_KEY`. La contraseña del pastor se setea como `ADMIN_PASS` (16+ chars recomendados). Sin estas dos configuradas, el login devuelve error explícito y la app no arranca.
+
+El username (`ADMIN_USER`) es solo decorativo en el form — el login verifica solo por password. Default `"admin"`.
