@@ -57,3 +57,17 @@ npm run check:donations    # tests de montos, firma y ledger (node:sqlite)
 ## Deploy
 Repo → Dokploy `producción` → Application (Dockerfile) → marcosbarbosagroup.com (Traefik SSL).
 CRM de leads: `crm.marcosbarbosagroup.com` vía `/api/lead`.
+
+## Generar claves del Confesionario
+
+> ⚠ **Crítico**: estas claves son **irrecuperables** si se pierden — los mensajes cifrados no se podrán descifrar. Backupear en bóveda cifrada (1Password / Bitwarden) **fuera** del volumen persistente.
+
+```
+# Clave de cifrado AES-256-GCM (32 bytes base64)
+openssl rand -base64 32
+
+# Salt para hash de IP (16 bytes hex)
+openssl rand -hex 16
+```
+
+Setear en Dokploy → Variables. **Nunca** commitear valores reales al repo. Sin clave configurada, el endpoint público responde 503 y la pestaña `/admin?tab=confesionario` muestra un banner persistente.
