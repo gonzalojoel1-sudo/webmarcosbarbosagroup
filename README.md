@@ -40,8 +40,13 @@ Ver `.env.example`. Sin `MP_ACCESS_TOKEN`, el botón de Mercado Pago responde co
 - Ledger **idempotente** (dos claves: evento y pago) y verificación de monto server-side.
 - `.env*` ignorado en git y en el build de Docker.
 
-## Comandos
-```
+## Los 1000 Socios (bolsa de trabajo + postulaciones)
+- Empresas publican búsquedas en `/1000-socios/bolsa-de-trabajo` y candidatos se postulan con CV en `/1000-socios/postulate`.
+- Datos en SQLite `data/board.db` (tablas `job_posts`, `candidates`) y CVs en `data/cvs/` (privados, no servidos por URL).
+- **Panel interno** en `/admin` protegido con Basic Auth (`ADMIN_USER` / `ADMIN_PASS`): lista búsquedas y candidatos, descarga el CV y cambia estado. Export en `/api/admin/export?type=jobs|candidates&format=csv|json` (para migrar a un CRM).
+- Cuando se elija el CRM nuevo, se sincroniza desde `lib/board/store.ts` (interfaz `BoardStore`) sin tocar los formularios.
+
+## Comandos```
 npm run dev
 npm run build
 npm run lint

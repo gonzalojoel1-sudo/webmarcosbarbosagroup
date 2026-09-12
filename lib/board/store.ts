@@ -57,6 +57,10 @@ export interface BoardStore {
   ): string
   listJobs(limit?: number): JobPost[]
   listCandidates(limit?: number): Candidate[]
+  getJob(id: string): JobPost | undefined
+  getCandidate(id: string): Candidate | undefined
+  setJobStatus(id: string, status: string): void
+  setCandidateStatus(id: string, status: string): void
 }
 
 export function createSqliteBoard(dbPath: string): BoardStore {
@@ -128,6 +132,12 @@ export function createSqliteBoard(dbPath: string): BoardStore {
   const listCandidatesStmt = db.prepare(
     `SELECT * FROM candidates ORDER BY created_at DESC LIMIT ?`
   )
+  const getJobStmt = db.prepare(`SELECT * FROM job_posts WHERE id = ?`)
+  const getCandidateStmt = db.prepare(`SELECT * FROM candidates WHERE id = ?`)
+  const setJobStatusStmt = db.prepare(`UPDATE job_posts SET status = ? WHERE id = ?`)
+  const setCandidateStatusStmt = db.prepare(
+    `UPDATE candidates SET status = ? WHERE id = ?`
+  )
 
   return {
     createJob(job) {
@@ -172,6 +182,18 @@ export function createSqliteBoard(dbPath: string): BoardStore {
     },
     listCandidates(limit = 100) {
       return listCandidatesStmt.all(limit) as Candidate[]
+    },
+    getJob(id) {
+      return getJobStmt.get(id) as JobPost | undefined
+    },
+    getCandidate(id) {
+      return getCandidateStmt.get(id) as Candidate | undefined
+    },
+    setJobStatus(id, status) {
+      setJobStatusStmt.run(status, id)
+    },
+    setCandidateStatus(id, status) {
+      setCandidateStatusStmt.run(status, id)
     },
   }
 }
