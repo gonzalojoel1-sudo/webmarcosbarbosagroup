@@ -7,7 +7,13 @@ type Status =
   | { kind: "idle" }
   | { kind: "loading" }
 
-const initial = (defaultUsername: string) => ({
+type FormState = {
+  username: string
+  password: string
+  honeypot: string
+}
+
+const initial = (defaultUsername: string): FormState => ({
   username: defaultUsername,
   password: "",
   honeypot: "",
@@ -22,12 +28,12 @@ export function LoginForm({
   error?: "invalid" | "ratelimit" | null
   next?: string
 }) {
-  const [form, setForm] = useState(initial(defaultUsername))
+  const [form, setForm] = useState<FormState>(initial(defaultUsername))
   const [status, setStatus] = useState<Status>({ kind: "idle" })
 
-  const update = <K extends keyof typeof initial>(
+  const update = <K extends keyof FormState>(
     key: K,
-    value: (typeof initial)[K]
+    value: FormState[K]
   ) => setForm((f) => ({ ...f, [key]: value }))
 
   const valid = form.password.length > 0
