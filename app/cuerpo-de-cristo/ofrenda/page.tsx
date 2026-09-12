@@ -3,6 +3,7 @@ import { getVertical } from "@/config/verticals"
 import { ContentPage } from "@/components/site/content-page"
 import { SectionShell } from "@/components/site/section-shell"
 import { SectionHead, Prose, BulletGrid } from "@/components/site/blocks"
+import { OfferingForm } from "@/components/donations/offering-form"
 
 export const metadata: Metadata = {
   title: "Ofrenda — Sostené la obra de Dios | Cuerpo de Cristo",
@@ -22,9 +23,19 @@ export default function Page() {
       italic="con alegría."
       intro="Cada ofrenda sostiene la obra: consejería, ministerio, solidaridad y la ayuda concreta a las familias que visitamos."
       chips={["Propósito", "Transparencia", "Obra de Dios"]}
-      cta={{ href: "/contacto", label: "Quiero ofrendar" }}
+      cta={{ href: "#ofrendar", label: "Ofrendar ahora" }}
     >
-      <SectionShell>
+      <SectionShell id="ofrendar">
+        <SectionHead
+          kicker="Ofrendar"
+          title="Elegí tu monto"
+          italic="y cómo ofrendar."
+          sub="Ofrendá lo que sientas en tu corazón. Podés hacerlo con Mercado Pago (tarjeta, cuotas, efectivo) o por transferencia."
+        />
+        <OfferingForm />
+      </SectionShell>
+
+      <SectionShell className="border-t border-hairline">
         <SectionHead
           kicker="A dónde va"
           title="Tu ofrenda"
@@ -41,9 +52,8 @@ export default function Page() {
         <div className="mt-10">
           <Prose>
             <p>
-              [VALIDAR] En esta etapa las ofrendas se coordinan de forma directa.
-              Escribinos para recibir los datos de transferencia o el medio
-              habilitado. El botón de ofrenda online se suma más adelante.
+              Las ofrendas se registran de forma segura para su rendición. Si
+              preferís coordinar de otra manera, escribinos y lo vemos juntos.
             </p>
           </Prose>
         </div>

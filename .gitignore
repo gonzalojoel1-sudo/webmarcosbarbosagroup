@@ -26,13 +26,19 @@ yarn-debug.log*
 yarn-error.log*
 
 # local env files
-.env*.local
+.env
+.env.*
+!.env.example
 
 # vercel
 .vercel
 
 # leads fallback (keep dir, ignore runtime file)
 data/leads.jsonl
+data/*.jsonl
+data/*.db
+data/*.db-wal
+data/*.db-shm
 
 # typescript
 *.tsbuildinfo

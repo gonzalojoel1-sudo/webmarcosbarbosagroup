@@ -4,9 +4,12 @@ out
 .git
 .gitignore
 README.md
-.env*.local
-.env
-data/leads.jsonl
+.env*
+!.env.example
+data/*.jsonl
+data/*.db
+data/*.db-wal
+data/*.db-shm
 coverage
 .vercel
 .DS_Store
