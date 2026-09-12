@@ -168,6 +168,50 @@ async function main() {
     })
     assert.equal(ledger.getByExternalReference(ref)?.status, "refunded")
   })
+  ok("in_process -> rejected se aplica", () => {
+    const ref2 = "22222222-2222-4222-8222-222222222222"
+    ledger.upsertIntent({
+      id: ref2,
+      provider: "mercadopago",
+      amountCents: 100000,
+      currency: "ARS",
+      externalReference: ref2,
+    })
+    ledger.applyProviderPayment({
+      externalReference: ref2,
+      providerPaymentId: "777",
+      status: "in_process",
+    })
+    assert.equal(ledger.getByExternalReference(ref2)?.status, "in_process")
+    ledger.applyProviderPayment({
+      externalReference: ref2,
+      providerPaymentId: "777",
+      status: "rejected",
+      statusDetail: "cc_rejected_other_reason",
+    })
+    assert.equal(ledger.getByExternalReference(ref2)?.status, "rejected")
+  })
+  ok("approved -> refunded se aplica", () => {
+    const ref3 = "33333333-3333-4333-8333-333333333333"
+    ledger.upsertIntent({
+      id: ref3,
+      provider: "mercadopago",
+      amountCents: 100000,
+      currency: "ARS",
+      externalReference: ref3,
+    })
+    ledger.applyProviderPayment({
+      externalReference: ref3,
+      providerPaymentId: "888",
+      status: "approved",
+    })
+    ledger.applyProviderPayment({
+      externalReference: ref3,
+      providerPaymentId: "888",
+      status: "refunded",
+    })
+    assert.equal(ledger.getByExternalReference(ref3)?.status, "refunded")
+  })
 
   console.log(`\nOK: ${passed} verificaciones de ofrendas`)
 }

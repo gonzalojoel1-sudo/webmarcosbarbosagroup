@@ -37,16 +37,28 @@ export type IntentInput = {
   donorEmail?: string
 }
 
-const STATUS_RANK: Record<string, number> = {
-  pending: 0,
-  in_process: 1,
-  authorized: 1,
-  rejected: 1,
-  cancelled: 1,
-  approved: 2,
-  refunded: 3,
-  in_mediation: 3,
-  charged_back: 4,
+const REGRESSIVE = new Set([
+  "pending",
+  "in_process",
+  "authorized",
+  "rejected",
+  "cancelled",
+])
+
+function shouldApplyTransition(current: string, next: string): boolean {
+  if (current === next) return false
+  const settled =
+    current === "approved" ||
+    current === "refunded" ||
+    current === "charged_back"
+  if (settled && REGRESSIVE.has(next)) return false
+  if (
+    (current === "refunded" || current === "charged_back") &&
+    next === "approved"
+  ) {
+    return false
+  }
+  return true
 }
 
 function isUniqueViolation(err: unknown): boolean {
@@ -175,11 +187,9 @@ export function createSqliteLedger(dbPath: string): LedgerStore {
       const current = selectRef.get(externalReference) as DonationRecord | undefined
       if (!current) return
       const now = new Date().toISOString()
-      const currentRank = STATUS_RANK[current.status] ?? 0
-      const nextRank = STATUS_RANK[status] ?? 0
-      const advance = nextRank > currentRank
-      const writeStatus = advance ? status : current.status
-      const writeDetail = advance ? statusDetail ?? null : current.status_detail
+      const apply = shouldApplyTransition(current.status, status)
+      const writeStatus = apply ? status : current.status
+      const writeDetail = apply ? statusDetail ?? null : current.status_detail
       updatePayment.run(
         String(providerPaymentId),
         writeStatus,
