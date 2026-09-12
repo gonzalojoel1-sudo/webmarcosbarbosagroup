@@ -17,7 +17,7 @@ function redirectToLogin(req: NextRequest, expired = false) {
 
 export async function middleware(req: NextRequest) {
   const cookieValue = req.cookies.get(COOKIE_NAME)?.value
-  const payload = validateAndParse(cookieValue)
+  const payload = await validateAndParse(cookieValue)
 
   if (!payload) {
     return redirectToLogin(req, true)

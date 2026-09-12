@@ -88,26 +88,26 @@ async function main() {
     exp_absolute: Date.now() + 14 * 24 * 60 * 60 * 1000,
   }
 
-  await ok("encryptPayload + decryptPayload round-trip", () => {
-    const ct = encryptPayload(samplePayload)
-    const pt = decryptPayload(ct)
+  await ok("encryptPayload + decryptPayload round-trip", async () => {
+    const ct = await encryptPayload(samplePayload)
+    const pt = await decryptPayload(ct)
     assert.deepEqual(pt, samplePayload)
   })
 
-  await ok("dos encrypts del mismo payload producen ciphertext distinto (IV aleatorio)", () => {
-    const a = encryptPayload(samplePayload)
-    const b = encryptPayload(samplePayload)
+  await ok("dos encrypts del mismo payload producen ciphertext distinto (IV aleatorio)", async () => {
+    const a = await encryptPayload(samplePayload)
+    const b = await encryptPayload(samplePayload)
     assert.notEqual(a, b)
   })
 
-  await ok("decryptPayload con key distinta tira SessionError", () => {
-    const ct = encryptPayload(samplePayload)
+  await ok("decryptPayload con key distinta tira SessionError", async () => {
+    const ct = await encryptPayload(samplePayload)
     const original = process.env.ADMIN_SESSION_KEY
     process.env.ADMIN_SESSION_KEY = "ZmRzZmRzZmRzZmRzZmRzZmRzZmRzZmRzZmRzZmRzZmRzZmQ="
     try {
       let threw = false
       try {
-        decryptPayload(ct)
+        await decryptPayload(ct)
       } catch (e) {
         threw = e instanceof SessionError
       }
@@ -117,45 +117,45 @@ async function main() {
     }
   })
 
-  await ok("byte de versión desconocido tira SessionError", () => {
+  await ok("byte de versión desconocido tira SessionError", async () => {
     const forged = "0x02" + Buffer.from("cualquiercosa").toString("base64")
     let threw = false
     try {
-      decryptPayload(forged)
+      await decryptPayload(forged)
     } catch (e) {
       threw = e instanceof SessionError
     }
     assert.equal(threw, true)
   })
 
-  await ok("decryptPayload tira SessionError si exp_idle vencido", () => {
+  await ok("decryptPayload tira SessionError si exp_idle vencido", async () => {
     const expired = {
       ...samplePayload,
       iat: Date.now() - 9 * 60 * 60 * 1000,
       exp_idle: Date.now() - 1 * 60 * 60 * 1000,
       exp_absolute: Date.now() + 5 * 24 * 60 * 60 * 1000,
     }
-    const ct = encryptPayload(expired)
+    const ct = await encryptPayload(expired)
     let threw = false
     try {
-      decryptPayload(ct)
+      await decryptPayload(ct)
     } catch (e) {
       threw = e instanceof SessionError
     }
     assert.equal(threw, true)
   })
 
-  await ok("decryptPayload tira SessionError si exp_absolute vencido", () => {
+  await ok("decryptPayload tira SessionError si exp_absolute vencido", async () => {
     const expired = {
       ...samplePayload,
       iat: Date.now() - 15 * 24 * 60 * 60 * 1000,
       exp_idle: Date.now() - 1,
       exp_absolute: Date.now() - 1,
     }
-    const ct = encryptPayload(expired)
+    const ct = await encryptPayload(expired)
     let threw = false
     try {
-      decryptPayload(ct)
+      await decryptPayload(ct)
     } catch (e) {
       threw = e instanceof SessionError
     }
@@ -190,8 +190,8 @@ async function main() {
     assert.equal(threw, true)
   })
 
-  await ok("issueCookie retorna Set-Cookie header con flags correctos", () => {
-    const cookie = issueCookie(samplePayload)
+  await ok("issueCookie retorna Set-Cookie header con flags correctos", async () => {
+    const cookie = await issueCookie(samplePayload)
     assert.match(cookie, /^__Host-pastor_session=/)
     assert.ok(cookie.includes("HttpOnly"))
     assert.ok(cookie.includes("Secure"))
@@ -206,41 +206,41 @@ async function main() {
     assert.ok(cookie.includes("Path=/"))
   })
 
-  await ok("readCookieFromHeaders busca case-insensitive", () => {
+  await ok("readCookieFromHeaders busca case-insensitive", async () => {
     const headers = new Headers()
-    const cookieValue = encryptPayload(samplePayload)
+    const cookieValue = await encryptPayload(samplePayload)
     headers.append("cookie", `__Host-pastor_session=${cookieValue}`)
     const value = readCookieFromHeaders(headers)
     assert.ok(value)
     assert.ok(value!.startsWith("0x01"))
   })
 
-  await ok("validateAndParse retorna payload válido", () => {
-    const cookie = issueCookie(samplePayload)
+  await ok("validateAndParse retorna payload válido", async () => {
+    const cookie = await issueCookie(samplePayload)
     // Extraer el valor (entre el primer = y el primer ;)
     const value = cookie.split(";")[0].split("=").slice(1).join("=")
-    const parsed = validateAndParse(value)
+    const parsed = await validateAndParse(value)
     assert.ok(parsed)
     assert.equal(parsed!.sub, "pastor")
   })
 
-  await ok("validateAndParse retorna null si cookie vencida", () => {
+  await ok("validateAndParse retorna null si cookie vencida", async () => {
     const expired = {
       ...samplePayload,
       exp_idle: Date.now() - 1000,
       exp_absolute: Date.now() + 1000,
     }
-    const ct = encryptPayload(expired)
-    const parsed = validateAndParse(ct)
+    const ct = await encryptPayload(expired)
+    const parsed = await validateAndParse(ct)
     assert.equal(parsed, null)
   })
 
-  await ok("validateAndParse retorna null si cookie undefined", () => {
-    assert.equal(validateAndParse(undefined), null)
+  await ok("validateAndParse retorna null si cookie undefined", async () => {
+    assert.equal(await validateAndParse(undefined), null)
   })
 
-  await ok("validateAndParse retorna null si cookie corrupta", () => {
-    assert.equal(validateAndParse("not-a-valid-cookie"), null)
+  await ok("validateAndParse retorna null si cookie corrupta", async () => {
+    assert.equal(await validateAndParse("not-a-valid-cookie"), null)
   })
 
   const { RateLimiter } = await import("../lib/auth/rate-limit.ts")

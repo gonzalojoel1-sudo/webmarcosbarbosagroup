@@ -65,7 +65,7 @@ export async function loginPastor(formData: FormData) {
     exp_absolute: now + ABSOLUTE_TIMEOUT_MS,
   }
 
-  const cookieValue = encryptPayload(payload)
+  const cookieValue = await encryptPayload(payload)
   ;(await cookies()).set({
     name: COOKIE_NAME,
     value: cookieValue,

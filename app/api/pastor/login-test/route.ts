@@ -49,7 +49,7 @@ export async function POST(req: NextRequest) {
     exp_absolute: now + ABSOLUTE_TIMEOUT_MS,
   }
 
-  const cookieValue = encryptPayload(payload)
+  const cookieValue = await encryptPayload(payload)
 
   return NextResponse.json(
     { ok: true, cookie: cookieValue },
