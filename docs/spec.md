@@ -124,10 +124,11 @@ proyectos/webmarcosbarbosagroup/
 ├── app/(site)/page.tsx, metodologia/, planes/, sobre-marcos/, contacto/, api/lead/
 ├── components/{ui, hero, pillars, timeline, plans-table, lead-form}
 ├── lib/
-│   ├── board/        Bolsa de trabajo (sqlite + CV)
-│   ├── confessions/  Buzón privado cifrado (AES-256-GCM, rate-limit, honeypot)
-│   ├── donations/    Ofrendas (MP Checkout Pro + ledger)
-│   └── http/         client-ip.ts
+│   ├── auth/          Pastor login (scrypt, AES-256-GCM session, rate-limit)
+│   ├── board/         Bolsa de trabajo (sqlite + CV)
+│   ├── confessions/   Buzón privado cifrado (AES-256-GCM, rate-limit, honeypot)
+│   ├── donations/     Ofrendas (MP Checkout Pro + ledger)
+│   └── http/          client-ip.ts
 ├── config/theme.ts
 ├── content/{home.mdx, planes.mdx, metodologia.mdx, founder.mdx}
 ├── public/images/{logo.svg, marcos-hero.jpg, og.jpg}

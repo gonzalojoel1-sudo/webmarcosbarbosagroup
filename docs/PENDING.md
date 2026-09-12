@@ -40,7 +40,17 @@ Actualizado: 2026-09-12 · Estado del repo: `main`
 - AES-256-GCM en reposo, rate-limit 5/h, honeypot, IP-hash, admin con pestaña, nota pastoral cifrada, doble confirmación de borrado.
 - **Activación pendiente**: setear `CONFESSIONS_ENCRYPTION_KEY` y `CONFESSIONS_IP_SALT` en Dokploy (ver §1 del README).
 
-### 6. Recursos (tienda)
+### 6. Pastor Login (admin auth propio) — ✅ implementado 2026-09-12
+- Spec: `docs/superpowers/specs/2026-09-12-pastor-login-design.md`
+- Plan: `docs/superpowers/plans/2026-09-12-pastor-login.md`
+- AES-256-GCM session cookie con `__Host-` prefix, idle 8h / absolute 14d
+- scrypt para password con timing-safe compare
+- Rate-limit 5/15min/IP-hash
+- Hard cut desde Basic Auth. URL `/pastor` (login), `/pastor/inbox` (panel), `/api/pastor/*` (API).
+- **Activación pendiente**: setear `ADMIN_SESSION_KEY` y `ADMIN_PASS` en Dokploy (ver §1 del README).
+- **Sin links públicos** a `/pastor`. Solo URL directa.
+
+### 7. Recursos (tienda)
 - Catálogo (libros/archivos/automatizaciones) + compra. Bloqueado por la activación de pagos y por el catálogo real.
 
 ## Referencias
