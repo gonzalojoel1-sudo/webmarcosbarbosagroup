@@ -35,7 +35,8 @@ Actualizado: 2026-09-12 · Estado del repo: `main`
 - **Ofrenda**: alias/CVU/titular (hoy placeholders por env).
 
 ### 5. Confesionario (buzón privado)
-- Hoy es página informativa con CTA humano. Falta diseño de privacidad (quién lee, cifrado, retención) antes de construir.
+- ✅ **Diseño listo** — spec en `docs/superpowers/specs/2026-09-12-confesionario-design.md` (commit `55082ab`). Cifrado AES-256-GCM en reposo, anónimo + canal de respuesta opcional, nota pastoral cifrada, pestana en `/admin`.
+- ⏳ **Pendiente para próxima sesión**: plan de implementación + código (vía `writing-plans` + TDD).
 
 ### 6. Recursos (tienda)
 - Catálogo (libros/archivos/automatizaciones) + compra. Bloqueado por la activación de pagos y por el catálogo real.
