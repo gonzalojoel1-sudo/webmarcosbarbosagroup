@@ -55,7 +55,8 @@ export async function setPastoralNote(formData: FormData) {
 
 export async function deleteConfession(formData: FormData) {
   const id = String(formData.get("id") ?? "")
-  if (!id) return
+  const confirm = String(formData.get("confirm") ?? "")
+  if (!id || confirm !== "BORRAR") return
   const ok = getConfessions().deleteConfession(id)
   safeLog("confession.delete", { id, status: ok ? 200 : 404 })
   revalidatePath("/admin")

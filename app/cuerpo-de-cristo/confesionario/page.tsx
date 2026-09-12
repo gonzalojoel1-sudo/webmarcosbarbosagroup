@@ -2,13 +2,15 @@ import type { Metadata } from "next"
 import { getVertical } from "@/config/verticals"
 import { ContentPage } from "@/components/site/content-page"
 import { SectionShell } from "@/components/site/section-shell"
-import { SectionHead, Prose, BulletGrid } from "@/components/site/blocks"
+import { SectionHead, Prose } from "@/components/site/blocks"
+import { ConfessionForm } from "@/components/confessions/confession-form"
 
 export const metadata: Metadata = {
   title: "Confesionario — Un lugar para librarte de tus cargas | Cuerpo de Cristo",
   description:
-    "Un lugar reservado y confidencial para librarte de tus cargas. Escucha, confesión y descanso, con total privacidad.",
+    "Un buzón privado y cifrado para escribir lo que te pesa. Escucha pastoral sin juicio.",
   alternates: { canonical: "https://marcosbarbosagroup.com/cuerpo-de-cristo/confesionario" },
+  robots: { index: true, follow: true },
 }
 
 export default function Page() {
@@ -18,32 +20,31 @@ export default function Page() {
     <ContentPage
       vertical={vertical}
       child={child}
-      title="Un lugar para"
-      italic="librarte de tus cargas."
-      intro="Hay cosas que pesan y no se cuentan en cualquier lado. Este es un espacio reservado, confidencial y sin juicio, para hablar y soltar."
-      chips={["Confidencial", "Sin juicio", "Escucha"]}
-      cta={{ href: "/contacto", label: "Pedir un encuentro privado" }}
+      title="Buzón privado"
+      italic="para escribir lo que te pesa."
+      intro="Un espacio reservado para hablar con libertad. Tu mensaje queda guardado cifrado y solo Marcos lo lee."
+      chips={["Confidencial", "Sin juicio", "Cifrado"]}
     >
       <SectionShell>
         <SectionHead
-          kicker="Cómo funciona"
-          title="Privacidad"
-          italic="antes que nada."
-          sub="En esta etapa el encuentro se coordina de forma directa y personal. No hay formularios públicos ni datos que se guarden solos."
+          kicker="Buzón privado"
+          title="Escribí con"
+          italic="libertad."
+          sub="Sin prisa. Sin formato. Sin nombre si no querés."
         />
-        <BulletGrid
-          items={[
-            { title: "Confidencial", desc: "Lo que se habla queda entre vos y quien te escucha." },
-            { title: "Sin juicio", desc: "Un espacio de escucha y misericordia, no de condena." },
-            { title: "Encuentro privado", desc: "Se coordina personalmente para cuidar tu privacidad." },
-          ]}
-        />
-        <div className="mt-10">
+        <div className="max-w-2xl mx-auto mt-8">
+          <ConfessionForm />
+        </div>
+        <div className="mt-10 max-w-2xl mx-auto">
           <Prose>
-            <p>
-              Para pedir un encuentro, escribinos por WhatsApp o desde la página
-              de contacto y lo coordinamos de forma privada. No compartas
-              información sensible por formularios.
+            <p className="text-xs text-fg-muted">
+              Tu mensaje se cifra antes de guardarse. La clave vive en una
+              variable de entorno fuera de este sitio. No guardamos tu IP
+              (solo un hash irreversible para evitar abuso). Ver{" "}
+              <a href="/privacidad#confesionario" className="underline">
+                política de privacidad
+              </a>
+              .
             </p>
           </Prose>
         </div>

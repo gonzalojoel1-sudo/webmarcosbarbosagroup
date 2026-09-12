@@ -68,6 +68,37 @@ export default function PrivacidadPage() {
                 medición, si se activaran a futuro, se informarán en esta misma sección.
               </p>
             </section>
+            <section>
+              <h2 id="confesionario">Confesionario</h2>
+              <p>
+                El Confesionario es un buzón privado donde podés escribir lo
+                que te pesa sin identificarte.
+              </p>
+              <p>
+                <strong>Qué guardamos.</strong> Por defecto, anónimo. Si optás
+                por dejar un canal de contacto (email o WhatsApp), ese dato se
+                guarda cifrado. Tu mensaje se cifra antes de guardarse. No
+                guardamos tu IP (solo un hash irreversible usado para evitar
+                abuso).
+              </p>
+              <p>
+                <strong>Qué NO hacemos.</strong> No publicamos nada, no
+                compartimos con terceros, no enviamos marketing, no usamos tu
+                mensaje para entrenar modelos.
+              </p>
+              <p>
+                <strong>Retención.</strong> Indefinida, hasta que vos o Marcos
+                decidan eliminarlo.
+              </p>
+              <p>
+                <strong>Tus derechos (Ley 25.326).</strong> Para acceder,
+                rectificar o eliminar un mensaje que enviaste, escribinos a{" "}
+                <a href="mailto:consultora.marcosbarbosa@gmail.com">
+                  consultora.marcosbarbosa@gmail.com
+                </a>{" "}
+                indicando el seudónimo que usaste. Atendemos en 72 horas hábiles.
+              </p>
+            </section>
           </div>
         </article>
       </main>
