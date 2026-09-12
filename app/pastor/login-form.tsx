@@ -7,14 +7,13 @@ type Status =
   | { kind: "idle" }
   | { kind: "loading" }
 
-const initial = {
-  username: "admin",
+const initial = (defaultUsername: string) => ({
+  username: defaultUsername,
   password: "",
   honeypot: "",
-}
+})
 
 export function LoginForm({
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   defaultUsername,
   error,
   next,
@@ -23,7 +22,7 @@ export function LoginForm({
   error?: "invalid" | "ratelimit" | null
   next?: string
 }) {
-  const [form, setForm] = useState(initial)
+  const [form, setForm] = useState(initial(defaultUsername))
   const [status, setStatus] = useState<Status>({ kind: "idle" })
 
   const update = <K extends keyof typeof initial>(
