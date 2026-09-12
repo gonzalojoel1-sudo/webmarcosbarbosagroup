@@ -43,7 +43,7 @@ Ver `.env.example`. Sin `MP_ACCESS_TOKEN`, el botón de Mercado Pago responde co
 ## Los 1000 Socios (bolsa de trabajo + postulaciones)
 - Empresas publican búsquedas en `/1000-socios/bolsa-de-trabajo` y candidatos se postulan con CV en `/1000-socios/postulate`.
 - Datos en SQLite `data/board.db` (tablas `job_posts`, `candidates`) y CVs en `data/cvs/` (privados, no servidos por URL).
-- **Panel interno** en `/admin` protegido con Basic Auth (`ADMIN_USER` / `ADMIN_PASS`): lista búsquedas y candidatos, descarga el CV y cambia estado. Export en `/api/admin/export?type=jobs|candidates&format=csv|json` (para migrar a un CRM).
+- **Panel interno** en `/pastor/inbox` con login propio (`ADMIN_USER` / `ADMIN_PASS`): lista búsquedas y candidatos, descarga el CV y cambia estado. Export en `/api/pastor/export?type=jobs|candidates&format=csv|json` (para migrar a un CRM).
 - Cuando se elija el CRM nuevo, se sincroniza desde `lib/board/store.ts` (interfaz `BoardStore`) sin tocar los formularios.
 
 ## Comandos```
@@ -70,7 +70,7 @@ openssl rand -base64 32
 openssl rand -hex 16
 ```
 
-Setear en Dokploy → Variables. **Nunca** commitear valores reales al repo. Sin clave configurada, el endpoint público responde 503 y la pestaña `/admin?tab=confesionario` muestra un banner persistente.
+Setear en Dokploy → Variables. **Nunca** commitear valores reales al repo. Sin clave configurada, el endpoint público responde 503 y la pestaña `/pastor/inbox?tab=confesionario` muestra un banner persistente.
 
 ## Generar claves del Pastor Login
 

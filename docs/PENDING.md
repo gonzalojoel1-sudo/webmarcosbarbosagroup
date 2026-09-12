@@ -7,7 +7,6 @@ Actualizado: 2026-09-12 · Estado del repo: `main`
 - **Logo MB real** en header, footer, founder y favicon (`app/icon.svg`).
 - **Ofrendas** (`/cuerpo-de-cristo/ofrenda`): monto libre + chips, Mercado Pago Checkout Pro + transferencia, ledger idempotente (`node:sqlite`), webhook firmado, página de gracias. Código en `main`; **falta activar credenciales** (ver pendientes).
 - **Bolsa de trabajo + Postulate** (`/1000-socios/...`): empresa publica búsqueda y candidato sube CV (archivo privado, magic-bytes, máx 5 MB, consentimiento). Store `data/board.db` + CVs en `data/cvs/`.
-- **Panel interno** `/admin` (Basic Auth): ver búsquedas y candidatos, descargar CV, cambiar estado, export CSV/JSON.
 
 ## Pendientes (en orden de prioridad)
 
@@ -25,7 +24,7 @@ Actualizado: 2026-09-12 · Estado del repo: `main`
 
 ### 3. CRM nuevo
 - Definir el CRM (el Frappe actual se reemplaza por poco práctico) e integrar búsquedas, candidatos, ofrendas y leads.
-- Ya hay costura (`lib/board/store.ts`, interfaz `BoardStore`) y **export** `/api/admin/export?type=jobs|candidates&format=csv|json`.
+- Ya hay costura (`lib/board/store.ts`, interfaz `BoardStore`) y **export** `/api/pastor/export?type=jobs|candidates&format=csv|json`.
 
 ### 4. Contenido `[VALIDAR]` (~36 marcas en 19 páginas)
 - **Servicios / Seguridad**: habilitaciones, documentación, valores, "sobre nosotros".
