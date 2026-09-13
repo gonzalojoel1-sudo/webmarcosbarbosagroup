@@ -1,7 +1,7 @@
 "use client"
 
 import { useRef, useState } from "react"
-import { Check, Copy, Loader2, MessageCircle, ArrowRight } from "lucide-react"
+import { Check, Copy, Info, Loader2, MessageCircle, ArrowRight } from "lucide-react"
 
 const PRESETS = [1000, 5000, 10000, 20000, 50000] as const
 const MIN = 100
@@ -32,6 +32,7 @@ export function OfferingForm({ mpReady }: { mpReady: boolean }) {
   const [error, setError] = useState<string | null>(null)
   const [copied, setCopied] = useState(false)
   const attemptRef = useRef<string>("")
+  const transferCardRef = useRef<HTMLDivElement>(null)
 
   const usesPreset = presetIndex !== null && customArs.trim() === ""
   const customNumber = customArs.trim() === "" ? null : Number(customArs)
@@ -95,6 +96,18 @@ export function OfferingForm({ mpReady }: { mpReady: boolean }) {
 
   return (
     <form onSubmit={onSubmit} noValidate className="space-y-8">
+      {!mpReady ? (
+        <div
+          role="note"
+          aria-label="Información sobre métodos de ofrenda"
+          className="rounded-xl border border-hairline bg-surface px-4 py-3 flex items-start gap-3"
+        >
+          <Info size={18} aria-hidden className="text-fg-muted mt-0.5 flex-shrink-0" />
+          <p className="text-sm text-fg leading-relaxed">
+            Tu ofrenda se transforma en obra. Elegí cómo querés colaborar.
+          </p>
+        </div>
+      ) : null}
       {/* Monto */}
       <fieldset>
         <legend className="text-sm font-semibold text-fg">
@@ -168,23 +181,40 @@ export function OfferingForm({ mpReady }: { mpReady: boolean }) {
         <legend className="text-sm font-semibold text-fg">¿Cómo querés ofrendar?</legend>
         <div className="mt-4 grid sm:grid-cols-2 gap-3">
           <label
-            className={`cursor-pointer card-luxury rounded-2xl p-4 flex items-start gap-3 ${
-              method === "mercadopago" ? "card-accent-strong" : ""
+            className={`flex items-start gap-3 rounded-xl border p-4 cursor-pointer transition-colors ${
+              method === "mercadopago"
+                ? "border-primary bg-primary/5"
+                : !mpReady
+                ? "border-hairline bg-surface opacity-60 cursor-not-allowed"
+                : "border-hairline bg-surface hover:border-primary/40"
             }`}
           >
             <input
               type="radio"
               name="metodo"
-              className="mt-1"
+              className="sr-only"
+              disabled={!mpReady}
               checked={method === "mercadopago"}
               onChange={() => setMethod("mercadopago")}
+              aria-describedby={!mpReady ? "mp-not-ready" : undefined}
             />
             <span>
-              <span className="block text-sm font-semibold text-fg">Mercado Pago</span>
-              <span className="block text-xs text-fg-muted mt-1">
-                Tarjeta de crédito/débito, cuotas, dinero en cuenta y efectivo.
-                Pago seguro en el sitio de Mercado Pago.
+              <span className="block text-sm font-semibold text-fg">
+                Mercado Pago
+                {!mpReady && (
+                  <span className="text-fg-muted text-xs font-normal">
+                    {" "}— por ahora no disponible
+                  </span>
+                )}
               </span>
+              <span className="block text-xs text-fg-muted mt-1">
+                Tarjeta, cuotas o efectivo en puntos de pago.
+              </span>
+              {!mpReady ? (
+                <span id="mp-not-ready" className="sr-only">
+                  Por ahora ofrendá por transferencia.
+                </span>
+              ) : null}
             </span>
           </label>
 
@@ -254,8 +284,10 @@ export function OfferingForm({ mpReady }: { mpReady: boolean }) {
           )}
         </button>
       ) : (
-        <div className="card-luxury rounded-2xl p-6 space-y-3">
-          <p className="text-sm font-semibold text-fg">Datos para transferir</p>
+        <div ref={transferCardRef} tabIndex={-1} className="card-luxury rounded-2xl p-6 space-y-3">
+          <p className="text-sm font-semibold text-fg">
+            Hacé tu transferencia o depósito a nuestra cuenta:
+          </p>
           {TRANSFER.alias || TRANSFER.cvu ? (
             <ul className="space-y-1.5 text-sm">
               {TRANSFER.holder ? (
@@ -299,10 +331,6 @@ export function OfferingForm({ mpReady }: { mpReady: boolean }) {
               <MessageCircle size={16} aria-hidden /> Avisar por WhatsApp
             </a>
           </div>
-          <p className="text-xs text-fg-muted">
-            [VALIDAR] Completá el alias/CVU/titular reales en las variables de
-            entorno para mostrarlos acá.
-          </p>
         </div>
       )}
 
