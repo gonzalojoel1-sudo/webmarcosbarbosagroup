@@ -14,13 +14,13 @@ Actualizado: 2026-09-12 · Estado del repo: `main`
 
 ## Pendientes (en orden de prioridad)
 
-### 1. Dokploy — volumen persistente y panel (CRÍTICO) ⚠️
+### 1. Dokploy — volumen persistente y panel ✅ configurado 2026-09-13
 
-**Estado**: pendiente. Sin esto se pierden ofrendas, leads, búsquedas, CVs y confesiones en cada redeploy.
-
-- Montar volumen persistente en **`/app/data`**; `chown -R 1001:1001`; **replicas = 1**.
-- **Backup** del volumen (Dokploy Volume Backups / S3).
-- **Sin esto**: todo SQLite (`board.db`, `donations.db`) es efímero.
+- Volumen `webmb-data` montado en `/app/data` (Volume Mount en Dokploy).
+- Permisos heredados del Dockerfile (uid/gid 1001 nextjs:nodejs) — gotcha del chown no aplicó.
+- **Persistencia confirmada**: marker de prueba sobrevivió redeploy.
+- **Replicas**: pendiente verificar (Dokploy default suele ser1; confirmar en Cluster settings).
+- **Backup automático**: pendiente. Configurar Dokploy Volume Backups → S3-compatible (Backblaze B2 / Cloudflare R2 / AWS S3). Hasta entonces, riesgo de pérdida total si el VPS falla.
 
 ### 2. Activar Mercado Pago — diferido por decisión de producto
 
