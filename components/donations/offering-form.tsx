@@ -72,14 +72,18 @@ export function OfferingForm({ mpReady }: { mpReady: boolean }) {
       if (!res.ok || !data?.init_point) {
         setError(
           data?.error ||
-            "No pudimos iniciar el pago. Probá de nuevo o usá transferencia."
+            "No pudimos iniciar el pago con Mercado Pago. Probá de nuevo en unos minutos o transferí directamente."
         )
+        setMethod("transferencia")
+        transferCardRef.current?.focus()
         setLoading(false)
         return
       }
       window.location.assign(data.init_point as string)
     } catch {
-      setError("Error de red. Probá de nuevo.")
+      setError("Sin conexión. Verificá tu red y probá de nuevo, o transferí directamente.")
+      setMethod("transferencia")
+      transferCardRef.current?.focus()
       setLoading(false)
     }
   }
