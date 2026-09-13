@@ -1,6 +1,6 @@
 "use client"
 
-import { useRef, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { Check, Copy, Info, Loader2, MessageCircle, ArrowRight } from "lucide-react"
 
 const PRESETS = [1000, 5000, 10000, 20000, 50000] as const
@@ -31,8 +31,16 @@ export function OfferingForm({ mpReady }: { mpReady: boolean }) {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
   const [copied, setCopied] = useState(false)
+  const [fallbackTrigger, setFallbackTrigger] = useState(false)
   const attemptRef = useRef<string>("")
   const transferCardRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    if (fallbackTrigger && method === "transferencia") {
+      transferCardRef.current?.focus()
+      setFallbackTrigger(false)
+    }
+  }, [method, fallbackTrigger])
 
   const usesPreset = presetIndex !== null && customArs.trim() === ""
   const customNumber = customArs.trim() === "" ? null : Number(customArs)
@@ -75,7 +83,7 @@ export function OfferingForm({ mpReady }: { mpReady: boolean }) {
             "No pudimos iniciar el pago con Mercado Pago. Probá de nuevo en unos minutos o transferí directamente."
         )
         setMethod("transferencia")
-        transferCardRef.current?.focus()
+        setFallbackTrigger(true)
         setLoading(false)
         return
       }
@@ -83,7 +91,7 @@ export function OfferingForm({ mpReady }: { mpReady: boolean }) {
     } catch {
       setError("Sin conexión. Verificá tu red y probá de nuevo, o transferí directamente.")
       setMethod("transferencia")
-      transferCardRef.current?.focus()
+      setFallbackTrigger(true)
       setLoading(false)
     }
   }
