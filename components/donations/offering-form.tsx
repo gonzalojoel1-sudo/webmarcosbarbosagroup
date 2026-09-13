@@ -21,10 +21,12 @@ const fmt = (n: number) =>
 
 type Method = "mercadopago" | "transferencia"
 
-export function OfferingForm() {
+import { defaultMethod } from "@/lib/donations/method"
+
+export function OfferingForm({ mpReady }: { mpReady: boolean }) {
   const [presetIndex, setPresetIndex] = useState<number | null>(null)
   const [customArs, setCustomArs] = useState("")
-  const [method, setMethod] = useState<Method>("mercadopago")
+  const [method, setMethod] = useState<Method>(defaultMethod(mpReady))
   const [email, setEmail] = useState("")
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)

@@ -12,6 +12,7 @@ async function main() {
   const amounts = await import("../lib/donations/amounts.ts")
   const { createSqliteLedger } = await import("../lib/donations/ledger.ts")
   const { verifyMpSignature } = await import("../lib/donations/signature.ts")
+  const { defaultMethod } = await import("../lib/donations/method.ts")
 
   let passed = 0
   const ok = (name: string, fn: () => void) => {
@@ -22,6 +23,12 @@ async function main() {
 
   ok("preset 1000 ARS -> 100000 centavos", () => {
     assert.equal(amounts.resolveAmountCents({ presetId: 0 }), 100000)
+  })
+  ok("defaultMethod con MP listo → mercadopago", () => {
+    assert.equal(defaultMethod(true), "mercadopago")
+  })
+  ok("defaultMethod sin MP → transferencia", () => {
+    assert.equal(defaultMethod(false), "transferencia")
   })
   ok("preset 50000 ARS -> 5000000 centavos", () => {
     assert.equal(amounts.resolveAmountCents({ presetId: 4 }), 5000000)

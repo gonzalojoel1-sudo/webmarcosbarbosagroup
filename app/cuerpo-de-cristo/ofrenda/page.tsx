@@ -4,6 +4,7 @@ import { ContentPage } from "@/components/site/content-page"
 import { SectionShell } from "@/components/site/section-shell"
 import { SectionHead, Prose, BulletGrid } from "@/components/site/blocks"
 import { OfferingForm } from "@/components/donations/offering-form"
+import { isMpCheckoutReady } from "@/lib/donations/mp"
 
 export const metadata: Metadata = {
   title: "Ofrenda — Sostené la obra de Dios | Cuerpo de Cristo",
@@ -32,7 +33,7 @@ export default function Page() {
           italic="y cómo ofrendar."
           sub="Ofrendá lo que sientas en tu corazón. Podés hacerlo con Mercado Pago (tarjeta, cuotas, efectivo) o por transferencia."
         />
-        <OfferingForm />
+        <OfferingForm mpReady={isMpCheckoutReady()} />
       </SectionShell>
 
       <SectionShell className="border-t border-hairline">
